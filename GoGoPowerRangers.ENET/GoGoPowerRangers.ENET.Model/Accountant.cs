@@ -7,5 +7,6 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Accountant
     {
+
     }
 }
