@@ -7,6 +7,7 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Intervention
     {
+        private int _id;
         public Intervention()
         { }
 
