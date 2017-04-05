@@ -19,6 +19,7 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public void ChangeSiteEngineerDistrict(SiteEngineer engineer, District district)
         {
+            throw new NotImplementedException();
             //engineer.District = district;
         }
         public void ChangeManagerDistrict(Manager manager, District district)

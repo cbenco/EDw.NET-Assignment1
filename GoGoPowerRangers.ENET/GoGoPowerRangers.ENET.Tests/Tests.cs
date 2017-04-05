@@ -82,6 +82,7 @@ namespace GoGoPowerRangers.ENET.Tests
             Assert.AreEqual(_accountant.UserType, _user.UserType);
         }
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
         public void SetDisctrictType_ToEngineer_ReturnsCorrectDistrict()
         {
             District _district = new District();
