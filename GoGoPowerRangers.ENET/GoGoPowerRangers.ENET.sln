@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+# Visual Studio 2012
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET", "GoGoPowerRangers.ENET\GoGoPowerRangers.ENET.csproj", "{78A1808B-8FF8-4CA4-ACCB-2D32BB3A6837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Tests", "GoGoPowerRangers.ENET.Tests\GoGoPowerRangers.ENET.Tests.csproj", "{CF82CA40-2C07-422C-84A5-19D18548894C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Model", "GoGoPowerRangers.ENET.Model\GoGoPowerRangers.ENET.Model.csproj", "{FB8319E8-6BDB-404A-B96A-A6A8941249BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Tests", "GoGoPowerRangers.ENET.Tests\GoGoPowerRangers.ENET.Tests.csproj", "{B507DC0A-3904-4611-873F-3FC9CFE11C6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{78A1808B-8FF8-4CA4-ACCB-2D32BB3A6837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A1808B-8FF8-4CA4-ACCB-2D32BB3A6837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A1808B-8FF8-4CA4-ACCB-2D32BB3A6837}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF82CA40-2C07-422C-84A5-19D18548894C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF82CA40-2C07-422C-84A5-19D18548894C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF82CA40-2C07-422C-84A5-19D18548894C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF82CA40-2C07-422C-84A5-19D18548894C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B507DC0A-3904-4611-873F-3FC9CFE11C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B507DC0A-3904-4611-873F-3FC9CFE11C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B507DC0A-3904-4611-873F-3FC9CFE11C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B507DC0A-3904-4611-873F-3FC9CFE11C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB8319E8-6BDB-404A-B96A-A6A8941249BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB8319E8-6BDB-404A-B96A-A6A8941249BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB8319E8-6BDB-404A-B96A-A6A8941249BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
