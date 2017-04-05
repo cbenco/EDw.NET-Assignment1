@@ -1,9 +1,0 @@
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/xunit.execution.desktop.dll
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/GoGoPowerRangers.ENET.Tests.dll.mdb
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/GoGoPowerRangers.ENET.Tests.dll
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/obj/Debug/GoGoPowerRangers.ENET.Tests.dll
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/obj/Debug/GoGoPowerRangers.ENET.Tests.dll.mdb
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/xunit.abstractions.dll
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/xunit.core.dll
-/home/chris/EDwNET/GoGoPowerRangers/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/bin/Debug/xunit.assert.dll

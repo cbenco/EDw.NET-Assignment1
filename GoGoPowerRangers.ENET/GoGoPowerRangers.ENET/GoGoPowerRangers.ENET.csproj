@@ -453,6 +453,12 @@
     <Folder Include="Account\App_Data\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoGoPowerRangers.ENET.Model\GoGoPowerRangers.ENET.Model.csproj">
+      <Project>{fb8319e8-6bdb-404a-b96a-a6a8941249be}</Project>
+      <Name>GoGoPowerRangers.ENET.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

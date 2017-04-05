@@ -7,6 +7,8 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Manager
     {
+        public District District { get; set; }
+
         public List<Intervention> GetProposedInterventions()
         {
             List<Intervention> interventions = new List<Intervention>();

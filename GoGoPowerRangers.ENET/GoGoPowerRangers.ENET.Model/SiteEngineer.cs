@@ -7,6 +7,7 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class SiteEngineer
     {
+        public District District { get; set; }
         private List<Intervention> _interventions;
         public void CreateClient()
         {
