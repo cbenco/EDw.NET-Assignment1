@@ -7,7 +7,7 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class District
     {
-        private int _id;
+        //private int _id;
         public District()
         { }
 

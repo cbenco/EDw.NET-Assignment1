@@ -7,7 +7,7 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Client
     {
-        private int _id;
+        //private int _id;
         public Client()
         { }
         

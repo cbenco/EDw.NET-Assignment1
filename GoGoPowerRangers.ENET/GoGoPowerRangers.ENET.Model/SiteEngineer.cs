@@ -5,9 +5,14 @@ using System.Web;
 
 namespace GoGoPowerRangers.ENET.Model
 {
-    public class SiteEngineer
+    public class SiteEngineer : User
     {
-        private List<Intervention> _interventions;
+        //private List<Intervention> _interventions;
+        public SiteEngineer(User user):base(user)
+        {
+
+        }
+        public District District { get; set; }
         public void CreateClient()
         {
 
