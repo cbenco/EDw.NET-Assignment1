@@ -10,6 +10,7 @@ namespace GoGoPowerRangers.ENET
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

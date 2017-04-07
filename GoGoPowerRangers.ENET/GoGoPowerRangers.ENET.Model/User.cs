@@ -20,7 +20,11 @@ namespace GoGoPowerRangers.ENET.Model
 
         public User(string userName, string password, string name, int id, Type type)
         {
-
+            this.UserName = userName;
+            this.Password = password;
+            this.Name = name;
+            this.Id = id;
+            this.UserType = type;
         }
         public int Id { get; set; }
         public string UserName { get; set; }
