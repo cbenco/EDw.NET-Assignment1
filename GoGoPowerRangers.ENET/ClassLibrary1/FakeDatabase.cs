@@ -11,6 +11,7 @@ namespace GoGoPowerRangers.ENET.Data
     {
         List<District> _districts = new List<District>();
         public List<User> _users = new List<User>();
+        List<Client> _clients = new List<Client>();
         List<InterventionType> _interventionTypes = new List<InterventionType>();
         List<Intervention> _interventions = new List<Intervention>();
 
@@ -22,6 +23,9 @@ namespace GoGoPowerRangers.ENET.Data
             PopulateAccountants();
             PopulateInterventionTypes();
             PopulateInterventions();
+            PopulateClients();
+
+            PrintDb();
         }
 
         private void PopulateDistricts()
@@ -33,7 +37,6 @@ namespace GoGoPowerRangers.ENET.Data
             _districts.Add(new District("Sydney"));
             _districts.Add(new District("Rural NSW"));
         }
-
         private void PopulateEngineers()
         {
             string[] names = { "Chris Benco", "Luke Single", "John Nguyen", "Lyndal Walker",
@@ -64,7 +67,17 @@ namespace GoGoPowerRangers.ENET.Data
                 _users.Add(new Accountant((3000 + i).ToString(), "password", names[i]));
             }
         }
-
+        private void PopulateClients()
+        {
+            string[] names = { "Alan", "Steve", "Tim", "Tom", "Sam", "Harry",
+                               "Bree", "Matlida", "Helga", "Olga", "Hannah", "Emily" };
+            string[] locations = { "Up the street", "Round the hill", "Down the pub", "Under the bridge", "Inside", "Outside",
+                                   "Underground", "On top of the mountain", "A long way away", "Prefer not to say", "27", "PO Box 2998" };
+            for (int i = 0; i < names.Length; i++)
+            {
+                _clients.Add(new Client(names[i], locations[i], _districts[i % 6]));
+            }
+        }
         private void PopulateInterventionTypes()
         {
             _interventionTypes.Add(new InterventionType("Supply Mosquito Net", 0.5, 25.0));
@@ -80,7 +93,6 @@ namespace GoGoPowerRangers.ENET.Data
                 for (int j = 0; j < _interventionTypes.Count; j++)
                     _interventions.Add(new Intervention(_interventionTypes[j], _users[i], 100));
         }
-
         private void PrintDb()
         {
             Console.WriteLine("DISTRICTS: ");
@@ -93,6 +105,12 @@ namespace GoGoPowerRangers.ENET.Data
             for (int i = 0; i < _users.Count; i++)
             {
                 Console.WriteLine(_users[i].ToString());
+            }
+            Console.WriteLine();
+            Console.WriteLine("CLIENTS: ");
+            for (int i = 0; i < _clients.Count; i++)
+            {
+                Console.WriteLine(_clients[i].ToString());
             }
             Console.WriteLine();
             Console.WriteLine("INTERVENTIONS: ");

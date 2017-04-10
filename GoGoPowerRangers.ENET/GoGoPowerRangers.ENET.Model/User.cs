@@ -15,17 +15,17 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public User(User copy)
         {
-            this.Id = copy.Id;
-            this.Name = copy.Name;
+            Id = copy.Id;
+            Name = copy.Name;
         }
 
         public User(string userName, string password, string name, Type type)
         {
-            this.UserName = userName;
-            this.Password = password;
-            this.Name = name;
-            this.UserType = type;
-            this.Id = new int(); //sets ID as next free number
+            UserName = userName;
+            Password = password;
+            Name = name;
+            UserType = type;
+            Id = new int(); //sets ID as next free number
         }
         public int Id
         {
