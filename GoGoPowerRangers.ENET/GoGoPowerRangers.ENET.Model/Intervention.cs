@@ -15,7 +15,7 @@ namespace GoGoPowerRangers.ENET.Model
 
         public InterventionType InterventionType { get; set; }
         public Client Client { get; set; }
-        public double ManHoues { get; set; }
+        public double ManHours { get; set; }
         public double MaterialCost { get; set; }
         public User Requester { get; set; }
         public DateTime RequestDate { get; set; }

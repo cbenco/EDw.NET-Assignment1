@@ -30,7 +30,5 @@ namespace GoGoPowerRangers.ENET.Model
         {
             //manager.District = district;
         }
-
-
     }
 }
