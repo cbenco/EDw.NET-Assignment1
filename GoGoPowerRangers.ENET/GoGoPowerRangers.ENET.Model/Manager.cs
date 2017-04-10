@@ -8,6 +8,10 @@ namespace GoGoPowerRangers.ENET.Model
     public class Manager : User
     {
         public Manager(User user) : base(user) { }
+        public Manager(string userName, string password, string name, int id, District district) : base(userName, password, name, id, Type.Manager)
+        {
+            this.District = district;
+        }
         public District District { get; set; }
 
         public List<Intervention> GetProposedInterventions()

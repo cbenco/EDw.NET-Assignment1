@@ -104,7 +104,7 @@ namespace GoGoPowerRangers.ENET.Tests
 
         //Tests for the fake database
         [TestMethod]
-        public void PopulateDatabase_Element0_IsChrisBenco()
+        public void PopulateUsers_Element0_IsChrisBenco()
         {
             User benco = _fakeDb._users[0];
             Assert.AreEqual(benco.UserName, "1001");
@@ -112,9 +112,8 @@ namespace GoGoPowerRangers.ENET.Tests
             Assert.AreEqual(benco.Id, 1);
             Assert.AreEqual(benco.UserType, Model.Type.Manager);
         }
-
         [TestMethod]
-        public void PopulateDatabase_Element8_IsStuartStevens()
+        public void PopulateUsers_Element8_IsStuartStevens()
         {
             User stuart = _fakeDb._users[8];
             Assert.AreEqual(stuart.UserName, "1009");

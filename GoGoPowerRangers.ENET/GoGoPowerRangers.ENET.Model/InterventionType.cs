@@ -13,5 +13,11 @@ namespace GoGoPowerRangers.ENET.Model
         public double ManHours { get; set; }
         public double MaterialCost { get; set; }
 
+        public InterventionType(string name, double manHours, double materialCost)
+        {
+            Name = name;
+            ManHours = manHours;
+            MaterialCost = materialCost;
+        }
     }
 }

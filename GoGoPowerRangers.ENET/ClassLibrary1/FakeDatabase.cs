@@ -29,14 +29,14 @@ namespace GoGoPowerRangers.ENET.Data
             }
         }
 
-        private GoGoPowerRangers.ENET.Model.Type PickType(int i)
+        private Model.Type PickType(int i)
         {
             if (i % 3 == 0)
-                return GoGoPowerRangers.ENET.Model.Type.Accountant;
+                return Model.Type.Accountant;
             else if (i % 3 == 1)
-                return GoGoPowerRangers.ENET.Model.Type.Manager;
+                return Model.Type.Manager;
             else
-                return GoGoPowerRangers.ENET.Model.Type.SiteEngineer;
+                return Model.Type.SiteEngineer;
         }
         private void PopulateInterventions()
         {

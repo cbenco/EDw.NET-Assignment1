@@ -9,7 +9,9 @@ namespace GoGoPowerRangers.ENET.Model
     {
         //private int _id;
         public Intervention()
-        { }
+        {
+
+        }
 
         public InterventionType InterventionType { get; set; }
         public Client Client { get; set; }

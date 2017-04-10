@@ -12,6 +12,10 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
+        public SiteEngineer(string userName, string password, string name, int id, District district):base(userName, password, name, id, Type.SiteEngineer)
+        {
+            this.District = district;
+        }
         public District District { get; set; }
         public void CreateClient()
         {
