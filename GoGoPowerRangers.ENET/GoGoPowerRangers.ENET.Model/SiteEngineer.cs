@@ -12,7 +12,7 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
-        public SiteEngineer(string userName, string password, string name, int id, District district):base(userName, password, name, id, Type.SiteEngineer)
+        public SiteEngineer(string userName, string password, string name, District district):base(userName, password, name, Type.SiteEngineer)
         {
             this.District = district;
         }
@@ -36,6 +36,10 @@ namespace GoGoPowerRangers.ENET.Model
         public void ChangeInterventionState(Intervention intervention, Status status)
         {
             intervention.Status = status;
+        }
+        public override string ToString()
+        {
+            return base.ToString() + ", " + District.ToString();
         }
     }
 }

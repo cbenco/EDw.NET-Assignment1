@@ -49,6 +49,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\GoGoPowerRangers.ENET.Data.csproj">
+      <Project>{72c128f1-ffce-4f86-b2d2-cfbd186af043}</Project>
+      <Name>GoGoPowerRangers.ENET.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoGoPowerRangers.ENET.Model\GoGoPowerRangers.ENET.Model.csproj">
+      <Project>{4d090d8b-0040-44d8-9131-c1b385f2c7f2}</Project>
+      <Name>GoGoPowerRangers.ENET.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

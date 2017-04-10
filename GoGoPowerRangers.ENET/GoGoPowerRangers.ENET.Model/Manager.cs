@@ -8,7 +8,7 @@ namespace GoGoPowerRangers.ENET.Model
     public class Manager : User
     {
         public Manager(User user) : base(user) { }
-        public Manager(string userName, string password, string name, int id, District district) : base(userName, password, name, id, Type.Manager)
+        public Manager(string userName, string password, string name, District district) : base(userName, password, name, Type.Manager)
         {
             this.District = district;
         }
@@ -29,6 +29,11 @@ namespace GoGoPowerRangers.ENET.Model
         public void ChangeManagerDistrict(Manager manager, District district)
         {
             //manager.District = district;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ", " + District.ToString();
         }
     }
 }

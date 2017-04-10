@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoGoPowerRangers.ENET.Model;
+using GoGoPowerRangers.ENET.Data;
 
 namespace GoGoPowerRangers.ENET
 {
@@ -10,7 +12,8 @@ namespace GoGoPowerRangers.ENET
     {
         static void Main(string[] args)
         {
-
+            FakeDatabase fakeDb = new FakeDatabase();
+            Console.Read();
         }
     }
 }
