@@ -20,8 +20,6 @@ namespace GoGoPowerRangers.ENET.Data
             PopulateManagers();
             PopulateAccountants();
             //PopulateInterventions();
-
-            PrintDb();
         }
 
         private void PopulateDistricts()
@@ -61,7 +59,7 @@ namespace GoGoPowerRangers.ENET.Data
                                "Patrick Roy", "Semyon Varlamov", "Calvin Pickard", "Jose Theodore" };
             for (int i = 0; i < names.Length; i++)
             {
-                _users.Add(new Accountant((2000 + i).ToString(), "password", names[i]));
+                _users.Add(new Accountant((3000 + i).ToString(), "password", names[i]));
             }
         }
 

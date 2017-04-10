@@ -13,7 +13,6 @@ namespace GoGoPowerRangers.ENET
         static void Main(string[] args)
         {
             FakeDatabase fakeDb = new FakeDatabase();
-            Console.Read();
         }
     }
 }
