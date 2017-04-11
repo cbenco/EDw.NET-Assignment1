@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET", "GoGoPowerRangers.ENET\GoGoPowerRangers.ENET.csproj", "{84047527-9084-4DDC-A69D-5C901AC3984E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Tests", "GoGoPowerRangers.ENET.Tests\GoGoPowerRangers.ENET.Tests.csproj", "{05926D52-3801-4A4A-B1E6-585143B928FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Data", "ClassLibrary1\GoGoPowerRangers.ENET.Data.csproj", "{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPViews", "ASPViews\ASPViews.csproj", "{1423819B-4242-4783-B0C1-B525450A9FAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1423819B-4242-4783-B0C1-B525450A9FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1423819B-4242-4783-B0C1-B525450A9FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1423819B-4242-4783-B0C1-B525450A9FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1423819B-4242-4783-B0C1-B525450A9FAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

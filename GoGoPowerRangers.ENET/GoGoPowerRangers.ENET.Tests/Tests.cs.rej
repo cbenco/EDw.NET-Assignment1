@@ -1,0 +1,15 @@
+diff a/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/Tests.cs b/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Tests/Tests.cs	(rejected hunks)
+@@ -29,10 +29,13 @@
+              _engineer = new SiteEngineer(_user);
+              _accountant = new Accountant(_user);
+              _manager = new Manager(_user);
+++<<<<<<< Updated upstream
+ +            _fakeDb = new FakeDatabase();
+++=======
+++>>>>>>> Stashed changes
+          }
+  
+ +        //Tests to ensure inheritance works when creating user objects.
+          [TestMethod]
+          public void CreateSiteEngineer_FromUser_ReturnsUserId()
+          {
