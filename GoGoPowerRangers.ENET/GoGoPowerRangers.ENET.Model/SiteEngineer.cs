@@ -15,8 +15,12 @@ namespace GoGoPowerRangers.ENET.Model
         public SiteEngineer(string userName, string password, string name, District district) : base(userName, password, name, Type.SiteEngineer)
         {
             District = district;
+            MaxManHours = 6;
+            MaxMaterialCost = 100;
         }
         public District District { get; set; }
+        public double MaxManHours { get; set; }
+        public double MaxMaterialCost { get; set; }
         public void CreateClient()
         {
 

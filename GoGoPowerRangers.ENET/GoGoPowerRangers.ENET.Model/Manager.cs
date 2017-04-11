@@ -13,6 +13,8 @@ namespace GoGoPowerRangers.ENET.Model
             this.District = district;
         }
         public District District { get; set; }
+        public double MaxManHours { get; set; }
+        public double MaxMaterialCost { get; set; }
 
         public List<Intervention> GetProposedInterventions()
         {
