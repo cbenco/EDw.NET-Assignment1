@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\GoGoPowerRangers.ENET.Data.csproj">
+    <ProjectReference Include="..\GoGoPowerRangers.ENET.Data\GoGoPowerRangers.ENET.Data.csproj">
       <Project>{72c128f1-ffce-4f86-b2d2-cfbd186af043}</Project>
       <Name>GoGoPowerRangers.ENET.Data</Name>
     </ProjectReference>

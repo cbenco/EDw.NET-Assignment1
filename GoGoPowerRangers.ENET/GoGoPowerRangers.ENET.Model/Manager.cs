@@ -57,7 +57,7 @@ namespace GoGoPowerRangers.ENET.Model
         {
             throw new NotImplementedException();
             //engineer.District = district;
-            engineer.District = district;
+            
         }
         public void ChangeManagerDistrict(Manager manager, District district)
         {

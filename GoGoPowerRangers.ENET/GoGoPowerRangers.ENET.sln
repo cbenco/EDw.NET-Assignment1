@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Tests", "GoGoPowerRangers.ENET.Tests\GoGoPowerRangers.ENET.Tests.csproj", "{05926D52-3801-4A4A-B1E6-585143B928FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Data", "ClassLibrary1\GoGoPowerRangers.ENET.Data.csproj", "{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Data", "GoGoPowerRangers.ENET.Data\GoGoPowerRangers.ENET.Data.csproj", "{72C128F1-FFCE-4F86-B2D2-CFBD186AF043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPViews", "ASPViews\ASPViews.csproj", "{1423819B-4242-4783-B0C1-B525450A9FAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoGoPowerRangers.ENET.Views", "GoGoPowerRangers.ENET.Views\GoGoPowerRangers.ENET.Views.csproj", "{1423819B-4242-4783-B0C1-B525450A9FAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
