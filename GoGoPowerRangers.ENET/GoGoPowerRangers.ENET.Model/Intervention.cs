@@ -47,6 +47,27 @@ namespace GoGoPowerRangers.ENET.Model
         public DateTime LastVisited { get; set; }
         public string Notes { get; set; }
 
+        private bool CanBeApprovedByEngineer(SiteEngineer approver)
+        {
+            if ((approver == Requester) &&
+                  approver.MaxManHours >= ManHours &&
+                  approver.MaxMaterialCost >= MaterialCost &&
+                  approver.MaxManHours >= InterventionType.ManHours &&
+                  approver.MaxMaterialCost >= InterventionType.MaterialCost)
+                return true;
+            else return false;
+        }
+        private bool CanBeApprovedByManager(Manager approver)
+        {
+            if ((approver.District == Client.District) &&
+                  approver.MaxManHours >= ManHours &&
+                  approver.MaxMaterialCost >= MaterialCost &&
+                  approver.MaxManHours >= InterventionType.ManHours &&
+                  approver.MaxMaterialCost >= InterventionType.MaterialCost)
+                return true;
+            else return false;
+        }
+
         public override string ToString()
         {
             return InterventionType.Name + " for <CLIENT>, proposed by " + Requester.Name;

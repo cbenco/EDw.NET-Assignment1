@@ -101,5 +101,44 @@ namespace GoGoPowerRangers.ENET.Tests
             _user.ChangePassword("ASDF");
             Assert.AreEqual(_user.Password, "ASDF");
         }
+
+        //Tests for the fake database
+        [TestMethod]
+        public void PopulateDatabase_Element0_IsChrisBenco()
+        {
+            User benco = _fakeDb._users[0];
+            Assert.AreEqual(benco.UserName, "1001");
+            Assert.AreEqual(benco.Name, "Chris Benco");
+            Assert.AreEqual(benco.Id, 1);
+            Assert.AreEqual(benco.UserType, Model.Type.Manager);
+        }
+
+        [TestMethod]
+        public void PopulateDatabase_Element8_IsStuartStevens()
+        {
+            User stuart = _fakeDb._users[8];
+            Assert.AreEqual(stuart.UserName, "1009");
+            Assert.AreEqual(stuart.Name, "Stuart Stevens");
+            Assert.AreEqual(stuart.Id, 9);
+            Assert.AreEqual(stuart.UserType, Model.Type.Accountant);
+        }
+
+        [TestMethod]
+        public void SetDistrict_OfManager_ReturnsCorrectDistrict()
+        {
+            District district = new District();
+            district.Name = "UTS";
+            _manager.ChangeManagerDistrict(_manager, district);
+            Assert.AreEqual(_manager.District.Name, "UTS");
+        }
+        [TestMethod]
+        public void GetProposed_ReturnsPendingInterventions()
+        {
+            foreach (var intervention in _manager.GetPendingInterventions())
+            {
+                if (intervention.Status != Status.Pending)
+                    Assert.Fail();
+            }
+        }
     }
 }
