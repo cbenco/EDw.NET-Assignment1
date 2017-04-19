@@ -55,9 +55,8 @@ namespace GoGoPowerRangers.ENET.Views {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.Button btnLogout;
-=======
+
         protected global::System.Web.UI.WebControls.Button Logout;
         
         /// <summary>
@@ -86,6 +85,5 @@ namespace GoGoPowerRangers.ENET.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button6;
->>>>>>> 7bcaeda0ae02f6211e4f60c06d7cc0e7cd6c3a7f
     }
 }
