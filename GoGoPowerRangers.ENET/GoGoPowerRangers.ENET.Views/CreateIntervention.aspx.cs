@@ -19,11 +19,8 @@ namespace GoGoPowerRangers.ENET.Views
 
             if (!IsPostBack)
             {
-
                 SetDropDowns(types, FakeDatabase._interventionTypes);
-
                 SetDropDowns(clients, _user.ListClientsInDistrict());
-
                 SetTimeAndCost();
             }
         }
@@ -36,8 +33,9 @@ namespace GoGoPowerRangers.ENET.Views
 
         private void SetTimeAndCost()
         {
-            manHours.Text = FakeDatabase._interventionTypes[types.SelectedIndex].ManHours.ToString();
-            materialCost.Text = FakeDatabase._interventionTypes[types.SelectedIndex].MaterialCost.ToString();
+            InterventionType selectedType = FakeDatabase._interventionTypes[types.SelectedIndex];
+            manHours.Text = selectedType.ManHours.ToString();
+            materialCost.Text = selectedType.MaterialCost.ToString();
         }
         private void SetDropDowns(DropDownList ddl, Object dataSource)
         {
