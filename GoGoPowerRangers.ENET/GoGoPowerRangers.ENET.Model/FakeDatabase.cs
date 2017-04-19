@@ -9,14 +9,20 @@ namespace GoGoPowerRangers.ENET.Data
 {
     public class FakeDatabase
     {
-        public List<District> _districts = new List<District>();
-        public List<User> _users = new List<User>();
-        public List<Client> _clients = new List<Client>();
-        public List<InterventionType> _interventionTypes = new List<InterventionType>();
-        public List<Intervention> _interventions = new List<Intervention>();
+        public static List<District> _districts;
+        public static List<User> _users;
+        public static List<Client> _clients;
+        public static List<InterventionType> _interventionTypes;
+        public static List<Intervention> _interventions;
 
-        public FakeDatabase()
+        public static void CreateDatabase()
         {
+            _districts = new List<District>();
+            _users = new List<User>();
+            _clients = new List<Client>();
+            _interventionTypes = new List<InterventionType>();
+            _interventions = new List<Intervention>();
+
             PopulateDistricts();
             PopulateClients();
             PopulateEngineers();
@@ -28,7 +34,7 @@ namespace GoGoPowerRangers.ENET.Data
             PrintDb();
         }
 
-        private void PopulateDistricts()
+        private static void PopulateDistricts()
         {
             _districts.Add(new District("Urban Indonesia"));
             _districts.Add(new District("Rural Indonesia"));
@@ -37,7 +43,7 @@ namespace GoGoPowerRangers.ENET.Data
             _districts.Add(new District("Sydney"));
             _districts.Add(new District("Rural NSW"));
         }
-        private void PopulateEngineers()
+        private static void PopulateEngineers()
         {
             string[] names = { "Chris Benco", "Luke Single", "John Nguyen", "Lyndal Walker",
                                "Richard Banks", "William Leak", "Michael Muller", "Jason King",
@@ -47,7 +53,7 @@ namespace GoGoPowerRangers.ENET.Data
                 _users.Add(new SiteEngineer((1000 + i).ToString(), "password", names[i], _districts[i % 6]));
             }
         }
-        private void PopulateManagers()
+        private static void PopulateManagers()
         {
             string[] names = { "Jamie Lannister", "Tyrion Lannister", "Cersei Lannister", "Tywin Lannister",
                                "Robb Stark", "Arya Stark", "Eddard Stark", "Brandon Stark",
@@ -57,7 +63,7 @@ namespace GoGoPowerRangers.ENET.Data
                 _users.Add(new Manager((2000+i).ToString(), "password", names[i], _districts[i % 6]));
             }
         }
-        private void PopulateAccountants()
+        private static void PopulateAccountants()
         {
             string[] names = { "Gabriel Landeskog", "Nathan Mackinnon", "Matt Duchene", "Tyson Jost",
                                "Tyson Barrie", "Erik Johnson", "Nate Guenin", "Francois Beauchemin",
@@ -67,7 +73,7 @@ namespace GoGoPowerRangers.ENET.Data
                 _users.Add(new Accountant((3000 + i).ToString(), "password", names[i]));
             }
         }
-        private void PopulateClients()
+        private static void PopulateClients()
         {
             string[] names = { "Alan", "Steve", "Tim", "Tom", "Sam", "Harry",
                                "Bree", "Matlida", "Helga", "Olga", "Hannah", "Emily" };
@@ -78,7 +84,7 @@ namespace GoGoPowerRangers.ENET.Data
                 _clients.Add(new Client(names[i], locations[i], _districts[i % 6]));
             }
         }
-        private void PopulateInterventionTypes()
+        private static void PopulateInterventionTypes()
         {
             _interventionTypes.Add(new InterventionType("Supply Mosquito Net", 0.5, 25.0));
             _interventionTypes.Add(new InterventionType("Supply and Install Portable Toilet", 3.0, 211.0));
@@ -87,13 +93,13 @@ namespace GoGoPowerRangers.ENET.Data
             _interventionTypes.Add(new InterventionType("Dig Waste Trench", 3.0, 16.0));
             _interventionTypes.Add(new InterventionType("Provide Short Santiation Training Course", 6.0, 45.0));
         }
-        private void PopulateInterventions()
+        private static void PopulateInterventions()
         {
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < _interventionTypes.Count; j++)
                     _interventions.Add(new Intervention(_interventionTypes[j], _clients[0], _users[i], 100));
         }
-        private void PrintDb()
+        private static void PrintDb()
         {
             Console.WriteLine("DISTRICTS: ");
             for (int i = 0; i < _districts.Count; i++)

@@ -22,9 +22,13 @@
             man-hours<br />
             <asp:TextBox ID="materialCost" runat="server"></asp:TextBox>
             material cost<br />
+            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
             <br />
             <asp:TextBox ID="TextBox3" runat="server" Height="118px" Width="242px"></asp:TextBox>
-            notes</div>
+            notes<br />
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Create" />
+        </div>
     </form>
 </body>
 </html>

@@ -29,9 +29,8 @@ namespace GoGoPowerRangers.ENET.Model
 
         public List<Intervention> GetInterventions()
         {
-            FakeDatabase fakeDb = new FakeDatabase();
             List<Intervention> interventions = new List<Intervention>();
-            var clients = from i in fakeDb._interventions
+            var clients = from i in FakeDatabase._interventions
                           where i.Client == this
                           select i;
             foreach (Intervention i in interventions)

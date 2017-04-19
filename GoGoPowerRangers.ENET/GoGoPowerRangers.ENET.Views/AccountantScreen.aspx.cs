@@ -12,10 +12,9 @@ namespace GoGoPowerRangers.ENET.UI
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            FakeDatabase db = new FakeDatabase();
-            ManagerGrid.DataSource = db._users.Where(i => i.UserType == Model.Type.Manager);
+            ManagerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.Manager);
             ManagerGrid.DataBind();
-            EngineerGrid.DataSource = db._users.Where(i => i.UserType == Model.Type.SiteEngineer);
+            EngineerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.SiteEngineer);
             EngineerGrid.DataBind();
         }
 

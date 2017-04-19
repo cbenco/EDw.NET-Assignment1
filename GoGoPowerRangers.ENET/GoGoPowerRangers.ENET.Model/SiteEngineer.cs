@@ -25,11 +25,14 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
+        public void CreateIntervention()
+        {
+
+        }
         public List<Client> ListClientsInDistrict()
         {
-            FakeDatabase fakeDb = new FakeDatabase();
             List<Client> clientList = new List<Client>();
-            var clients = from c in fakeDb._clients
+            var clients = from c in FakeDatabase._clients
                           where c.District.Name == this.District.Name
                           select c;
             foreach (Client c in clients)
@@ -39,9 +42,8 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public List<Intervention> GetInterventions()
         {
-            FakeDatabase fakeDb = new FakeDatabase();
             List<Intervention> interventionList = new List<Intervention>();
-            var interventions = from i in fakeDb._interventions
+            var interventions = from i in FakeDatabase._interventions
                           where i.Requester.Name == this.Name
                           select i;
             foreach (Intervention i in interventions)
