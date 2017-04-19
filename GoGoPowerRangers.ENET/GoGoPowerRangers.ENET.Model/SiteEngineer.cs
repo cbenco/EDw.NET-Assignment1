@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GoGoPowerRangers.ENET.Data;
 
 namespace GoGoPowerRangers.ENET.Model
 {
@@ -27,9 +28,12 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public List<Client> ListClients()
         {
+            FakeDatabase fakeDb = new FakeDatabase();
             List<Client> clients = new List<Client>();
-            //replace above with 
-            //var client = linq query
+            /*replace above with 
+            var client = from _clientsList
+                         where District = this.district*/
+
             return clients;
         }
         public Intervention GetInterventionById(int id)

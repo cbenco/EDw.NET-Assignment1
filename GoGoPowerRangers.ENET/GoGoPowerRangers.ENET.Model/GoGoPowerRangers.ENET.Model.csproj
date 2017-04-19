@@ -50,6 +50,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="District.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="FakeDatabase.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionType.cs" />
     <Compile Include="Manager.cs" />

@@ -12,13 +12,13 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
-        public Intervention(InterventionType type,/* Client client,*/ User requester, int remainingLife)
+        public Intervention(InterventionType type, Client client, User requester, int remainingLife)
         {
             InterventionType = type;
             ManHours = type.ManHours;
             MaterialCost = type.MaterialCost;
 
-            //Client = client;
+            Client = client;
             Requester = requester;
             RemainingLife = remainingLife;
 
@@ -27,13 +27,13 @@ namespace GoGoPowerRangers.ENET.Model
 
             Status = Status.Pending;
         }
-        /*
+        
         public Intervention(InterventionType type, double manHours, double materialCost, Client client, User requester, int remainingLife)
+            : this(type, client, requester, remainingLife)
         {
-            InterventionType = type;
             ManHours = manHours;
             MaterialCost = materialCost;
-        }*/
+        }
 
         public InterventionType InterventionType { get; set; }
         public double ManHours { get; set; }
@@ -59,18 +59,16 @@ namespace GoGoPowerRangers.ENET.Model
         }
         private bool CanBeApprovedByManager(Manager approver)
         {
-            if ((approver.District == Client.District) &&
+            return ((approver.District == Client.District) &&
                   approver.MaxManHours >= ManHours &&
                   approver.MaxMaterialCost >= MaterialCost &&
                   approver.MaxManHours >= InterventionType.ManHours &&
-                  approver.MaxMaterialCost >= InterventionType.MaterialCost)
-                return true;
-            else return false;
+                  approver.MaxMaterialCost >= InterventionType.MaterialCost);
         }
 
         public override string ToString()
         {
-            return InterventionType.Name + " for <CLIENT>, proposed by " + Requester.Name;
+            return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.Name;
         }
     }
 }
