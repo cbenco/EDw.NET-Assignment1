@@ -13,25 +13,25 @@
             <h1>Create Intervention</h1>
         </div>
         <div>
-            <asp:DropDownList ID="types" runat="server" OnSelectedIndexChanged="types_SelectedIndexChanged" AppendDataBoundItems="true">
+            <asp:DropDownList ID="types" runat="server" OnSelectedIndexChanged="types_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true">
             </asp:DropDownList>
             type<br />
             <asp:DropDownList ID="clients" runat="server">
             </asp:DropDownList>
             client<br />
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdateTextBoxes" runat="server">
+            <asp:UpdatePanel ID="UpdateTextBoxes" updatemode="Conditional" runat="server">
                 <ContentTemplate>
             <asp:TextBox ID="manHours" runat="server"></asp:TextBox>
             man-hours<br />
             <asp:TextBox ID="materialCost" runat="server"></asp:TextBox>
             material cost</ContentTemplate></asp:UpdatePanel><br />
-            <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+            <asp:Calendar ID="calendar" runat="server"></asp:Calendar>
             <br />
-            <asp:TextBox ID="TextBox3" runat="server" Height="118px" Width="242px"></asp:TextBox>
+            <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px"></asp:TextBox>
             notes<br />
             <br />
-            <asp:Button ID="Button1" runat="server" Text="Create" />
+            <asp:Button ID="Button1" runat="server" Text="Create" OnClick="Button1_Click" />
         </div>
     </form>
 </body>

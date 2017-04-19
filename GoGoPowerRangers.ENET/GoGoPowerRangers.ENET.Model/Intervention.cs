@@ -11,7 +11,9 @@ namespace GoGoPowerRangers.ENET.Model
         static int current = 0;
         public Intervention()
         {
-
+            Status = Status.Pending;
+            RemainingLife = 100;
+            LastVisited = DateTime.Now;
         }
         public Intervention(InterventionType type, Client client, User requester, int remainingLife)
         {

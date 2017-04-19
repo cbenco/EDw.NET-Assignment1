@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,31 +15,57 @@ namespace GoGoPowerRangers.ENET.Views
         SiteEngineer _user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            _user = (SiteEngineer)Session["currentUser"];
+
             if (!IsPostBack)
             {
-                //_user = (SiteEngineer)Session["currentUser"];
-                //FakeDatabase fakeDb = new FakeDatabase();
 
-                _user = (SiteEngineer)FakeDatabase._users[0];
-                types.DataSource = FakeDatabase._interventionTypes;
-                types.DataTextField = "Name";
-                types.DataValueField = "Id";
-                types.DataBind();
+                SetDropDowns(types, FakeDatabase._interventionTypes);
 
-                clients.DataSource = _user.ListClientsInDistrict();
-                clients.DataTextField = "Name";
-                clients.DataValueField = "Id";
-                clients.DataBind();
+                SetDropDowns(clients, _user.ListClientsInDistrict());
 
-                manHours.Text = FakeDatabase._interventionTypes[types.SelectedIndex].ManHours.ToString();
-                materialCost.Text = FakeDatabase._interventionTypes[types.SelectedIndex].MaterialCost.ToString();
+                SetTimeAndCost();
             }
         }
 
         protected void types_SelectedIndexChanged(object sender, EventArgs e)
         {
-            manHours.Text = "Changed";
+            SetTimeAndCost();
             UpdateTextBoxes.Update();
+        }
+
+        private void SetTimeAndCost()
+        {
+            manHours.Text = FakeDatabase._interventionTypes[types.SelectedIndex].ManHours.ToString();
+            materialCost.Text = FakeDatabase._interventionTypes[types.SelectedIndex].MaterialCost.ToString();
+        }
+        private void SetDropDowns(DropDownList ddl, Object dataSource)
+        {
+            ddl.DataSource = dataSource;
+            ddl.DataTextField = "Name";
+            ddl.DataValueField = "Id";
+            ddl.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int client, requester, type;
+            double mHours, mCost;
+            requester = _user.Id;
+            DateTime time = calendar.SelectedDate;
+
+            int.TryParse(types.SelectedValue, out type);
+            int.TryParse(clients.SelectedValue, out client);
+            double.TryParse(materialCost.Text, out mCost);
+            double.TryParse(manHours.Text, out mHours);
+
+            string notes = noteBox.Text.ToString();
+
+            //check input
+
+            _user.CreateIntervention(type, mHours, mCost, client, time, notes);
+
+            Response.Redirect("Engineer.aspx", true);
         }
     }
 }

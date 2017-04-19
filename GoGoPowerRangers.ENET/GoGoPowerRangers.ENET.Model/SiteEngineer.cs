@@ -25,9 +25,18 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
-        public void CreateIntervention()
+        public void CreateIntervention(int type, double manHours, double materialCost, int client, DateTime time, string notes)
         {
+            Intervention i = new Intervention();
+            i.InterventionType = FakeDatabase._interventionTypes.FirstOrDefault(s => s.Id == type);
+            i.Client = FakeDatabase._clients.FirstOrDefault(s => s.Id == client);
+            i.RequestDate = time;
+            i.ManHours = manHours;
+            i.MaterialCost = materialCost;
+            i.Requester = this;
+            i.Notes = notes;
 
+            FakeDatabase._interventions.Add(i);
         }
         public List<Client> ListClientsInDistrict()
         {
