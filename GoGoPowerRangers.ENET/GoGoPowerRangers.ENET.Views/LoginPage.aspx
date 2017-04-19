@@ -29,10 +29,7 @@
             <asp:Login ID="Login" runat="server" Height="144px" OnAuthenticate="Login_Authenticate" Width="260px" OnLoggedIn="Logged_In">
             </asp:Login>
         <p style="width: 593px">
-            <asp:Button ID="Accountant_Button" runat="server" Text="Accountant" OnClick="AccountantButton_OnClick"/>
             <asp:Button ID="InterventionApproval_Button" runat="server" Text="InterventionApproval" OnClick="InterventionApprovalButton_OnClick"/>
-            <asp:Button ID="Manager_Button" runat="server" Text="Manager" OnClick="ManagerButton_OnClick"/>
-            <asp:Button ID="SiteEngineer_Button" runat="server" Text="SiteEngineer" OnClick="SiteEngineerButton_OnClick"/>
         </p>
         </div>
     </form>

@@ -28,5 +28,11 @@ namespace GoGoPowerRangers.ENET.UI
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session["currentUser"] = null;
+            Response.Redirect("LoginPage.aspx", true);
+        }
     }
 }

@@ -34,6 +34,7 @@
             </h3>
         </div>
         <br />
+        <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
         <br />
         <div class="viewPeople">
             <asp:GridView ID="EngineerGrid" runat="server">
