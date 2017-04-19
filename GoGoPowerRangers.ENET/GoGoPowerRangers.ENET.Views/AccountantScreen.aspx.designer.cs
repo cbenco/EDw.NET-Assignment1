@@ -22,13 +22,31 @@ namespace GoGoPowerRangers.ENET.UI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// btnViewPeople control.
+        /// Logout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnViewPeople;
+        protected global::System.Web.UI.WebControls.Button Logout;
+        
+        /// <summary>
+        /// EngineerGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView EngineerGrid;
+        
+        /// <summary>
+        /// ManagerGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ManagerGrid;
         
         /// <summary>
         /// btnViewReports control.

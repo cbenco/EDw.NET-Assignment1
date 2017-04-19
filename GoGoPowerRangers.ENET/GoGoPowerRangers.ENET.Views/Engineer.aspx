@@ -43,7 +43,7 @@
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-&nbsp;<asp:Button ID="btnLogout" runat="server" Text="Logout" />
+&nbsp;<asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click"/>
                         </p>
                     </div>
                     <hr />

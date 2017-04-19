@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <%@Import namespace = "GoGoPowerRangers.ENET.Model" %>
     <title></title>
     <style type="text/css">
         .auto-style1 {
@@ -29,8 +30,8 @@
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-                            Welcome,&nbsp;
-                            <asp:Label ID="labelFirstName" runat="server" Text="First Name"></asp:Label>
+                            <%User user = (User)Session["currentUser"];%>
+                            Welcome, <%= user.Name%>
                         </p>
                     </div>
                     <div style="text-align: center">
@@ -46,7 +47,7 @@
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-&nbsp;<asp:Button ID="btnLogout" runat="server" OnClick="Button4_Click" Text="Logout" />
+&nbsp;<asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
                         </p>
                     </div>
                     <hr />

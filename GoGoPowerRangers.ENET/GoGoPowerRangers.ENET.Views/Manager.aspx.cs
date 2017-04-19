@@ -38,5 +38,12 @@ namespace GoGoPowerRangers.ENET.Views
         {
 
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+
+            Session["currentUser"] = null;
+            Response.Redirect("LoginPage.aspx", true);
+        }
     }
 }

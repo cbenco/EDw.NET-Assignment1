@@ -34,19 +34,18 @@ namespace GoGoPowerRangers.ENET.UI
             switch (_user.UserType)
             {
                 case (Model.Type.Accountant):
-                    Server.Transfer("AccountantScreen.aspx", true);
+                    Response.Redirect("AccountantScreen.aspx", true);
                     break;
                 case (Model.Type.SiteEngineer):
-                    Server.Transfer("Engineer.aspx", true);
+                    Response.Redirect("Engineer.aspx", true);
                     break;
                 case (Model.Type.Manager):
-                    Server.Transfer("Manager.aspx", true);
+                    Response.Redirect("Manager.aspx", true);
                     break;
                 default: //need to figure out how to handle no assigned type. Do we need to?
-                    Server.Transfer("test.aspx", true);
+                    Response.Redirect("test.aspx", true);
                     break;
             }
-            
         }
 
         public static User UserLogin(string name, string password)
@@ -59,21 +58,21 @@ namespace GoGoPowerRangers.ENET.UI
         //delete these buttons eventually
         protected void AccountantButton_OnClick (object sender, EventArgs e)
         {
-            Server.Transfer("AccountantScreen.aspx", true);
+            Response.Redirect("AccountantScreen.aspx", true);
         }
         protected void InterventionApprovalButton_OnClick(object sender, EventArgs e)
         {
-            Server.Transfer("Approval.aspx", true);
+            Response.Redirect("Approval.aspx", true);
 
         }
         protected void ManagerButton_OnClick(object sender, EventArgs e)
         {
-            Server.Transfer("Manager.aspx", true);
+            Response.Redirect("Manager.aspx", true);
 
         }
         protected void SiteEngineerButton_OnClick(object sender, EventArgs e)
         {
-            Server.Transfer("Engineer.aspx", true);
+            Response.Redirect("Engineer.aspx", true);
 
         }
     }
