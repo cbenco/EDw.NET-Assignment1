@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="engineer.aspx.cs" Inherits="GoGoPowerRangers.ENET.Views.engineer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Engineer.aspx.cs" Inherits="GoGoPowerRangers.ENET.Views.Engineer" %>
 
 <!DOCTYPE html>
 
@@ -15,6 +15,15 @@
         }
         .auto-style5 {
             height: 26px;
+        }
+        .auto-style6 {
+            width: 392px;
+        }
+        .auto-style7 {
+            width: 422px;
+        }
+        .auto-style8 {
+            width: 341px;
         }
     </style>
 </head>
@@ -54,41 +63,27 @@
                         </p>
                     </div>
                     <hr />
-                    <h2>Current Clients</h2>
-                    <p class="auto-style4">
-                        <strong>Filter</strong>s
-                        <asp:Image ID="Image3" runat="server" Height="2%" ImageUrl="~/sortasc.png" Width="2%" />
-                    </p>
+                    <h2>Clients In &lt;District&gt;</h2>
                 </div>
             </div>
             <table style="width:100%;">
                 <tr>
-                    <td>Date</td>
-                    <td>Type</td>
-                    <td>Site Engineer</td>
-                    <td>District</td>
-                    <td>Status</td>
-                    <td>View</td>
+                    <td class="auto-style8">Name</td>
+                    <td class="auto-style6">Location</td>
+                    <td class="auto-style7">District</td>
+                    <td>Interventions</td>
                 </tr>
                 <tr>
+                    <td class="auto-style8">&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style7">&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="Button1" runat="server"  Text="View" />
-                    </td>
                 </tr>
                 <tr>
+                    <td class="auto-style8">&nbsp;</td>
+                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style7">&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="Button2" runat="server" Text="View" />
-                    </td>
                 </tr>
             </table>
             <br />
@@ -98,11 +93,7 @@
         <div>
             <div class="auto-style1">
                 <div>
-                    <h2>Current Interventions</h2>
-                    <p class="auto-style4">
-                        <strong>Filter</strong>s
-                        <asp:Image ID="Image4" runat="server" Height="2%" ImageUrl="~/sortasc.png" Width="2%" />
-                    </p>
+                    <h2>Current Interventions For &lt;Name&gt;</h2>
                 </div>
             </div>
             <table style="width:100%;">

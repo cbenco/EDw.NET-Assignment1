@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GoGoPowerRangers.ENET.Data;
 
 namespace GoGoPowerRangers.ENET.Model
 {
@@ -19,6 +20,19 @@ namespace GoGoPowerRangers.ENET.Model
         public string Name { get; set; }
         public string Location { get; set; }
         public District District { get; set; }
+
+        public List<Intervention> GetInterventions()
+        {
+            FakeDatabase fakeDb = new FakeDatabase();
+            List<Intervention> interventions = new List<Intervention>();
+            var clients = from i in fakeDb._interventions
+                          where i.Client == this
+                          select i;
+            foreach (Intervention i in interventions)
+                interventions.Add(i);
+
+            return interventions;
+        }
 
         public override string ToString()
         {
