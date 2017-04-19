@@ -37,7 +37,8 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void types_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //change manhours and material cost text
+            manHours.Text = "Changed";
+            UpdateTextBoxes.Update();
         }
     }
 }
