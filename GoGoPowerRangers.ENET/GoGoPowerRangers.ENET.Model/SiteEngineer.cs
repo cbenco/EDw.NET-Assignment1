@@ -8,7 +8,6 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class SiteEngineer : User
     {
-        //private List<Intervention> _interventions;
         public SiteEngineer(User user):base(user)
         {
 
@@ -26,15 +25,29 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
         }
-        public List<Client> ListClients()
+        public List<Client> ListClientsInDistrict()
         {
             FakeDatabase fakeDb = new FakeDatabase();
-            List<Client> clients = new List<Client>();
-            /*replace above with 
-            var client = from _clientsList
-                         where District = this.district*/
+            List<Client> clientList = new List<Client>();
+            var clients = from c in fakeDb._clients
+                          where c.District == this.District
+                          select c;
+            foreach (Client c in clients)
+                clientList.Add(c);
+            
+            return clientList;
+        }
+        public List<Intervention> GetInterventions()
+        {
+            FakeDatabase fakeDb = new FakeDatabase();
+            List<Intervention> interventions = new List<Intervention>();
+            var clients = from i in fakeDb._interventions
+                          where i.Requester == this
+                          select i;
+            foreach (Intervention i in interventions)
+                interventions.Add(i);
 
-            return clients;
+            return interventions;
         }
         public Intervention GetInterventionById(int id)
         {
