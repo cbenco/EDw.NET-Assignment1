@@ -21,9 +21,10 @@ namespace GoGoPowerRangers.ENET.Model
         public District District { get; set; }
         public double MaxManHours { get; set; }
         public double MaxMaterialCost { get; set; }
-        public void CreateClient()
+        public void CreateClient(string name, string location)
         {
-
+            Client c = new Client(name, location, this.District);
+            FakeDatabase._clients.Add(c);
         }
         public void CreateIntervention(int type, double manHours, double materialCost, int client, DateTime time, string notes)
         {

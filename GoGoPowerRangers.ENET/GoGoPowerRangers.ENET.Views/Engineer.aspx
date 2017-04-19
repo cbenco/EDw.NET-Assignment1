@@ -50,7 +50,21 @@
                     <h2>Clients In &lt;District&gt;</h2>
                 </div>
             </div>
-            <asp:GridView ID="clientGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
+            <div>
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdateClients" updatemode="Conditional" runat="server">
+                <ContentTemplate>
+                    <asp:GridView ID="clientGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <br />
+            Create Client<br />
+            <asp:TextBox ID="newClientName" runat="server"></asp:TextBox>
+            name<br />
+            <asp:TextBox ID="newClientLocation" runat="server"></asp:TextBox>
+            location<br />
+            <asp:Button ID="newClientButton" runat="server" OnClick="newClientButton_Click" Text="New Client" />
             <br />
         </div>
         </div>

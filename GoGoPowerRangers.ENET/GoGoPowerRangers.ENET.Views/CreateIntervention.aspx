@@ -22,10 +22,12 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdateTextBoxes" updatemode="Conditional" runat="server">
                 <ContentTemplate>
-            <asp:TextBox ID="manHours" runat="server"></asp:TextBox>
-            man-hours<br />
-            <asp:TextBox ID="materialCost" runat="server"></asp:TextBox>
-            material cost</ContentTemplate></asp:UpdatePanel><br />
+                    <asp:TextBox ID="manHours" runat="server"></asp:TextBox>
+                    man-hours<br />
+                    <asp:TextBox ID="materialCost" runat="server"></asp:TextBox>
+                    material cost
+                </ContentTemplate>
+            </asp:UpdatePanel><br />
             <asp:Calendar ID="calendar" runat="server"></asp:Calendar>
             <br />
             <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px"></asp:TextBox>

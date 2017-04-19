@@ -26,19 +26,40 @@ namespace GoGoPowerRangers.ENET.Views
             Response.Redirect("LoginPage.aspx", true);
         }
 
+        protected void newClientButton_Click(object sender, EventArgs e)
+        {
+            string name = newClientName.Text.ToString();
+            string location = newClientLocation.Text.ToString();
+            //check inputs
+
+            _user.CreateClient(name, location);
+
+            BindClients();
+            newClientName.Text = "";
+            newClientLocation.Text = "";
+            UpdateClients.Update();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _user = (SiteEngineer)Session["currentUser"];
-            FakeDatabase db = new FakeDatabase();
-            labelFirstName.Text = _user.Name;
+            if (!IsPostBack)
+            {
+                FakeDatabase db = new FakeDatabase();
+                labelFirstName.Text = _user.Name;
 
-            clientGrid.DataSource = _user.ListClientsInDistrict();
-            clientGrid.DataBind();
+                BindClients();
 
-            interventionGrid.DataSource = _user.GetInterventions();
-            interventionGrid.DataBind();
+                interventionGrid.DataSource = _user.GetInterventions();
+                interventionGrid.DataBind();
+            }
 
             //_interventions = db._interventions.Where(i => i.Requester.Name == _currentUser.Name);
+        }
+        private void BindClients()
+        {
+            clientGrid.DataSource = _user.ListClientsInDistrict();
+            clientGrid.DataBind();
         }
     }
 }
