@@ -54,7 +54,7 @@
                         </p>
                     </div>
                     <hr />
-                    <h2>Proposed Interventions</h2>
+                    <h2>Current Clients</h2>
                     <p class="auto-style4">
                         <strong>Filter</strong>s
                         <asp:Image ID="Image3" runat="server" Height="2%" ImageUrl="~/sortasc.png" Width="2%" />
