@@ -9,21 +9,21 @@ namespace GoGoPowerRangers.ENET.Data
 {
     public class FakeDatabase
     {
-        List<District> _districts = new List<District>();
+        public List<District> _districts = new List<District>();
         public List<User> _users = new List<User>();
-        List<Client> _clients = new List<Client>();
-        List<InterventionType> _interventionTypes = new List<InterventionType>();
+        public List<Client> _clients = new List<Client>();
+        public List<InterventionType> _interventionTypes = new List<InterventionType>();
         public List<Intervention> _interventions = new List<Intervention>();
 
         public FakeDatabase()
         {
             PopulateDistricts();
+            PopulateClients();
             PopulateEngineers();
             PopulateManagers();
             PopulateAccountants();
             PopulateInterventionTypes();
             PopulateInterventions();
-            PopulateClients();
 
             PrintDb();
         }
@@ -91,7 +91,7 @@ namespace GoGoPowerRangers.ENET.Data
         {
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < _interventionTypes.Count; j++)
-                    _interventions.Add(new Intervention(_interventionTypes[j], _users[i], 100));
+                    _interventions.Add(new Intervention(_interventionTypes[j], _clients[0], _users[i], 100));
         }
         private void PrintDb()
         {

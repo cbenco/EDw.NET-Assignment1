@@ -46,7 +46,6 @@ namespace GoGoPowerRangers.ENET.UI
                     Server.Transfer("test.aspx", true);
                     break;
             }
-            
         }
 
         public static User UserLogin(string name, string password)
