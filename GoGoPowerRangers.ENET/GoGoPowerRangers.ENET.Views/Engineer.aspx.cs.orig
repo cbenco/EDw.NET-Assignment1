@@ -16,14 +16,16 @@ namespace GoGoPowerRangers.ENET.Views
         private SiteEngineer _user;
         public GridView clientGrid, interventionGrid;
 
+<<<<<<< HEAD
         protected void btnNewIntervention_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CreateIntervention.aspx", true);
-        }
+            Server.Transfer("CreateIntervention.aspx", true);
+=======
         protected void Logout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
             Response.Redirect("LoginPage.aspx", true);
+>>>>>>> 7bcaeda0ae02f6211e4f60c06d7cc0e7cd6c3a7f
         }
 
         protected void Page_Load(object sender, EventArgs e)
