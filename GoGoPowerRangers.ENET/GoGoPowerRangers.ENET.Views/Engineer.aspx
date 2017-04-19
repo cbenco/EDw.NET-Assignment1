@@ -66,26 +66,7 @@
                     <h2>Clients In &lt;District&gt;</h2>
                 </div>
             </div>
-            <table style="width:100%;">
-                <tr>
-                    <td class="auto-style8">Name</td>
-                    <td class="auto-style6">Location</td>
-                    <td class="auto-style7">District</td>
-                    <td>Interventions</td>
-                </tr>
-                <tr>
-                    <td class="auto-style8">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style8">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
+            <asp:GridView ID="clientGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
             <br />
         </div>
         </div>
@@ -96,36 +77,7 @@
                     <h2>Current Interventions For &lt;Name&gt;</h2>
                 </div>
             </div>
-            <table style="width:100%;">
-                <tr>
-                    <td>Date</td>
-                    <td>Type</td>
-                    <td>Site Engineer</td>
-                    <td>District</td>
-                    <td>Status</td>
-                    <td>View</td>
-                </tr>
-                <tr>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5">
-                        <asp:Button ID="Button3" runat="server"  Text="View" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="Button4" runat="server" Text="View" />
-                    </td>
-                </tr>
-            </table>
+            <asp:GridView ID="interventionGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
             <br />
             <hr />
         <div>
