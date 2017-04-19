@@ -13,7 +13,7 @@ namespace GoGoPowerRangers.ENET.Data
         public List<User> _users = new List<User>();
         List<Client> _clients = new List<Client>();
         List<InterventionType> _interventionTypes = new List<InterventionType>();
-        List<Intervention> _interventions = new List<Intervention>();
+        public List<Intervention> _interventions = new List<Intervention>();
 
         public FakeDatabase()
         {

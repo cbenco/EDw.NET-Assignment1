@@ -19,8 +19,12 @@ namespace GoGoPowerRangers.ENET.UI
 		{
             string name = Login.UserName;
             string password = Login.Password;
-            if (UserLogin(name, password) != null)
+            User currentUser = UserLogin(name, password);
+            if (currentUser != null)
+            {
                 e.Authenticated = true;
+                Session["currentUser"] = currentUser;
+            }
             else
                 e.Authenticated = false;
         }
