@@ -9,6 +9,7 @@ namespace GoGoPowerRangers.ENET.Model
     public class Client
     {
         private int _id;
+        private static int current = 0;
         public Client() { }
         public Client(string name, string location, District district)
         {
@@ -20,6 +21,11 @@ namespace GoGoPowerRangers.ENET.Model
         public string Name { get; set; }
         public string Location { get; set; }
         public District District { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set { _id = current++; }
+        }
 
         public List<Intervention> GetInterventions()
         {

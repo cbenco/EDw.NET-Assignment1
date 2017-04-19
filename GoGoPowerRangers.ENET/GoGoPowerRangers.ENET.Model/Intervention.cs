@@ -8,6 +8,7 @@ namespace GoGoPowerRangers.ENET.Model
     public class Intervention
     {
         private int _id;
+        static int current = 0;
         public Intervention()
         {
 
@@ -22,10 +23,11 @@ namespace GoGoPowerRangers.ENET.Model
             Requester = requester;
             RemainingLife = remainingLife;
 
-            RequestDate = DateTime.Now.Date;
-            LastVisited = DateTime.Now.Date;
+            RequestDate = DateTime.Now;
+            LastVisited = DateTime.Now;
 
             Status = Status.Pending;
+            Id = new int();
         }
         
         public Intervention(InterventionType type, double manHours, double materialCost, Client client, User requester, int remainingLife)
@@ -46,6 +48,11 @@ namespace GoGoPowerRangers.ENET.Model
         public int RemainingLife { get; set; }
         public DateTime LastVisited { get; set; }
         public string Notes { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set { _id = current++; }
+        }
 
         private bool CanBeApprovedByEngineer(SiteEngineer approver)
         {
