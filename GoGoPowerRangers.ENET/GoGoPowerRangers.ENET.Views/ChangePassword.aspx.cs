@@ -13,15 +13,15 @@ namespace GoGoPowerRangers.ENET.Views
         public User _user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-                _user = (User)Session["currentUser"];
-            //}
+            _user = (User)Session["currentUser"];
+            if (!IsPostBack)
+            {
+
+            }
         }
 
         protected void changePasswordButton_Click(object sender, EventArgs e)
         {
-            UpdatePanel1.Update();
             if (_user.Password.Equals(currentPassword.Text))
             {
                 if (newPassword.Text.Equals(confirmPassword.Text))

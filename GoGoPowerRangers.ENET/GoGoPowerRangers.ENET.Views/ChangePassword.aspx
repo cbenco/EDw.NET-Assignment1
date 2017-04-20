@@ -12,9 +12,6 @@
             <div>
                 <h1>Change Password</h1>
             </div>
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel1" updatemode="Conditional" runat="server">
-                <ContentTemplate>
             <div>
                 <asp:TextBox runat="server" ID="currentPassword"></asp:TextBox>
                 Enter current password<br />
@@ -23,8 +20,6 @@
                 <asp:TextBox ID="confirmPassword" runat="server"></asp:TextBox>
                 Confirm new password
             </div>
-                    </ContentTemplate>
-            </asp:UpdatePanel>
             <div>
                 <asp:Button ID="changePasswordButton" runat="server" Text="Confirm" OnClick="changePasswordButton_Click" />
             </div>
