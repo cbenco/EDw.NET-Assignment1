@@ -56,6 +56,12 @@ namespace GoGoPowerRangers.ENET.Views
 
             //_interventions = db._interventions.Where(i => i.Requester.Name == _currentUser.Name);
         }
+
+        protected void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword", true);
+        }
+
         private void BindClients()
         {
             clientGrid.DataSource = _user.ListClientsInDistrict();

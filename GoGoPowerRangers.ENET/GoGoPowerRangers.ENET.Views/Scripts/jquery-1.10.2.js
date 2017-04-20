@@ -8240,7 +8240,12 @@ jQuery.extend({
 				}
 			}
 
-			// Set data for the fake xhr object
+			// Set data for the 
+
+
+
+
+ xhr object
 			jqXHR.status = status;
 			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
 

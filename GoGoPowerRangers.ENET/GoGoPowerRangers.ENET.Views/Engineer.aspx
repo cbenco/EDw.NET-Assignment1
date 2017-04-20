@@ -32,7 +32,7 @@
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-                            <asp:Button ID="btnViewProfile" runat="server"  Text="View Profile" />
+                            <asp:Button ID="changePasswordButton" runat="server"  Text="Change Password" OnClick="changePasswordButton_Click" />
                         </p>
                         <div style="text-align: right">
                             <p>
