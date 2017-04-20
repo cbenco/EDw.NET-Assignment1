@@ -13,7 +13,6 @@ namespace GoGoPowerRangers.ENET.UI
         private static User _user;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            //FakeDatabase.CreateDatabase();
 		}
 
 		protected void Login_Authenticate(object sender, AuthenticateEventArgs e)
