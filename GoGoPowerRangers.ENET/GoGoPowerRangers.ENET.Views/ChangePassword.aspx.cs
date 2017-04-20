@@ -39,19 +39,19 @@ namespace GoGoPowerRangers.ENET.Views
                         case (Model.Type.Manager):
                             Response.Redirect("Manager.aspx", true);
                             break;
-                        default: //need to figure out how to handle no assigned type. Do we need to?
+                        default: 
                             Response.Redirect("test.aspx", true);
                             break;
                     }
                 }
                 else
                 {
-                    //handle it
+                    ErrorMessage.Text = "Confirm password field must match new password!";
                 }
             }
             else
-            {
-                //handle it
+            { 
+                ErrorMessage.Text = "Current password is incorrect!";
             }
         }
     }

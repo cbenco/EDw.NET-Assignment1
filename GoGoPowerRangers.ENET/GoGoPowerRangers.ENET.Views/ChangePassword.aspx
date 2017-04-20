@@ -22,6 +22,8 @@
             </div>
             <div>
                 <asp:Button ID="changePasswordButton" runat="server" Text="Confirm" OnClick="changePasswordButton_Click" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="ErrorMessage" runat="server" ForeColor="#FF3300"></asp:Label>
             </div>
         </div>
     </form>
