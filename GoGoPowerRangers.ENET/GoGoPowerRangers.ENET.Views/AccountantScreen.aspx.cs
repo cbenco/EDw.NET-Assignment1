@@ -33,5 +33,10 @@ namespace GoGoPowerRangers.ENET.UI
             Session["currentUser"] = null;
             Response.Redirect("LoginPage.aspx", true);
         }
+
+        protected void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword.aspx", true);
+        }
     }
 }

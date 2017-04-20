@@ -30,13 +30,12 @@
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-                            <%User user = (User)Session["currentUser"];%>
-                            Welcome, <%= user.Name%>
+                            <%User user = (User)Session["currentUser"];%>Welcome, <%= user.Name%>
                         </p>
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-                            <asp:Button ID="btnProfile" runat="server" OnClick="Button3_Click" Text="View Profile" />
+                            <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" />
                         </p>
                         <div style="text-align: right">
                             <p>

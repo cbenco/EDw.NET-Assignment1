@@ -34,7 +34,10 @@
             </h3>
         </div>
         <br />
-        <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" />
+        <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" Height="26px" Width="57px" />
+        <br />
+        <br />
+        <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" />
         <br />
         <div class="viewPeople">
             <asp:GridView ID="EngineerGrid" runat="server">
