@@ -16,6 +16,7 @@ namespace GoGoPowerRangers.ENET.Model
             Name = name;
             Location = location;
             District = district;
+            Id = new int();
         }
         
         public string Name { get; set; }

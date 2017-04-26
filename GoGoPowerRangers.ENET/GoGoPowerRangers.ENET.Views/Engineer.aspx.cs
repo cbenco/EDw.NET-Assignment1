@@ -67,5 +67,14 @@ namespace GoGoPowerRangers.ENET.Views
             clientGrid.DataSource = _user.ListClientsInDistrict();
             clientGrid.DataBind();
         }
+
+        protected void clientGrid_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "clientNameClick")
+            {
+                int Id = int.Parse(e.CommandArgument.ToString());
+                System.Diagnostics.Debug.WriteLine(Id);
+            }
+        }
     }
 }

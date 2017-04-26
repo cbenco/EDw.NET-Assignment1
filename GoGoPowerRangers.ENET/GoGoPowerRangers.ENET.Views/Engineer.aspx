@@ -54,7 +54,15 @@
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                 <asp:UpdatePanel ID="UpdateClients" updatemode="Conditional" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="clientGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
+                    <asp:GridView ID="clientGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="clientGrid_RowCommand">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Client Name">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="clientName" runat="server" Text='<%# Eval("Name") %>' CommandName="clientNameClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
