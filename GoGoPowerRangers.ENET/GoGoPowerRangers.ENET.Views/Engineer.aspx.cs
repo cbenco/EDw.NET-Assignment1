@@ -45,7 +45,6 @@ namespace GoGoPowerRangers.ENET.Views
             _user = (SiteEngineer)Session["currentUser"];
             if (!IsPostBack)
             {
-                FakeDatabase db = new FakeDatabase();
                 labelFirstName.Text = _user.Name;
 
                 BindClients();
@@ -73,7 +72,9 @@ namespace GoGoPowerRangers.ENET.Views
             if (e.CommandName == "clientNameClick")
             {
                 int Id = int.Parse(e.CommandArgument.ToString());
-                System.Diagnostics.Debug.WriteLine(Id);
+                var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == Id);
+                Session.Add("selectedClient", client);
+                Response.Redirect("ClientDetails.aspx");
             }
         }
     }
