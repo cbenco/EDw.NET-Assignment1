@@ -95,9 +95,10 @@ namespace GoGoPowerRangers.ENET.Data
         }
         private static void PopulateInterventions()
         {
-            for (int i = 0; i < 9; i++)
-                for (int j = 0; j < _interventionTypes.Count; j++)
-                    _interventions.Add(new Intervention(_interventionTypes[j], _clients[0], _users[i], 100));
+            foreach (SiteEngineer e in _users.Where(u => u is SiteEngineer))
+                foreach (InterventionType i in _interventionTypes)
+                    foreach (Client c in _clients.Where(c => c.District == e.District))
+                        _interventions.Add(new Intervention(i, c, e, 100));
         }
         private static void PrintDb()
         {

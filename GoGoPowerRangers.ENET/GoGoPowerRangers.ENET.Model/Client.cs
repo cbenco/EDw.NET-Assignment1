@@ -30,14 +30,12 @@ namespace GoGoPowerRangers.ENET.Model
 
         public List<Intervention> GetInterventions()
         {
-            List<Intervention> interventions = new List<Intervention>();
-            var clients = from i in FakeDatabase._interventions
-                          where i.Client == this
-                          select i;
+            List<Intervention> interventionList = new List<Intervention>();
+            var interventions = FakeDatabase._interventions.Where(i => i.Client == this);
             foreach (Intervention i in interventions)
-                interventions.Add(i);
+                interventionList.Add(i);
 
-            return interventions;
+            return interventionList;
         }
 
         public override string ToString()
@@ -46,3 +44,6 @@ namespace GoGoPowerRangers.ENET.Model
         }
     }
 }
+
+
+
