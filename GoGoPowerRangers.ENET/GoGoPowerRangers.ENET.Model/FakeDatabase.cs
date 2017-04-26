@@ -31,9 +31,8 @@ namespace GoGoPowerRangers.ENET.Data
             PopulateInterventionTypes();
             PopulateInterventions();
 
-            PrintDb();
+            //PrintDb();
         }
-
         private static void PopulateDistricts()
         {
             _districts.Add(new District("Urban Indonesia"));
