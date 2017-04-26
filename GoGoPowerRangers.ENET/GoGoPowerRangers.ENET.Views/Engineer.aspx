@@ -47,7 +47,7 @@
                         </p>
                     </div>
                     <hr />
-                    <h2>Clients In &lt;District&gt;</h2>
+                    <asp:Label ID="labelDistrictName" runat="server"></asp:Label>
                 </div>
             </div>
             <div>
@@ -80,10 +80,63 @@
         <div>
             <div class="auto-style1">
                 <div>
-                    <h2>Current Interventions For &lt;Name&gt;</h2>
+                    <asp:Label ID="labelInterventionsHeader" runat="server"></asp:Label>
                 </div>
             </div>
-            <asp:GridView ID="interventionGrid" AutoGenerateColumns="true" runat="server"></asp:GridView>
+            <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server">
+                <Columns>
+                    <asp:TemplateField HeaderText="ID">
+                            <ItemTemplate>
+                                <asp:Label ID="id" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Intervention Type">
+                            <ItemTemplate>
+                                <asp:Label ID="interventionType" runat="server" Text='<%# Eval("InterventionType.Name") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Client">
+                            <ItemTemplate>
+                                <asp:Label ID="client" runat="server" Text='<%# Eval("Client.Name") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Proposed By">
+                            <ItemTemplate>
+                                <asp:Label ID="proposedBy" runat="server" Text='<%# Eval("Requester.Name") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>                                   
+                    <asp:TemplateField HeaderText="Man Hours">
+                            <ItemTemplate>
+                                <asp:Label ID="manHours" runat="server" Text='<%# Eval("ManHours") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Material Cost">
+                            <ItemTemplate>
+                                <asp:Label ID="matCost" runat="server" Text='<%# Eval("MaterialCost") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Remaining Life">
+                            <ItemTemplate>
+                                <asp:Label ID="remLife" runat="server" Text='<%# Eval("RemainingLife") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Proposed Date">
+                            <ItemTemplate>
+                                <asp:Label ID="date" runat="server" Text='<%# Eval("RequestDate") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>     
+                    <asp:TemplateField HeaderText="Last Visited">
+                            <ItemTemplate>
+                                <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisited") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Status">
+                            <ItemTemplate>
+                                <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                            </ItemTemplate>
+                            </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
             <br />
             <hr />
             <div>

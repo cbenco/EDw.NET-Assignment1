@@ -46,6 +46,8 @@ namespace GoGoPowerRangers.ENET.Views
             if (!IsPostBack)
             {
                 labelFirstName.Text = _user.Name;
+                labelDistrictName.Text = "<h2>Clients in " + _user.District.Name + "</h2>";
+                labelInterventionsHeader.Text = "<h2>Interventions for " + _user.Name + "</h2";
 
                 BindClients();
 
