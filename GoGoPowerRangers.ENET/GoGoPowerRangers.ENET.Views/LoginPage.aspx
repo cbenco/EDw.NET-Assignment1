@@ -5,35 +5,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Content/bootstrap.min.css"></script>
-    <style type="text/css">
-        #form1 {
-            height: 485px;
-        }
-
-        .center {
-            padding-left:40%;
-        }
-        .center.logo {
-            padding-left:7%;
-        }
-    </style>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="center">
-            <div class="center logo">
-                <asp:Label ID="lblLogo" runat="server" Font-Bold="True" Font-Size="X-Large" Text="ENET" margin-left="5000px"></asp:Label>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-4">
+                <h1>ENET</h1>
+                <asp:Login ID="Login" runat="server" Height="144px" OnAuthenticate="Login_Authenticate" OnLoggedIn="Logged_In" LoginButtonStyle-CssClass="btn btn-default" TextBoxStyle-CssClass="form-control" CheckBoxStyle-CssClass="checkbox">
+                    <CheckBoxStyle CssClass="checkbox" />
+                    <LoginButtonStyle CssClass="btn btn-default" />
+                    <TextBoxStyle CssClass="form-control" />
+                </asp:Login>
+                <p style="width: 593px">
+                    <asp:Button ID="InterventionApproval_Button" runat="server" Text="InterventionApproval" OnClick="InterventionApprovalButton_OnClick" CssClass="btn btn-default"/>
+                </p>
             </div>
-            <asp:Login ID="Login" runat="server" Height="144px" OnAuthenticate="Login_Authenticate" Width="260px" OnLoggedIn="Logged_In">
-            </asp:Login>
-        <p style="width: 593px">
-            <asp:Button ID="InterventionApproval_Button" runat="server" Text="InterventionApproval" OnClick="InterventionApprovalButton_OnClick"/>
-        </p>
         </div>
     </form>
 
-    
+
 </body>
 </html>
