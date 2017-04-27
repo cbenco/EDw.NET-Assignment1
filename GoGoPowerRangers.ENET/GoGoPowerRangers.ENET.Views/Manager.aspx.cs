@@ -15,11 +15,7 @@ namespace GoGoPowerRangers.ENET.Views
         private List<Intervention> _interventions;
         private Manager _user;
         public GridView clientGrid, interventionGrid;
-
-        protected void btnNewIntervention_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CreateIntervention.aspx", true);
-        }
+        
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
@@ -34,23 +30,33 @@ namespace GoGoPowerRangers.ENET.Views
                 labelFirstName.Text = _user.Name;
                 labelInterventionsHeader.Text = "<h2>Interventions for " + _user.Name + "</h2";
 
-                interventionGrid.DataSource = _user.GetPendingInterventions();
-                interventionGrid.DataBind();
+                BindInterventions();
             }
         }
         protected void changePasswordButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChangePassword.aspx", true);
-        }		
-		protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
+        }
+
+        protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "clientNameClick")
+
+            if (e.CommandName == "ApproveClick")
             {
                 int Id = int.Parse(e.CommandArgument.ToString());
-                var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == Id);
-                Session.Add("selectedClient", client);
-                Response.Redirect("ClientDetails.aspx");
+                var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(c => c.Id == Id);
+
+                _user.ChangeInterventionState(intervention, Status.Approved);
+
+                BindInterventions();
+                updateApprovedText.Update();
             }
+        }
+
+        private void BindInterventions()
+        {
+            interventionGrid.DataSource = _user.GetPendingInterventions();
+            interventionGrid.DataBind();
         }
     }
 }

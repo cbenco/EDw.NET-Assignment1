@@ -57,26 +57,35 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public bool Approvable(User approver)
         {
-            if (approver.GetType() == typeof(SiteEngineer))
-                return CanBeApprovedByEngineer((SiteEngineer)approver);
-            else if (approver.GetType() == typeof(Manager))
-                return CanBeApprovedByManager((Manager)approver);
-            else
-                return false;
+            if (Status == Status.Pending)
+            {
+                if (approver.GetType() == typeof(SiteEngineer))
+                    return CanBeApprovedByEngineer((SiteEngineer)approver);
+                else if (approver.GetType() == typeof(Manager))
+                    return CanBeApprovedByManager((Manager)approver);
+                else return false;
+            }
+            else return false;
+        }
+        //omg
+        public Intervention GetThis()
+        {
+            return this;
         }
         private bool CanBeApprovedByEngineer(SiteEngineer approver)
         {
-            if ((approver == Requester) &&
-                  approver.MaxManHours >= ManHours &&
-                  approver.MaxMaterialCost >= MaterialCost &&
-                  approver.MaxManHours >= InterventionType.ManHours &&
-                  approver.MaxMaterialCost >= InterventionType.MaterialCost)
+            if (approver == Requester &&
+                approver.MaxManHours >= ManHours &&
+                approver.MaxMaterialCost >= MaterialCost &&
+                approver.MaxManHours >= InterventionType.ManHours &&
+                approver.MaxMaterialCost >= InterventionType.MaterialCost)
                 return true;
             else return false;
         }
         private bool CanBeApprovedByManager(Manager approver)
         {
-            return ((approver.District == Client.District) &&
+            return (
+                  approver.District == Client.District &&
                   approver.MaxManHours >= ManHours &&
                   approver.MaxMaterialCost >= MaterialCost &&
                   approver.MaxManHours >= InterventionType.ManHours &&
