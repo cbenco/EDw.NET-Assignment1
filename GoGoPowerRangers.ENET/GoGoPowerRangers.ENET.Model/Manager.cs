@@ -25,7 +25,9 @@ namespace GoGoPowerRangers.ENET.Model
         public List<Intervention> GetPendingInterventions()
         {
             List<Intervention> interventions = new List<Intervention>();
-            interventions.Where(s => s.Status == Status.Pending);
+            var interventionQuery = FakeDatabase._interventions.Where(i => i.Approvable(this));
+            foreach (Intervention i in interventionQuery)
+                interventions.Add(i);
 
             return interventions;
         }

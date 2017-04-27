@@ -55,7 +55,15 @@ namespace GoGoPowerRangers.ENET.Model
             get { return _id; }
             set { _id = current++; }
         }
-
+        public bool Approvable(User approver)
+        {
+            if (approver.GetType() == typeof(SiteEngineer))
+                return CanBeApprovedByEngineer((SiteEngineer)approver);
+            else if (approver.GetType() == typeof(Manager))
+                return CanBeApprovedByManager((Manager)approver);
+            else
+                return false;
+        }
         private bool CanBeApprovedByEngineer(SiteEngineer approver)
         {
             if ((approver == Requester) &&
