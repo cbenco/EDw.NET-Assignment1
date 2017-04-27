@@ -34,46 +34,15 @@
                         <p style="text-align: right">
                             <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" />
                         </p>
-                        <div style="text-align: right">
-                            <p>
-&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnNewIntervention" runat="server" OnClick="btnNewIntervention_Click" Text="Add Intervention" />
-                            </p>
-                        </div>
                     </div>
                     <div style="text-align: center">
                         <p style="text-align: right">
-&nbsp;<asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
+                            <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
                         </p>
                     </div>
                     <hr />
-                    <asp:Label ID="labelDistrictName" runat="server"></asp:Label>
                 </div>
             </div>
-			<div>
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="UpdateClients" updatemode="Conditional" runat="server">
-                <ContentTemplate>
-                    <asp:GridView ID="clientGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="clientGrid_RowCommand">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Client Name">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="clientName" runat="server" Text='<%# Eval("Name") %>' CommandName="clientNameClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-			<br />
-            Create Client<br />
-            <asp:TextBox ID="newClientName" runat="server"></asp:TextBox>
-            name<br />
-            <asp:TextBox ID="newClientLocation" runat="server"></asp:TextBox>
-            location<br />
-			<asp:Button ID="newClientButton" runat="server" OnClick="newClientButton_Click" Text="New Client" />
-			           <br />
 			</div>
 			</div>
 			<hr />

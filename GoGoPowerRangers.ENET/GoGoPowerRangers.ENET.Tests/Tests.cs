@@ -84,17 +84,7 @@ namespace GoGoPowerRangers.ENET.Tests
             _user.UserType = Model.Type.Accountant;
             _accountant.UserType = Model.Type.Accountant;
             Assert.AreEqual(_accountant.UserType, _user.UserType);
-        }
-        [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
-        public void SetDisctrictType_ToEngineer_ReturnsCorrectDistrict()
-        {
-            District _district = new District();
-            _district.Name = "UTS";
-            _manager.ChangeSiteEngineerDistrict(_engineer, _district);
-            //_manager.ChangeManagerDistrict(_manager, _district);
-            Assert.AreEqual(_engineer.District.Name, "UTS");
-        }        
+        }       
         [TestMethod]
         public void ChangePassword_ToASDF_SetsCorrectPassword()
         {
@@ -123,14 +113,6 @@ namespace GoGoPowerRangers.ENET.Tests
             Assert.AreEqual(stuart.UserType, Model.Type.Accountant);
         }
 
-        [TestMethod]
-        public void SetDistrict_OfManager_ReturnsCorrectDistrict()
-        {
-            District district = new District();
-            district.Name = "UTS";
-            _manager.ChangeManagerDistrict(_manager, district);
-            Assert.AreEqual(_manager.District.Name, "UTS");
-        }
         [TestMethod]
         public void GetProposed_ReturnsPendingInterventions()
         {
