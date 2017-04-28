@@ -6,21 +6,16 @@ using GoGoPowerRangers.ENET.Data;
 
 namespace GoGoPowerRangers.ENET.Model
 {
-    public class SiteEngineer : User
+    public class SiteEngineer : EngineerOrManager
     {
-        public SiteEngineer(User user):base(user)
-        {
+        const int STANDARD_MAXMANHOURS = 6;
+        const int STANDARD_MAXMATCOST = 100;
 
-        }
-        public SiteEngineer(string userName, string password, string name, District district) : base(userName, password, name, Type.SiteEngineer)
+        public SiteEngineer(string userName, string password, string name, District district) : base(userName, password, name, district, Type.SiteEngineer)
         {
-            District = district;
-            MaxManHours = 6;
-            MaxMaterialCost = 100;
+            MaxManHours = STANDARD_MAXMANHOURS;
+            MaxMaterialCost = STANDARD_MAXMATCOST;
         }
-        public District District { get; set; }
-        public double MaxManHours { get; set; }
-        public double MaxMaterialCost { get; set; }
         public void CreateClient(string name, string location)
         {
             Client c = new Client(name, location, this.District);

@@ -27,7 +27,6 @@ namespace GoGoPowerRangers.ENET.Views
                 districtButtons.DataValueField = "Name";
                 districtButtons.DataBind();
             }
-            
         }
 
         protected void confirmButton_Click(object sender, EventArgs e)

@@ -22,18 +22,10 @@ namespace GoGoPowerRangers.ENET.Tests
         [TestInitialize]
         public void Setup()
         {
-            _user = new User();
-            _user.Id = 1;
-            _user.Name = "Luke";
-            _user.UserType = Model.Type.SiteEngineer;
-            _engineer = new SiteEngineer(_user);
-            _accountant = new Accountant(_user);
-            _manager = new Manager(_user);
-            _fakeDb = new FakeDatabase();
         }
 
         //Tests to ensure inheritance works when creating user objects.
-        [TestMethod]
+        /*[TestMethod]
         public void CreateSiteEngineer_FromUser_ReturnsUserId()
         {
             Assert.AreEqual(_engineer.Id, _user.Id);
@@ -121,6 +113,6 @@ namespace GoGoPowerRangers.ENET.Tests
                 if (intervention.Status != Status.Pending)
                     Assert.Fail();
             }
-        }
+        }*/
     }
 }
