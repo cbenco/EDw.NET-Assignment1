@@ -30,8 +30,12 @@ namespace GoGoPowerRangers.ENET.Data
             PopulateAccountants();
             PopulateInterventionTypes();
             PopulateInterventions();
+            //PopulateCompleteInterventions();
 
             //PrintDb();
+            //DisplayCostReport();
+            //DisplayHoursReport();
+            //DisplayDistrictCostReport();
         }
         private static void PopulateDistricts()
         {
@@ -124,6 +128,127 @@ namespace GoGoPowerRangers.ENET.Data
             {
                 Console.WriteLine(_interventions[i].ToString());
             }
+        }
+
+        private static void PopulateCompleteInterventions()
+        {
+            foreach (SiteEngineer e in _users.Where(u => u is SiteEngineer))
+                foreach (Manager m in _users.Where(u => u is Manager))
+                    foreach (InterventionType i in _interventionTypes)
+                        foreach (Client c in _clients.Where(c => c.District == e.District && c.District == m.District))
+                            _interventions.Add(new Intervention(i, c, e, 0, m, Status.Complete));
+        }
+
+        private static void DisplayCostReport()
+        {
+            Console.WriteLine("Site Engineer Total Cost Report");
+            Console.WriteLine();
+
+            var matCost =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.MaterialCost by i.Requester.Name into requesterGroup
+                select requesterGroup;
+
+            foreach (var engineer in matCost)
+                Console.WriteLine("{0} : ${1}", engineer.Key, engineer.Sum());
+
+            Console.WriteLine();
+        }
+
+        private static void DisplayHoursReport()
+        {
+            Console.WriteLine("Site Engineer Average Hours Report");
+            Console.WriteLine();
+
+            var hours =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.ManHours by i.Requester.Name into requesterGroup
+                select requesterGroup;
+
+            foreach (var engineer in hours)
+                Console.WriteLine("{0} : {1}hrs", engineer.Key, Math.Round(engineer.Average(), 2));
+
+            Console.WriteLine();
+        }
+
+        private static void DisplayDistrictCostReport()
+        {
+            Console.WriteLine("District Costs Report");
+            Console.WriteLine();
+
+            var districtCost =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.MaterialCost by i.Client.District.Name into costGroup
+                select costGroup;
+
+            var districtHours =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.ManHours by i.Client.District.Name into hoursGroup
+                select hoursGroup;
+
+            foreach (var district in districtCost)
+            {
+                Console.Write("{0} : ${1}", district.Key, district.Sum());
+                foreach (var district2 in districtHours)
+                    if (district.Key == district2.Key)
+                        Console.WriteLine(" across {0} hrs", district2.Sum());
+            }
+
+            var totalCost =
+                from i in _interventions
+                where i.Status == Status.Complete
+                select i.MaterialCost;
+
+            var totalHours =
+                from i in _interventions
+                where i.Status == Status.Complete
+                select i.ManHours;
+
+            Console.WriteLine("Grand Total : ${0} across {1} hrs", totalCost.Sum(), totalHours.Sum());
+            Console.WriteLine();
+        }
+
+        private static void DisplayDistrictCostReportPerMonth()
+        {
+            Console.WriteLine("District Costs Report");
+            Console.WriteLine();
+
+            var districtCost =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.MaterialCost by i.Client.District.Name into costGroup
+                select costGroup;
+
+            var districtHours =
+                from i in _interventions
+                where i.Status == Status.Complete
+                group i.ManHours by i.Client.District.Name into hoursGroup
+                select hoursGroup;
+
+            foreach (var district in districtCost)
+            {
+                Console.Write("{0} : ${1}", district.Key, district.Sum());
+                foreach (var district2 in districtHours)
+                    if (district.Key == district2.Key)
+                        Console.WriteLine(" across {0} hrs", district2.Sum());
+            }
+
+            var totalCost =
+                from i in _interventions
+                where i.Status == Status.Complete
+                select i.MaterialCost;
+
+            var totalHours =
+                from i in _interventions
+                where i.Status == Status.Complete
+                select i.ManHours;
+
+            Console.WriteLine("Grand Total : ${0} across {1} hrs", totalCost.Sum(), totalHours.Sum());
+            Console.WriteLine();
         }
     }
 }

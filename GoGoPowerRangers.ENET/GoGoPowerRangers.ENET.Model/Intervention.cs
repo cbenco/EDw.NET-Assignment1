@@ -96,5 +96,23 @@ namespace GoGoPowerRangers.ENET.Model
         {
             return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.Name;
         }
+
+        public Intervention(InterventionType type, Client client, User requester, int remainingLife, User approver, Status status)
+        {
+            InterventionType = type;
+            ManHours = type.ManHours;
+            MaterialCost = type.MaterialCost;
+
+            Client = client;
+            Requester = requester;
+            RemainingLife = remainingLife;
+            Approver = approver;
+
+            RequestDate = DateTime.Now.AddYears(-1);
+            LastVisited = DateTime.Now;
+
+            Status = status;
+            Id = new int();
+        }
     }
 }
