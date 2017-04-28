@@ -65,21 +65,25 @@ namespace GoGoPowerRangers.ENET.Views
         protected void buttonCreate_Click(object sender, EventArgs e)
         {
             GetValues();
-            
             //check input
 
-            if (!(_user.MaxManHours >= mHours && _user.MaxMaterialCost >= mCost))
-            {
-                Create(Status.Pending);
-            }
-            else
+            if ((_user.MaxManHours >= mHours && _user.MaxMaterialCost >= mCost)) //If both the user's max material cost and manhours are high enough to approve
                 showApproveComplete = true;
+            else
+                Create(Status.Pending);
         }
         protected void buttonApprove_Click(object sender, EventArgs e)
         {
             GetValues();
             Create(Status.Approved);
         }
+
+        protected void buttonConfirmPending_Click(object sender, EventArgs e)
+        {
+            GetValues();
+            Create(Status.Pending);
+        }
+
         protected void buttonComplete_Click(object sender, EventArgs e)
         {
             GetValues();

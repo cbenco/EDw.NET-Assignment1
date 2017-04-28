@@ -38,8 +38,13 @@
                 notes<br />
                 <br />
                 
-                <asp:Button CssClass="btn-default btn" ID="buttonCreate" runat="server" Text="Create" OnClick="buttonCreate_Click" /><% if (showApproveComplete)
+                <% if (!showApproveComplete)
                    { %>
+                       <asp:Button CssClass="btn-default btn" ID="buttonCreate" runat="server" Text="Create" OnClick="buttonCreate_Click" />
+                <% }
+                   else
+                   { %>
+                        <asp:Button CssClass="btn-default btn" ID="buttonConfirmPending" runat="server" Text="Create as Pending" OnClick="buttonConfirmPending_Click" />
                         <asp:Button CssClass="btn-default btn" ID="buttonApprove" runat="server" Text="Create and Approve" OnClick="buttonApprove_Click" />
                         <asp:Button CssClass="btn-default btn" ID="buttonComplete" runat="server" Text="Create and Complete" OnClick="buttonComplete_Click" />
                 <% } %>
