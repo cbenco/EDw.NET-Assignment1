@@ -9,12 +9,12 @@ namespace GoGoPowerRangers.ENET.Views
 {
     public partial class InterventionDetails : System.Web.UI.Page
     {
-        public User _user;
+        public SiteEngineer _user;
         public Intervention _intervention;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (User)Session["currentUser"];
+            _user = (SiteEngineer)Session["currentUser"];
             _intervention = (Intervention)Session["selectedIntervention"];
             
             if (!IsPostBack)

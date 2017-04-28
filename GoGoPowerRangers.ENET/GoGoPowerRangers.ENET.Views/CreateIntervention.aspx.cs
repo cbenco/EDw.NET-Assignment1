@@ -54,22 +54,21 @@ namespace GoGoPowerRangers.ENET.Views
             ddl.DataBind();
         }
 
-        private void Create(int type, double mHours, double mCost, int client, DateTime time, string notes, Status status)
+        private void Create(Status status)
         {
-            GetValues();
-            _user.CreateIntervention(type, mHours, mCost, client, time, notes, Status.Pending);
+            _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
             Response.Redirect("Engineer.aspx", true);
         }
 
         protected void buttonCreate_Click(object sender, EventArgs e)
         {
             GetValues();
-
+            
             //check input
 
             if (!(_user.MaxManHours >= mHours && _user.MaxMaterialCost >= mCost))
             {
-                Create(type, mHours, mCost, client, time, notes, Status.Pending);
+                Create(Status.Pending);
             }
             else
                 showApproveComplete = true;
@@ -77,14 +76,13 @@ namespace GoGoPowerRangers.ENET.Views
         protected void buttonApprove_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create(type, mHours, mCost, client, time, notes, Status.Approved);
+            Create(Status.Approved);
         }
         protected void buttonComplete_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create(type, mHours, mCost, client, time, notes, Status.Complete);
+            Create(Status.Complete);
         }
-
         private void GetValues()
         {
             int.TryParse(types.SelectedValue, out type);
