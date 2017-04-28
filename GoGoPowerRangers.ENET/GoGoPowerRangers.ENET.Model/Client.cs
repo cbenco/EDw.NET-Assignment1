@@ -28,6 +28,10 @@ namespace GoGoPowerRangers.ENET.Model
             set { _id = current++; }
         }
 
+        /// <summary>
+        /// Gets the interventions that apply to this client.
+        /// </summary>
+        /// <returns></returns>
         public List<Intervention> GetInterventions()
         {
             List<Intervention> interventionList = new List<Intervention>();

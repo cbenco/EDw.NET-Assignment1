@@ -16,11 +16,26 @@ namespace GoGoPowerRangers.ENET.Model
             MaxManHours = STANDARD_MAXMANHOURS;
             MaxMaterialCost = STANDARD_MAXMATCOST;
         }
+
+        /// <summary>
+        /// Creates a new client in this engineer's current district.
+        /// </summary>
+        /// <param name="name">Client's name</param>
+        /// <param name="location">Client's location</param>
         public void CreateClient(string name, string location)
         {
             Client c = new Client(name, location, this.District);
             FakeDatabase._clients.Add(c);
         }
+        /// <summary>
+        /// Creates an intervention using IDs and values passed from user input.
+        /// </summary>
+        /// <param name="type">The type of intervention being created</param>
+        /// <param name="manHours">The required labour in hours</param>
+        /// <param name="materialCost">The cost of materials</param>
+        /// <param name="client">The client for whom the intervention is being installed</param>
+        /// <param name="time">The requested date for the intervention</param>
+        /// <param name="notes">Free text input from the user for additional information</param>
         public void CreateIntervention(int type, double manHours, double materialCost, int client, DateTime time, string notes)
         {
             Intervention i = new Intervention();
@@ -34,6 +49,10 @@ namespace GoGoPowerRangers.ENET.Model
 
             FakeDatabase._interventions.Add(i);
         }
+        /// <summary>
+        /// Lists the clients in the engineer's current district.
+        /// </summary>
+        /// <returns></returns>
         public List<Client> ListClientsInDistrict()
         {
             List<Client> clientList = new List<Client>();
@@ -43,6 +62,10 @@ namespace GoGoPowerRangers.ENET.Model
             
             return clientList;
         }
+        /// <summary>
+        /// List all interventions requested by this engineer. Excludes Cancelled interventions.
+        /// </summary>
+        /// <returns></returns>
         public List<Intervention> GetInterventions()
         {
             List<Intervention> interventionList = new List<Intervention>();
@@ -57,10 +80,7 @@ namespace GoGoPowerRangers.ENET.Model
             //TODO
             return new Intervention();
         }
-        public void ChangeInterventionState(Intervention intervention, Status status)
-        {
-            intervention.Status = status;
-        }
+        
         public override string ToString()
         {
             return base.ToString() + ", " + District.ToString();

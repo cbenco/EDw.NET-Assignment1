@@ -50,11 +50,17 @@ namespace GoGoPowerRangers.ENET.Model
         public int RemainingLife { get; set; }
         public DateTime LastVisited { get; set; }
         public string Notes { get; set; }
+        //Sets a unique ID - should be removed once ADO is working
         public int Id
         {
             get { return _id; }
             set { _id = current++; }
         }
+        /// <summary>
+        /// Tests to see if the user can approve this intervention according to the business rules.
+        /// </summary>
+        /// <param name="approver">The user wishing to approve the intervention</param>
+        /// <returns></returns>
         public bool Approvable(EngineerOrManager approver)
         {
             if (approver.MaxManHours >= ManHours &&
@@ -71,6 +77,10 @@ namespace GoGoPowerRangers.ENET.Model
             return false;
         }
         //omg
+        /// <summary>
+        /// Returns the current object - required for some front-end hack.
+        /// </summary>
+        /// <returns></returns>
         public Intervention GetThis()
         {
             return this;
@@ -78,24 +88,6 @@ namespace GoGoPowerRangers.ENET.Model
         public override string ToString()
         {
             return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.Name;
-        }
-
-        public Intervention(InterventionType type, Client client, User requester, int remainingLife, User approver, Status status)
-        {
-            InterventionType = type;
-            ManHours = type.ManHours;
-            MaterialCost = type.MaterialCost;
-
-            Client = client;
-            Requester = requester;
-            RemainingLife = remainingLife;
-            Approver = approver;
-
-            RequestDate = DateTime.Now.AddYears(-1);
-            LastVisited = DateTime.Now;
-
-            Status = status;
-            Id = new int();
         }
     }
 }

@@ -136,7 +136,12 @@ namespace GoGoPowerRangers.ENET.Data
                 foreach (Manager m in _users.Where(u => u is Manager))
                     foreach (InterventionType i in _interventionTypes)
                         foreach (Client c in _clients.Where(c => c.District == e.District && c.District == m.District))
-                            _interventions.Add(new Intervention(i, c, e, 0, m, Status.Complete));
+                        {
+                            Intervention intervention = new Intervention(i, c, e, 0);
+                            intervention.Status = Status.Complete;
+                            intervention.Approver = m;
+                            _interventions.Add(intervention);
+                        }
         }
 
         private static void DisplayCostReport()

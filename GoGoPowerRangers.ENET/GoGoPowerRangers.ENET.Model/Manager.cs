@@ -16,7 +16,10 @@ namespace GoGoPowerRangers.ENET.Model
             MaxManHours = STANDARD_MAXMANHOURS;
             MaxMaterialCost = STANDARD_MAXMATCOST;
         }
-        
+        /// <summary>
+        /// Returns a list of interventions which the Manager can approve.
+        /// </summary>
+        /// <returns></returns>
         public List<Intervention> GetPendingInterventions()
         {
             List<Intervention> interventions = new List<Intervention>();
