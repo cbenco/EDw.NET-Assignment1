@@ -14,7 +14,7 @@ namespace GoGoPowerRangers.ENET.Views
     {
         private List<Intervention> _interventions;
         private SiteEngineer _user;
-        public GridView clientGrid, interventionGrid;
+        //public GridView clientGrid, interventionGrid;
 
         protected void btnNewIntervention_Click(object sender, EventArgs e)
         {
@@ -53,8 +53,11 @@ namespace GoGoPowerRangers.ENET.Views
 
                 interventionGrid.DataSource = _user.GetInterventions();
                 interventionGrid.DataBind();
-            }
-        }
+				interventionGrid.UseAccessibleHeader = true;
+				interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+			}
+		}
 
         protected void changePasswordButton_Click(object sender, EventArgs e)
         {
@@ -65,9 +68,12 @@ namespace GoGoPowerRangers.ENET.Views
         {
             clientGrid.DataSource = _user.ListClientsInDistrict();
             clientGrid.DataBind();
-        }
+			clientGrid.UseAccessibleHeader = true;
+			clientGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-        protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
+		}
+
+		protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int id = int.Parse(e.CommandArgument.ToString());
 

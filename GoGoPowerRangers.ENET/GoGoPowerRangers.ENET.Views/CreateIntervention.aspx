@@ -9,17 +9,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
-        <div>
-            <h1>Create Intervention</h1>
-        </div>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-                <asp:DropDownList CssClass="form-control" ID="types" runat="server" OnSelectedIndexChanged="types_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true">
+            <div class="col-md-4 col-md-offset-1">
+                <div>
+                    <h1>Create Intervention</h1>
+                </div>
+                <asp:DropDownList ID="types" runat="server" OnSelectedIndexChanged="types_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true" CssClass="form-control">
                 </asp:DropDownList>
                 type<br />
-                <asp:DropDownList CssClass="form-control" ID="clients" runat="server">
+                <asp:DropDownList ID="clients" runat="server" CssClass="form-control">
                 </asp:DropDownList>
                 client<br />
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -37,16 +35,16 @@
                 <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px" CssClass="form-control"></asp:TextBox>
                 notes<br />
                 <br />
-                
+
                 <% if (!showApproveComplete)
-                   { %>
-                       <asp:Button CssClass="btn-default btn" ID="buttonCreate" runat="server" Text="Create" OnClick="buttonCreate_Click" />
+                    { %>
+                <asp:Button CssClass="btn-default btn" ID="buttonCreate" runat="server" Text="Create" OnClick="buttonCreate_Click" />
                 <% }
-                   else
-                   { %>
-                        <asp:Button CssClass="btn-default btn" ID="buttonConfirmPending" runat="server" Text="Create as Pending" OnClick="buttonConfirmPending_Click" />
-                        <asp:Button CssClass="btn-default btn" ID="buttonApprove" runat="server" Text="Create and Approve" OnClick="buttonApprove_Click" />
-                        <asp:Button CssClass="btn-default btn" ID="buttonComplete" runat="server" Text="Create and Complete" OnClick="buttonComplete_Click" />
+                    else
+                    { %>
+                <asp:Button ID="buttonConfirmPending" runat="server" Text="Create as Pending" OnClick="buttonConfirmPending_Click" CssClass="btn-default btn"/>
+                <asp:Button ID="buttonApprove" runat="server" Text="Create and Approve" OnClick="buttonApprove_Click" CssClass="btn-default btn"/>
+                <asp:Button ID="buttonComplete" runat="server" Text="Create and Complete" OnClick="buttonComplete_Click" CssClass="btn-default btn"/>
                 <% } %>
             </div>
         </div>

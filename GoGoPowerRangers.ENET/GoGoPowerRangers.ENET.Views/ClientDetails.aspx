@@ -5,55 +5,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h1>
-                Client Details for Client
-            </h1>
-        </div>
-        <div>
-            <asp:Label ID="labelClientName" runat="server" Text="Client Name"/>
-            <br />
-            <asp:Label ID="labelClientLocation" runat="server" Text="Client Location"/>
-            <br />
-        </div>
-        <div>
-            <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="interventionGrid_RowCommand">
-                <Columns>
-                    <asp:TemplateField HeaderText="">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="viewIntervention" runat="server" Text="View Details" CommandName="viewInterventionClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
-                            </ItemTemplate>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div>
+                    <h1>Client Details for Client
+                    </h1>
+                </div>
+                <div>
+                    <asp:Label ID="labelClientName" runat="server" Text="Client Name" />
+                    <br />
+                    <asp:Label ID="labelClientLocation" runat="server" Text="Client Location" />
+                    <br />
+                </div>
+                <div>
+                    <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="interventionGrid_RowCommand" CssClass="table table-bordered">
+                        <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="viewIntervention" runat="server" Text="View Details" CommandName="viewInterventionClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Intervention Type">
-                            <ItemTemplate>
-                                <asp:Label ID="interventionType" runat="server" Text='<%# Eval("InterventionType.Name") %>'></asp:Label>
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Intervention Type">
+                                <ItemTemplate>
+                                    <asp:Label ID="interventionType" runat="server" Text='<%# Eval("InterventionType.Name") %>'></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Proposed By">
-                            <ItemTemplate>
-                                <asp:Label ID="proposedBy" runat="server" Text='<%# Eval("Requester.Name") %>'></asp:Label>
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Proposed By">
+                                <ItemTemplate>
+                                    <asp:Label ID="proposedBy" runat="server" Text='<%# Eval("Requester.Name") %>'></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Proposed Date">
-                            <ItemTemplate>
-                                <asp:Label ID="date" runat="server" Text='<%# Eval("RequestDateString" )%>'></asp:Label>
-                            </ItemTemplate>
-                            </asp:TemplateField>     
-                    <asp:TemplateField HeaderText="Last Visited">
-                            <ItemTemplate>
-                                <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisitedString") %>'></asp:Label>
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Proposed Date">
+                                <ItemTemplate>
+                                    <asp:Label ID="date" runat="server" Text='<%# Eval("RequestDateString" )%>'></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Last Visited">
+                                <ItemTemplate>
+                                    <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisitedString") %>'></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
         </div>
     </form>
 </body>
