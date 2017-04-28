@@ -55,43 +55,26 @@ namespace GoGoPowerRangers.ENET.Model
             get { return _id; }
             set { _id = current++; }
         }
-        public bool Approvable(User approver)
+        public bool Approvable(EngineerOrManager approver)
         {
-            if (Status == Status.Pending)
-            {
-                if (approver.GetType() == typeof(SiteEngineer))
-                    return CanBeApprovedByEngineer((SiteEngineer)approver);
-                else if (approver.GetType() == typeof(Manager))
-                    return CanBeApprovedByManager((Manager)approver);
-                else return false;
-            }
-            else return false;
+            if (approver.MaxManHours >= ManHours &&
+                approver.MaxMaterialCost >= MaterialCost &&
+                approver.MaxManHours >= InterventionType.ManHours &&
+                approver.MaxMaterialCost >= InterventionType.MaterialCost &&
+                Status == Status.Pending)
+                {
+                    if (approver.GetType() == typeof(SiteEngineer))
+                        return approver == Requester;
+                    else if (approver.GetType() == typeof(Manager))
+                        return approver.District == Client.District;
+                }
+            return false;
         }
         //omg
         public Intervention GetThis()
         {
             return this;
         }
-        private bool CanBeApprovedByEngineer(SiteEngineer approver)
-        {
-            if (approver == Requester &&
-                approver.MaxManHours >= ManHours &&
-                approver.MaxMaterialCost >= MaterialCost &&
-                approver.MaxManHours >= InterventionType.ManHours &&
-                approver.MaxMaterialCost >= InterventionType.MaterialCost)
-                return true;
-            else return false;
-        }
-        private bool CanBeApprovedByManager(Manager approver)
-        {
-            return (
-                  approver.District == Client.District &&
-                  approver.MaxManHours >= ManHours &&
-                  approver.MaxMaterialCost >= MaterialCost &&
-                  approver.MaxManHours >= InterventionType.ManHours &&
-                  approver.MaxMaterialCost >= InterventionType.MaterialCost);
-        }
-
         public override string ToString()
         {
             return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.Name;
