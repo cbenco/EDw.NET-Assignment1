@@ -37,7 +37,7 @@ namespace GoGoPowerRangers.ENET.Model
         /// <param name="client">The client for whom the intervention is being installed</param>
         /// <param name="time">The requested date for the intervention</param>
         /// <param name="notes">Free text input from the user for additional information</param>
-        public void CreateIntervention(int type, double manHours, double materialCost, int client, DateTime time, string notes)
+        public void CreateIntervention(int type, double manHours, double materialCost, int client, DateTime time, string notes, Status status)
         {
             Intervention i = new Intervention();
             i.InterventionType = FakeDatabase._interventionTypes.FirstOrDefault(s => s.Id == type);
@@ -47,6 +47,7 @@ namespace GoGoPowerRangers.ENET.Model
             i.MaterialCost = materialCost;
             i.Requester = this;
             i.Notes = notes;
+            i.Status = status;
 
             if (i.Client.District == District)
                 FakeDatabase._interventions.Add(i);

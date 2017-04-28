@@ -37,7 +37,12 @@
                 <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px" CssClass="form-control"></asp:TextBox>
                 notes<br />
                 <br />
-                <asp:Button CssClass="btn-default btn" ID="Button1" runat="server" Text="Create" OnClick="Button1_Click" />
+                
+                <asp:Button CssClass="btn-default btn" ID="buttonCreate" runat="server" Text="Create" OnClick="buttonCreate_Click" /><% if (showApproveComplete)
+                   { %>
+                        <asp:Button CssClass="btn-default btn" ID="buttonApprove" runat="server" Text="Create and Approve" OnClick="buttonApprove_Click" />
+                        <asp:Button CssClass="btn-default btn" ID="buttonComplete" runat="server" Text="Create and Complete" OnClick="buttonComplete_Click" />
+                <% } %>
             </div>
         </div>
     </form>

@@ -94,12 +94,30 @@ namespace GoGoPowerRangers.ENET.Views {
         protected global::System.Web.UI.WebControls.TextBox noteBox;
         
         /// <summary>
-        /// Button1 control.
+        /// buttonCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button buttonCreate;
+        
+        /// <summary>
+        /// buttonApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonApprove;
+        
+        /// <summary>
+        /// buttonComplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonComplete;
     }
 }
