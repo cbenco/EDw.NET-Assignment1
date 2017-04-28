@@ -40,7 +40,6 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
             if (e.CommandName == "ApproveClick")
             {
                 int Id = int.Parse(e.CommandArgument.ToString());

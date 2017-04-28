@@ -16,20 +16,11 @@ namespace GoGoPowerRangers.ENET.UI
 		protected void Page_Load(object sender, EventArgs e)
 		{
             _user = (Accountant)Session["currentUser"];
+            labelFirstName.Text = "<h3>Hello, " + _user.Name + "</h3>";
             ManagerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.Manager);
             ManagerGrid.DataBind();
             EngineerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.SiteEngineer);
             EngineerGrid.DataBind();
-        }
-
-        protected void btnViewPeople_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-        protected void btnViewReports_Click(object sender, ImageClickEventArgs e)
-        {
-
         }
 
         protected void Logout_Click(object sender, EventArgs e)
@@ -52,6 +43,21 @@ namespace GoGoPowerRangers.ENET.UI
                 Session.Add("selectedUser", selectedUser);
                 Response.Redirect("ChangeDistrict.aspx");
             }
+        }
+
+        protected void report1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void report2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void report3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

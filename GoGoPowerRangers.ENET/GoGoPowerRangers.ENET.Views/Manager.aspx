@@ -78,6 +78,11 @@
                                             <asp:Label ID="client" runat="server" Text='<%# Eval("Client.Name") %>'></asp:Label>
                                         </ItemTemplate>
                                         </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Location">
+                                        <ItemTemplate>
+                                            <asp:Label ID="client" runat="server" Text='<%# Eval("Client.Location") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Proposed By">
                                         <ItemTemplate>
                                             <asp:Label ID="proposedBy" runat="server" Text='<%# Eval("Requester.Name") %>'></asp:Label>
@@ -93,11 +98,6 @@
                                             <asp:Label ID="matCost" runat="server" Text='<%# Eval("MaterialCost") %>'></asp:Label>
                                         </ItemTemplate>
                                         </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Remaining Life">
-                                        <ItemTemplate>
-                                            <asp:Label ID="remLife" runat="server" Text='<%# Eval("RemainingLife") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Proposed Date">
                                         <ItemTemplate>
                                             <asp:Label ID="date" runat="server" Text='<%# Eval("RequestDate") %>'></asp:Label>
@@ -106,11 +106,6 @@
                                 <asp:TemplateField HeaderText="Last Visited">
                                         <ItemTemplate>
                                             <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisited") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Status">
-                                        <ItemTemplate>
-                                            <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
                                         </ItemTemplate>
                                         </asp:TemplateField>
                             </Columns>
