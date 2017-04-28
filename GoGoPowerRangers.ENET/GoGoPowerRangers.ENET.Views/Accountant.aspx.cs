@@ -19,9 +19,13 @@ namespace GoGoPowerRangers.ENET.UI
             labelFirstName.Text = "<h3>Hello, " + _user.Name + "</h3>";
             ManagerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.Manager);
             ManagerGrid.DataBind();
-            EngineerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.SiteEngineer);
+			ManagerGrid.UseAccessibleHeader = true;
+			ManagerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+			EngineerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.SiteEngineer);
             EngineerGrid.DataBind();
-        }
+			EngineerGrid.UseAccessibleHeader = true;
+			EngineerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+		}
 
         protected void Logout_Click(object sender, EventArgs e)
         {
