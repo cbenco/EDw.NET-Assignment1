@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GoGoPowerRangers.ENET.Model
 {
-    public class Accountant :User
+    public class Accountant : User
     {
         public Accountant(User user) : base(user) { }
         public Accountant(string userName, string password, string name) : base(userName, password, name, Type.Accountant) { }
@@ -16,12 +16,10 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public void ChangeSiteEngineerDistrict(SiteEngineer engineer, District district)
         {
-            engineer.District = new District();
-            engineer.District.Name = district.Name;
+            engineer.District = district;
         }
         public void ChangeManagerDistrict(Manager manager, District district)
         {
-            manager.District = new District();
             manager.District = district;
         }
     }

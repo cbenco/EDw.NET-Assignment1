@@ -130,7 +130,7 @@
                                 <p>Most recent visit: </p>
                             </td>
                             <td>
-                                <asp:Calendar ID="calendarLastVisited" runat="server" ShowGridLines="true" SelectionMode="Day">
+                                <asp:Calendar ID="calendarLastVisited" runat="server" ShowGridLines="true" SelectionMode="Day" >
                                     <SelectedDayStyle BackColor="LightBlue" ForeColor="Black"/>
                                 </asp:Calendar>
                             </td>
