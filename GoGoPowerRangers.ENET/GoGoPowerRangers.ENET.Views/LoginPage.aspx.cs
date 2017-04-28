@@ -34,7 +34,7 @@ namespace GoGoPowerRangers.ENET.UI
             switch (_user.UserType)
             {
                 case (Model.Type.Accountant):
-                    Response.Redirect("AccountantScreen.aspx", true);
+                    Response.Redirect("Accountant.aspx", true);
                     break;
                 case (Model.Type.SiteEngineer):
                     Response.Redirect("Engineer.aspx", true);
@@ -57,7 +57,7 @@ namespace GoGoPowerRangers.ENET.UI
         //delete these buttons eventually
         protected void AccountantButton_OnClick (object sender, EventArgs e)
         {
-            Response.Redirect("AccountantScreen.aspx", true);
+            Response.Redirect("Accountant.aspx", true);
         }
         protected void InterventionApprovalButton_OnClick(object sender, EventArgs e)
         {

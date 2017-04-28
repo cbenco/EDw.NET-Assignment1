@@ -88,11 +88,11 @@
                             <asp:Label ID="labelStatus" runat="server" />
                             <% if (_intervention.Approvable(_user))
                                 { %>
-                            <asp:Button ID="buttonApprove" runat="server" OnClick="buttonApprove_Click" />
+                            <asp:Button ID="buttonApprove" runat="server" OnClick="buttonApprove_Click" Text="Approve"/>
                             <%}
                                else if (_intervention.Status == GoGoPowerRangers.ENET.Model.Status.Approved){%>
-                            <asp:Button ID="buttonComplete" runat="server" OnClick="buttonComplete_Click" />
-                            <asp:Button ID="buttonCancel" runat="server" OnClick="buttonCancel_Click" />
+                            <asp:Button ID="buttonComplete" runat="server" OnClick="buttonComplete_Click" Text="Complete"/>
+                            <asp:Button ID="buttonCancel" runat="server" OnClick="buttonCancel_Click" Text="Cancel"/>
                             <%} %>
                         </td>
                     </tr>

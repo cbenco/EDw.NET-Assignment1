@@ -139,8 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="AccountantScreen.aspx" />
+    <Content Include="Accountant.aspx" />
     <Content Include="Approval.aspx" />
+    <Content Include="ChangeDistrict.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ClientDetails.aspx" />
     <Content Include="Contact.aspx" />
@@ -202,12 +203,12 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountantScreen.aspx.cs">
-      <DependentUpon>AccountantScreen.aspx</DependentUpon>
+    <Compile Include="Accountant.aspx.cs">
+      <DependentUpon>Accountant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AccountantScreen.aspx.designer.cs">
-      <DependentUpon>AccountantScreen.aspx</DependentUpon>
+    <Compile Include="Accountant.aspx.designer.cs">
+      <DependentUpon>Accountant.aspx</DependentUpon>
     </Compile>
     <Compile Include="Approval.aspx.cs">
       <DependentUpon>Approval.aspx</DependentUpon>
@@ -225,6 +226,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ChangeDistrict.aspx.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeDistrict.aspx.designer.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
