@@ -56,6 +56,16 @@ namespace GoGoPowerRangers.ENET.Model
             get { return _id; }
             set { _id = current++; }
         }
+        public void UpdateInformation(string notes, DateTime lastVisited, int remLife)
+        {
+            Notes = notes;
+            LastVisited = lastVisited;
+            RemainingLife = remLife;
+        }
+        private bool Modifiable(SiteEngineer modifier)
+        {
+            return (modifier.District == Client.District);
+        }
         /// <summary>
         /// Tests to see if the user can approve this intervention according to the business rules.
         /// </summary>

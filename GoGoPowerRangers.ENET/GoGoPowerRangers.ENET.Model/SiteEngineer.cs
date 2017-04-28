@@ -48,7 +48,8 @@ namespace GoGoPowerRangers.ENET.Model
             i.Requester = this;
             i.Notes = notes;
 
-            FakeDatabase._interventions.Add(i);
+            if (i.Client.District == District)
+                FakeDatabase._interventions.Add(i);
         }
 
         /// <summary>
