@@ -47,7 +47,7 @@ namespace GoGoPowerRangers.ENET.Views
             {
                 labelFirstName.Text = _user.Name;
                 labelDistrictName.Text = "<h2>Clients in " + _user.District.Name + "</h2>";
-                labelInterventionsHeader.Text = "<h2>Interventions for " + _user.Name + "</h2";
+                labelInterventionsHeader.Text = "<h2>Interventions created by " + _user.Name + "</h2";
 
                 BindClients();
 
@@ -71,12 +71,19 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void clientGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int id = int.Parse(e.CommandArgument.ToString());
+
             if (e.CommandName == "clientNameClick")
             {
-                int Id = int.Parse(e.CommandArgument.ToString());
-                var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == Id);
+                var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == id);
                 Session.Add("selectedClient", client);
                 Response.Redirect("ClientDetails.aspx");
+            }
+            else if (e.CommandName == "viewInterventionClick")
+            {
+                var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
+                Session.Add("selectedIntervention", intervention);
+                Response.Redirect("InterventionDetails.aspx");
             }
         }
     }

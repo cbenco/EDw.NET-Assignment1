@@ -150,7 +150,6 @@
     <Content Include="CreateIntervention.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Details.aspx" />
-    <Content Include="EditIntervention.aspx" />
     <Content Include="Engineer.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -161,6 +160,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="InterventionDetails.aspx" />
     <Content Include="LandingPage.aspx" />
     <Content Include="LoginPage.aspx" />
     <Content Include="Manager.aspx" />
@@ -267,13 +267,6 @@
     <Compile Include="Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditIntervention.aspx.cs">
-      <DependentUpon>EditIntervention.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditIntervention.aspx.designer.cs">
-      <DependentUpon>EditIntervention.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Engineer.aspx.cs">
       <DependentUpon>Engineer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -283,6 +276,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="InterventionDetails.aspx.cs">
+      <DependentUpon>InterventionDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InterventionDetails.aspx.designer.cs">
+      <DependentUpon>InterventionDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>

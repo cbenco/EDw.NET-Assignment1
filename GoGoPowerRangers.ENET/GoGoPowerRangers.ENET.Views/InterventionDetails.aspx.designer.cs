@@ -11,7 +11,7 @@ namespace GoGoPowerRangers.ENET.Views
 {
 
 
-    public partial class EditIntervention
+    public partial class InterventionDetails
     {
 
         /// <summary>

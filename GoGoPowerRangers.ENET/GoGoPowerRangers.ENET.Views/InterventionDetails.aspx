@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditIntervention.aspx.cs" Inherits="GoGoPowerRangers.ENET.Views.EditIntervention" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InterventionDetails.aspx.cs" Inherits="GoGoPowerRangers.ENET.Views.InterventionDetails" %>
 
 <!DOCTYPE html>
 

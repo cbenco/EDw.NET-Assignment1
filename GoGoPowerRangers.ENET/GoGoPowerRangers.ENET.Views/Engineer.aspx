@@ -85,6 +85,11 @@
             </div>
             <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server">
                 <Columns>
+                    <asp:TemplateField HeaderText="">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="viewIntervention" runat="server" Text="View Details" CommandName="viewInterventionClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
+                            </ItemTemplate>
+                            </asp:TemplateField>
                     <asp:TemplateField HeaderText="ID">
                             <ItemTemplate>
                                 <asp:Label ID="id" runat="server" Text='<%# Eval("Id") %>'></asp:Label>

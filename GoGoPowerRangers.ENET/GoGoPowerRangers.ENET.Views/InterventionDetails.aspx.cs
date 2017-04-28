@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace GoGoPowerRangers.ENET.Views
 {
-    public partial class EditIntervention : System.Web.UI.Page
+    public partial class InterventionDetails : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
