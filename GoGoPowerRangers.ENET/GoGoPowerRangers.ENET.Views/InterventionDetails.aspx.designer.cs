@@ -85,6 +85,33 @@ namespace GoGoPowerRangers.ENET.Views {
         protected global::System.Web.UI.WebControls.Label labelStatus;
         
         /// <summary>
+        /// buttonApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonApprove;
+        
+        /// <summary>
+        /// buttonComplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonComplete;
+        
+        /// <summary>
+        /// buttonCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonCancel;
+        
+        /// <summary>
         /// labelApprover control.
         /// </summary>
         /// <remarks>

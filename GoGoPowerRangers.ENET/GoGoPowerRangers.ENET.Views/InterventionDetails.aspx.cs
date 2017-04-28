@@ -57,5 +57,20 @@ namespace GoGoPowerRangers.ENET.Views
         {
             Response.Redirect("Engineer.aspx");
         }
+
+        protected void buttonApprove_Click(object sender, EventArgs e)
+        {
+            _intervention.Status = Status.Approved;
+        }
+
+        protected void buttonComplete_Click(object sender, EventArgs e)
+        {
+            _intervention.Status = Status.Complete;
+        }
+
+        protected void buttonCancel_Click(object sender, EventArgs e)
+        {
+            _intervention.Status = Status.Cancelled;
+        }
     }
 }
