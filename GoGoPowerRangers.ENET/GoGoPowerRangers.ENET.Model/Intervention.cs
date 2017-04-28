@@ -9,8 +9,10 @@ namespace GoGoPowerRangers.ENET.Model
     {
         private int _id;
         static int current = 0;
+        private DateTime date;
         public Intervention()
         {
+            Id = new int();
             Status = Status.Pending;
             RemainingLife = 100;
             LastVisited = DateTime.Now;
@@ -55,6 +57,15 @@ namespace GoGoPowerRangers.ENET.Model
         {
             get { return _id; }
             set { _id = current++; }
+        }
+        public string RequestDateString {
+            get { return RequestDate.ToShortDateString(); }
+            set { }
+        }
+        public string LastVisitedString
+        {
+            get { return LastVisited.ToShortDateString(); }
+            set { }
         }
         public void UpdateInformation(string notes, DateTime lastVisited, int remLife)
         {

@@ -61,16 +61,19 @@ namespace GoGoPowerRangers.ENET.Views
         protected void buttonApprove_Click(object sender, EventArgs e)
         {
             _intervention.Status = Status.Approved;
+            _intervention.Approver = _user;
         }
 
         protected void buttonComplete_Click(object sender, EventArgs e)
         {
             _intervention.Status = Status.Complete;
+            _intervention.Approver = _user;
         }
 
         protected void buttonCancel_Click(object sender, EventArgs e)
         {
             _intervention.Status = Status.Cancelled;
+            _intervention.Approver = _user;
         }
     }
 }

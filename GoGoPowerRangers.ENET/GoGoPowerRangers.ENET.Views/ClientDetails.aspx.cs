@@ -24,5 +24,17 @@ namespace GoGoPowerRangers.ENET.Views
             interventionGrid.DataSource = _client.GetInterventions();
             interventionGrid.DataBind();
         }
+
+        protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = int.Parse(e.CommandArgument.ToString());
+
+            if (e.CommandName == "viewInterventionClick")
+            {
+                var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
+                Session.Add("selectedIntervention", intervention);
+                Response.Redirect("InterventionDetails.aspx");
+            }
+        }
     }
 }

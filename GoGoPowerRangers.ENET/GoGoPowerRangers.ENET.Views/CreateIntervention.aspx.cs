@@ -56,7 +56,9 @@ namespace GoGoPowerRangers.ENET.Views
 
         private void Create(Status status)
         {
-            _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
+            Intervention i = _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
+            if (status == Status.Approved || status == Status.Complete)
+                i.Approver = _user;
             Response.Redirect("Engineer.aspx", true);
         }
 
