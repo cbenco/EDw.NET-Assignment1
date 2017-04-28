@@ -27,6 +27,7 @@ namespace GoGoPowerRangers.ENET.Model
             Client c = new Client(name, location, this.District);
             FakeDatabase._clients.Add(c);
         }
+
         /// <summary>
         /// Creates an intervention using IDs and values passed from user input.
         /// </summary>
@@ -49,6 +50,7 @@ namespace GoGoPowerRangers.ENET.Model
 
             FakeDatabase._interventions.Add(i);
         }
+
         /// <summary>
         /// Lists the clients in the engineer's current district.
         /// </summary>
@@ -75,6 +77,7 @@ namespace GoGoPowerRangers.ENET.Model
 
             return interventionList;
         }
+
         public Intervention GetInterventionById(int id)
         {
             //TODO

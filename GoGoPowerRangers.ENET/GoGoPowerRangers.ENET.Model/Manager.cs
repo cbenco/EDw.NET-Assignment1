@@ -11,6 +11,8 @@ namespace GoGoPowerRangers.ENET.Model
         const int STANDARD_MAXMANHOURS = 6;
         const int STANDARD_MAXMATCOST = 100;
 
+        public Manager(User user) : base(user) { }
+
         public Manager(string userName, string password, string name, District district) : base(userName, password, name, district, Type.Manager)
         {
             MaxManHours = STANDARD_MAXMANHOURS;

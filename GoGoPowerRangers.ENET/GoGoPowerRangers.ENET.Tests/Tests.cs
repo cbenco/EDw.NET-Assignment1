@@ -12,107 +12,177 @@ namespace GoGoPowerRangers.ENET.Tests
     [TestClass]
     public class Tests
     {
-        User _user;
-        SiteEngineer _engineer;
-        Accountant _accountant;
-        Manager _manager;
-        FakeDatabase _fakeDb;
         public TestContext TestContext { get; set; }
+        SiteEngineer engineer;
+        Manager manager;
+        Intervention intervention;
+        District district;
 
         [TestInitialize]
         public void Setup()
         {
-        }
-
-        //Tests to ensure inheritance works when creating user objects.
-        /*[TestMethod]
-        public void CreateSiteEngineer_FromUser_ReturnsUserId()
-        {
-            Assert.AreEqual(_engineer.Id, _user.Id);
-        }
-        [TestMethod]
-        public void CreateSiteEngineer_FromUser_ReturnsUserName()
-        {
-            Assert.AreEqual(_engineer.Name, _user.Name);
-        }
-        [TestMethod]
-        public void CreateAccountant_FromUser_ReturnsUserId()
-        {
-            Assert.AreEqual(_accountant.Id, _user.Id);
-        }
-        [TestMethod]
-        public void CreateAccountant_FromUser_ReturnsUserName()
-        {
-            Assert.AreEqual(_accountant.Id, _user.Id);
-        }   
-        [TestMethod]
-        public void CreateManager_FromUser_ReturnsUserId()
-        {
-            Assert.AreEqual(_manager.Id, _user.Id);
-        }
-        [TestMethod]
-        public void CreateManager_FromUser_ReturnsUserName()
-        {
-            Assert.AreEqual(_manager.Id, _user.Id);
+            district = new District("DISTRICTNAME");
+            engineer = new SiteEngineer("asdf", "asdf", "asdf", district);
+            manager = new Manager("asdf", "asdf", "asdf", district);
+            intervention = new Intervention(new InterventionType("TYPE", 1.0, 1.0), new Client("", "", district), engineer, 100);
         }
 
         //Tests for public methods
+            //Tests for Intervention.Approvable()
         [TestMethod]
-        public void SetSiteEngineerType_ToUser_ReturnsUserType()
+        public void InterventionApproval_EngineerBothEqual_ReturnsTrue()
         {
-            _engineer.UserType = Model.Type.SiteEngineer;
-            Assert.AreEqual(_engineer.UserType, _user.UserType);
+            engineer.MaxManHours = 1.0;
+            engineer.MaxMaterialCost = 1.0;
+            Assert.IsTrue(intervention.Approvable(engineer));
         }
         [TestMethod]
-        public void SetManagerType_ToUser_ReturnsUserType()
+        public void InterventionApproval_EngineerManHoursBelow_ReturnsFalse()
         {
-            _user.UserType = Model.Type.Manager;
-            _manager.UserType = Model.Type.Manager;
-            Assert.AreEqual(_manager.UserType, _user.UserType);
+            engineer.MaxManHours = 0.5;
+            engineer.MaxMaterialCost = 1.0;
+            Assert.IsFalse(intervention.Approvable(engineer));
         }
         [TestMethod]
-        public void SetAccountantType_ToUser_ReturnsUserType()
+        public void InterventionApproval_EngineerMatCostBelow_ReturnsFalse()
         {
-            _user.UserType = Model.Type.Accountant;
-            _accountant.UserType = Model.Type.Accountant;
-            Assert.AreEqual(_accountant.UserType, _user.UserType);
-        }       
+            engineer.MaxManHours = 1.0;
+            engineer.MaxMaterialCost = 0.5;
+            Assert.IsFalse(intervention.Approvable(engineer));
+        }
         [TestMethod]
-        public void ChangePassword_ToASDF_SetsCorrectPassword()
+        public void InterventionApproval_EngineerManHoursAbove_ReturnsTrue()
         {
-            _user.ChangePassword("ASDF");
-            Assert.AreEqual(_user.Password, "ASDF");
+            engineer.MaxManHours = 2.0;
+            engineer.MaxMaterialCost = 1.0;
+            Assert.IsTrue(intervention.Approvable(engineer));
+        }
+        [TestMethod]
+        public void InterventionApproval_EngineerMatCostAbove_ReturnsTrue()
+        {
+            engineer.MaxManHours = 1.0;
+            engineer.MaxMaterialCost = 2.0;
+            Assert.IsTrue(intervention.Approvable(engineer));
+        }
+        [TestMethod]
+        public void InterventionApproval_EngineerIsRequester_ReturnsTrue()
+        {
+            intervention.Requester = engineer;
+            Assert.IsTrue(intervention.Approvable(engineer));
+        }
+        [TestMethod]
+        public void InterventionApproval_EngineerIsNotRequester_ReturnsTrue()
+        {
+            intervention.Requester = new SiteEngineer("", "", "", district);
+            Assert.IsFalse(intervention.Approvable(engineer));
+        }
+        [TestMethod]
+        public void InterventionApproval_ManagerFromDistrict_ReturnsTrue()
+        {
+            Assert.IsTrue(intervention.Approvable(manager));
+        }
+        [TestMethod]
+        public void InterventionApproval_ManagerNotFromDistrict_ReturnsFalse()
+        {
+            manager.District = new District();
+            Assert.IsFalse(intervention.Approvable(manager));
         }
 
-        //Tests for the fake database
+            //Tests for EngineerOrManager.ChangeInterventionState()
         [TestMethod]
-        public void PopulateDatabase_Element0_IsChrisBenco()
+        public void ChangeInterventionState_PendingToApproved_ChangedToApproved()
         {
-            User benco = FakeDatabase._users[0];
-            Assert.AreEqual(benco.UserName, "1001");
-            Assert.AreEqual(benco.Name, "Chris Benco");
-            Assert.AreEqual(benco.Id, 1);
-            Assert.AreEqual(benco.UserType, Model.Type.Manager);
+            intervention.Status = Status.Pending;
+            engineer.ChangeInterventionState(intervention, Status.Approved);
+            Assert.AreEqual(intervention.Status, Status.Approved);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_PendingToCancelled_ChangedToCancelled()
+        {
+            intervention.Status = Status.Pending;
+            engineer.ChangeInterventionState(intervention, Status.Cancelled);
+            Assert.AreEqual(intervention.Status, Status.Cancelled);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_PendingToCompleted_NoChange()
+        {
+            intervention.Status = Status.Pending;
+            engineer.ChangeInterventionState(intervention, Status.Complete);
+            Assert.AreEqual(intervention.Status, Status.Pending);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_ApprovedToPending_NoChange()
+        {
+            intervention.Status = Status.Approved;
+            engineer.ChangeInterventionState(intervention, Status.Pending);
+            Assert.AreEqual(intervention.Status, Status.Approved);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_ApprovedToCompleted_ChangedToCompleted()
+        {
+            intervention.Status = Status.Approved;
+            engineer.ChangeInterventionState(intervention, Status.Complete);
+            Assert.AreEqual(intervention.Status, Status.Complete);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_ApprovedToCancelled_ChangedToCancelled()
+        {
+            intervention.Status = Status.Approved;
+            engineer.ChangeInterventionState(intervention, Status.Cancelled);
+            Assert.AreEqual(intervention.Status, Status.Cancelled);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CancelledToPending_NoChange()
+        {
+            intervention.Status = Status.Cancelled;
+            engineer.ChangeInterventionState(intervention, Status.Pending);
+            Assert.AreEqual(intervention.Status, Status.Cancelled);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CancelledToApproved_NoChange()
+        {
+            intervention.Status = Status.Cancelled;
+            engineer.ChangeInterventionState(intervention, Status.Approved);
+            Assert.AreEqual(intervention.Status, Status.Cancelled);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CancelledToCompleted_NoChange()
+        {
+            intervention.Status = Status.Cancelled;
+            engineer.ChangeInterventionState(intervention, Status.Complete);
+            Assert.AreEqual(intervention.Status, Status.Cancelled);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CompletedToPending_NoChange()
+        {
+            intervention.Status = Status.Complete;
+            engineer.ChangeInterventionState(intervention, Status.Pending);
+            Assert.AreEqual(intervention.Status, Status.Complete);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CompletedToApproved_NoChange()
+        {
+            intervention.Status = Status.Complete;
+            engineer.ChangeInterventionState(intervention, Status.Approved);
+            Assert.AreEqual(intervention.Status, Status.Complete);
+        }
+        [TestMethod]
+        public void ChangeInterventionState_CompletedToCancelled_NoChange()
+        {
+            intervention.Status = Status.Complete;
+            engineer.ChangeInterventionState(intervention, Status.Cancelled);
+            Assert.AreEqual(intervention.Status, Status.Complete);
         }
 
         [TestMethod]
-        public void PopulateDatabase_Element8_IsStuartStevens()
+        public void EngineerQueries_ListClientsInDistrict_HasNoOtherDistricts()
         {
-            User stuart = FakeDatabase._users[8];
-            Assert.AreEqual(stuart.UserName, "1009");
-            Assert.AreEqual(stuart.Name, "Stuart Stevens");
-            Assert.AreEqual(stuart.Id, 9);
-            Assert.AreEqual(stuart.UserType, Model.Type.Accountant);
         }
 
         [TestMethod]
-        public void GetProposed_ReturnsPendingInterventions()
+        public void EngineerQueries_GetInterventions_HasNoOtherEngineers()
         {
-            foreach (var intervention in _manager.GetPendingInterventions())
-            {
-                if (intervention.Status != Status.Pending)
-                    Assert.Fail();
-            }
-        }*/
+
+        }
     }
 }
