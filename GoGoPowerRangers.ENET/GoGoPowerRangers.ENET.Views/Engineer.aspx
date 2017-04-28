@@ -54,7 +54,7 @@
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                 <asp:UpdatePanel ID="UpdateClients" updatemode="Conditional" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="clientGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="clientGrid_RowCommand">
+                    <asp:GridView ID="clientGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="GridView_RowCommand">
                         <Columns>
                             <asp:TemplateField HeaderText="Client Name">
                             <ItemTemplate>
@@ -83,7 +83,7 @@
                     <asp:Label ID="labelInterventionsHeader" runat="server"></asp:Label>
                 </div>
             </div>
-            <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server">
+            <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="GridView_RowCommand">
                 <Columns>
                     <asp:TemplateField HeaderText="">
                             <ItemTemplate>

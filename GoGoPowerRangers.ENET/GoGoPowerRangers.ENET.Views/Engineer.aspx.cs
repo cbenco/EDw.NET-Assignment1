@@ -54,8 +54,6 @@ namespace GoGoPowerRangers.ENET.Views
                 interventionGrid.DataSource = _user.GetInterventions();
                 interventionGrid.DataBind();
             }
-
-            //_interventions = db._interventions.Where(i => i.Requester.Name == _currentUser.Name);
         }
 
         protected void changePasswordButton_Click(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace GoGoPowerRangers.ENET.Views
             clientGrid.DataBind();
         }
 
-        protected void clientGrid_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int id = int.Parse(e.CommandArgument.ToString());
 
