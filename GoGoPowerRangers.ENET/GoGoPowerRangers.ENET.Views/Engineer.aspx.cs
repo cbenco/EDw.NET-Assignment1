@@ -99,7 +99,7 @@ namespace GoGoPowerRangers.ENET.Views
                 var dbIntervention = interventionTable.GetInterventionById(id).FirstOrDefault();
                 if (dbIntervention != null)
                 {
-                    Session.Add("selectedIntervention", _user.CreateIntervention(dbIntervention));
+                    Session.Add("selectedIntervention", _user.ConvertDbInterventionToIntervention(dbIntervention));
                     Response.Redirect("InterventionDetails.aspx");
                 }
                 //else

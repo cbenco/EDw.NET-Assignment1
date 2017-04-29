@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,58 @@ namespace GoGoPowerRangers.ENET.Model
             return !((i.Status == Status.Pending && s == Status.Complete) || 
                      (i.Status == Status.Approved && s == Status.Pending) || 
                      (i.Status == Status.Cancelled || i.Status == Status.Complete));
+        }
+
+        public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
+        {
+
+            InterventionType iType = new InterventionType();
+
+            InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
+            var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
+            iType.ManHours = (double)dbInterventionType.DefaultHours;
+            iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
+            iType.Name = dbInterventionType.Name;
+            iType.Id = dbInterventionType.TypeID;
+
+            Intervention i = new Intervention();
+            i.InterventionType = iType;
+            i.Id = dbIntervention.InterventionID;
+            i.LastVisited = dbIntervention.LastVisited;
+            i.ManHours = (double)dbIntervention.Hours;
+            i.MaterialCost = (double)dbIntervention.MaterialCost;
+            i.Notes = dbIntervention.Notes;
+            i.RemainingLife = dbIntervention.RemainingLife;
+            i.RequestDate = dbIntervention.Date;
+            i.Requester = this;
+            var status = dbIntervention.State;
+            switch (status)
+            {
+                case "Pending":
+                    i.Status = Status.Pending;
+                    break;
+                case "Approved":
+                    i.Status = Status.Approved;
+                    break;
+                case "Cancelled":
+                    i.Status = Status.Cancelled;
+                    break;
+                case "Complete":
+                    i.Status = Status.Complete;
+                    break;
+                default:
+                    i.Status = Status.Cancelled;
+                    break;
+            }
+            ClientTableAdapter clientTable = new ClientTableAdapter();
+            i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
+            return i;
+        }
+        public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
+        {
+            Client client = new Client(dbClient.Name, dbClient.Location, this.District);
+            client.Id = dbClient.ClientID;
+            return client;
         }
     }
 }

@@ -78,7 +78,7 @@ namespace GoGoPowerRangers.ENET.Model
         }
 
         //possibly change this to a constructor
-        public Intervention CreateIntervention(Data.ENET.InterventionRow dbIntervention)
+        public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
         {
             
             InterventionType iType = new InterventionType();
