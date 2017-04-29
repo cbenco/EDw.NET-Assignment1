@@ -4489,15 +4489,30 @@ SELECT InterventionID, TypeID, ClientID, Hours, MaterialCost, ProposedBy, Date, 
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.NVarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        Intervention.InterventionID, Intervention.Hours, Intervention.MaterialCost, Intervention.ProposedBy, Intervention.Date, Intervention.State, Intervention.ApprovedBy, Intervention.RemainingLife, 
-                         Intervention.LastVisited, Intervention.Notes, Client.Name, Client.Location, District.DistrictName, InterventionType.Name AS Expr1, InterventionType.DefaultHours, InterventionType.DefaultMaterialCost
-FROM            Intervention INNER JOIN
-                         InterventionType ON Intervention.TypeID = InterventionType.TypeID INNER JOIN
-                         Client ON Intervention.ClientID = Client.ClientID INNER JOIN
-                         District ON Client.DistrictID = District.DistrictID
-WHERE        (Client.Name = @name)";
+            this._commandCollection[2].CommandText = "SELECT        Intervention.InterventionID AS Expr3, Intervention.TypeID AS Expr1," +
+                " Intervention.ClientID AS Expr2, Intervention.Hours AS Expr4, Intervention.Mater" +
+                "ialCost AS Expr5, Intervention.ProposedBy AS Expr6, \r\n                         I" +
+                "ntervention.Date AS Date, Intervention.State AS State, Intervention.ApprovedBy A" +
+                "S Expr9, Intervention.RemainingLife AS Expr10, Intervention.LastVisited AS LastV" +
+                "isited, Intervention.Notes AS Expr12, \r\n                         [User].UserID, " +
+                "[User].Username, [User].Password, [User].FirstName AS FirstName, [User].LastName" +
+                " AS LastName, [User].Role, InterventionType.TypeID, InterventionType.Name AS Int" +
+                "erventionName, InterventionType.DefaultHours, \r\n                         Interve" +
+                "ntionType.DefaultMaterialCost, District.DistrictID, District.DistrictName, Clien" +
+                "t.ClientID, Client.Name AS Expr13, Client.Location, Client.DistrictID AS Expr14," +
+                " Intervention.InterventionID, \r\n                         Intervention.TypeID AS " +
+                "Expr15, Intervention.ClientID AS Expr16, Intervention.Hours, Intervention.Materi" +
+                "alCost, Intervention.ProposedBy, Intervention.Date, Intervention.State, Interven" +
+                "tion.ApprovedBy, \r\n                         Intervention.RemainingLife, Interven" +
+                "tion.LastVisited, Intervention.Notes\r\nFROM            Intervention INNER JOIN\r\n " +
+                "                        Client ON Intervention.ClientID = Client.ClientID INNER " +
+                "JOIN\r\n                         District ON Client.DistrictID = District.District" +
+                "ID INNER JOIN\r\n                         InterventionType ON Intervention.TypeID " +
+                "= InterventionType.TypeID INNER JOIN\r\n                         [User] ON Interve" +
+                "ntion.ProposedBy = [User].UserID AND Intervention.ProposedBy = [User].UserID AND" +
+                " Intervention.ProposedBy = [User].UserID\r\nWHERE        (Client.ClientID = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ClientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = @"SELECT        Intervention.Hours, Intervention.MaterialCost, Intervention.ProposedBy, Intervention.Date, Intervention.State, Intervention.ApprovedBy, Intervention.RemainingLife, Intervention.LastVisited, Intervention.Notes, 
@@ -4607,14 +4622,9 @@ SELECT InterventionID, TypeID, ClientID, Hours, MaterialCost, ProposedBy, Date, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy(ENET.InterventionDataTable dataTable, string name) {
+        public virtual int FillBy(ENET.InterventionDataTable dataTable, int id) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(name));
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -4626,14 +4636,9 @@ SELECT InterventionID, TypeID, ClientID, Hours, MaterialCost, ProposedBy, Date, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ENET.InterventionDataTable GetInterventionByClientName(string name) {
+        public virtual ENET.InterventionDataTable GetInterventionsByClientId(int id) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(name));
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             ENET.InterventionDataTable dataTable = new ENET.InterventionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

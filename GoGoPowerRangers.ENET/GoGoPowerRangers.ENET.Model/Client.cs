@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 
 namespace GoGoPowerRangers.ENET.Model
 {
@@ -31,14 +32,24 @@ namespace GoGoPowerRangers.ENET.Model
         /// Gets the interventions that apply to this client.
         /// </summary>
         /// <returns></returns>
-        public List<Intervention> GetInterventions()
+        public Data.ENET.InterventionDataTable GetInterventions()
         {
-            List<Intervention> interventionList = new List<Intervention>();
-            var interventions = FakeDatabase._interventions.Where(i => i.Client == this);
-            foreach (Intervention i in interventions)
-                interventionList.Add(i);
 
-            return interventionList;
+
+            //List<Intervention> interventionList = new List<Intervention>();
+            //var interventions = FakeDatabase._interventions.Where(i => i.Client == this);
+            //foreach (Intervention i in interventions)
+            //    interventionList.Add(i);
+            try
+            {
+                InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+                var list = interventionTable.GetInterventionsByClientId(Id);
+                return list;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public override string ToString()

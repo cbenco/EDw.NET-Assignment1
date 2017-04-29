@@ -23,10 +23,11 @@ namespace GoGoPowerRangers.ENET.Views
 
             interventionGrid.DataSource = _client.GetInterventions();
             interventionGrid.DataBind();
+
 			interventionGrid.UseAccessibleHeader = true;
 
             //causing nul ref when a new client is selected
-			//interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+			interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
 		}
 
         protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
