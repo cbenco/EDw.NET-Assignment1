@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:UpdatePanel ID="updateApprovedText" UpdateMode="Conditional" runat="server">
+                <asp:UpdatePanel ID="updateApprovedText" UpdateMode="Conditional" runat="server" ViewStateMode="Enabled">
                     <ContentTemplate>
                         <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="interventionGrid_RowCommand" CssClass="table table-bordered">
                             <Columns>
@@ -83,7 +83,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Location">
                                     <ItemTemplate>
-                                        <asp:Label ID="client" runat="server" Text='<%# Eval("Client.Location") %>'></asp:Label>
+                                        <asp:Label ID="location" runat="server" Text='<%# Eval("Client.Location") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Proposed By">

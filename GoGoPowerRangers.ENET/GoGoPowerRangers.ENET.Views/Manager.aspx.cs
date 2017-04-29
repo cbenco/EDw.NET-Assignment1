@@ -16,7 +16,7 @@ namespace GoGoPowerRangers.ENET.Views
         private List<Intervention> _interventions;
         private Manager _user;
         public GridView clientGrid, interventionGrid;
-        private InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+        private InterventionTableAdapter interventionTable;
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
@@ -28,6 +28,7 @@ namespace GoGoPowerRangers.ENET.Views
 			_user = (Manager)Session["currentUser"];
 			if (!IsPostBack)
             {
+                interventionTable = new InterventionTableAdapter();
                 labelFirstName.Text = _user.FirstName;
                 labelInterventionsHeader.Text = "<h2>Interventions for " + _user.FirstName + "</h2";
 
@@ -39,6 +40,8 @@ namespace GoGoPowerRangers.ENET.Views
             Response.Redirect("ChangePassword.aspx", true);
         }
 
+        
+
         protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
@@ -49,12 +52,12 @@ namespace GoGoPowerRangers.ENET.Views
 
                 _user.ChangeInterventionState(intervention, Status.Approved);
 
-                BindInterventions();
-                updateApprovedText.Update();
+                //BindInterventions();
+                //updateApprovedText.Update();
             }
         }
 
-        private void BindInterventions()
+        protected void BindInterventions()
         {
             interventionGrid.DataSource = _user.GetPendingInterventions();
             interventionGrid.DataBind();
