@@ -61,7 +61,7 @@
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Client Name">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="clientName" runat="server" Text='<%# Eval("Name") %>' CommandName="clientNameClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
+                                                        <asp:LinkButton ID="clientName" runat="server" Text='<%# Eval("Name") %>' CommandName="clientNameClick" CommandArgument='<%# Bind("ClientId") %>'></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -95,37 +95,37 @@
                         <Columns>
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="viewIntervention" runat="server" Text="View Details" CommandName="viewInterventionClick" CommandArgument='<%# Bind("Id") %>'></asp:LinkButton>
+                                    <asp:LinkButton ID="viewIntervention" runat="server" Text="View Details" CommandName="viewInterventionClick" CommandArgument='<%# Bind("InterventionID") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Intervention Type">
                                 <ItemTemplate>
-                                    <asp:Label ID="interventionType" runat="server" Text='<%# Eval("InterventionType.Name") %>'></asp:Label>
+                                    <asp:Label ID="interventionType" runat="server" Text='<%# Eval("InterventionName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Client">
                                 <ItemTemplate>
-                                    <asp:Label ID="client" runat="server" Text='<%# Eval("Client.Name") %>'></asp:Label>
+                                    <asp:Label ID="client" runat="server" Text='<%# Eval("ClientName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Location">
                                 <ItemTemplate>
-                                    <asp:Label ID="location" runat="server" Text='<%# Eval("Client.Location") + ", " + Eval("Client.District.Name") %>'></asp:Label>
+                                    <asp:Label ID="location" runat="server" Text='<%# Eval("ClientLocation") + ", " + Eval("DistrictName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Proposed Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="date" runat="server" Text='<%# Eval("RequestDateString") %>'></asp:Label>
+                                    <asp:Label ID="date" runat="server" Text='<%# Eval("Date") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Last Visited">
                                 <ItemTemplate>
-                                    <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisitedString") %>'></asp:Label>
+                                    <asp:Label ID="lastVisited" runat="server" Text='<%# Eval("LastVisited") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
-                                    <asp:Label ID="status" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
+                                    <asp:Label ID="status" runat="server" Text='<%# Eval("State") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

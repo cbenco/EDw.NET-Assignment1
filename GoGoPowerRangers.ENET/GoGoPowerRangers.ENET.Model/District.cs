@@ -14,8 +14,14 @@ namespace GoGoPowerRangers.ENET.Model
             Name = name;
         }
 
-        public string Name { get; set; }
+        public District(Data.ENET.DistrictRow dbDistrict)
+        {
+            Name = dbDistrict.DistrictName;
+            Id = dbDistrict.DistrictID;
+        }
 
+        public string Name { get; set; }
+        public int Id { get; set; }
         public override string ToString()
         {
             return Name;

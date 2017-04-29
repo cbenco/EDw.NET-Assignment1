@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,6 +42,35 @@ namespace GoGoPowerRangers.ENET.Model
             MaterialCost = materialCost;
         }
 
+        public void SaveChanges()
+        {
+            InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+            string status;
+            switch (Status)
+            {
+                case Status.Pending:
+                    status = "Pending";
+                    break;
+                case Status.Approved:
+                    status = "Approved";
+                    break;
+                case Status.Cancelled:
+                    status = "Cancelled";
+                    break;
+                case Status.Complete:
+                    status = "Complete";
+                    break;
+                default:
+                    status = "ancelled";
+                    break;
+            }
+            int? approverId;
+            if (Approver == null)
+                approverId = null;
+            else
+                approverId = Approver.Id;
+            interventionTable.UpdateInterventionById(InterventionType.Id, Client.Id, (decimal)ManHours, (decimal)MaterialCost, Requester.Id, RequestDate.ToShortDateString(), status, approverId, RemainingLife, LastVisited.ToShortDateString(), Notes, Id, Id);
+        }
         public InterventionType InterventionType { get; set; }
         public double ManHours { get; set; }
         public double MaterialCost { get; set; }
@@ -55,8 +85,7 @@ namespace GoGoPowerRangers.ENET.Model
         //Sets a unique ID - should be removed once ADO is working
         public int Id
         {
-            get { return _id; }
-            set { _id = current++; }
+            get; set;
         }
         public string RequestDateString {
             get { return RequestDate.ToShortDateString(); }
@@ -108,7 +137,7 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public override string ToString()
         {
-            return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.Name;
+            return InterventionType.Name + " for " + Client.Name + ", proposed by " + Requester.FirstName + " " + Requester.LastName;
         }
     }
 }

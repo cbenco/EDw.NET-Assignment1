@@ -9,12 +9,14 @@ namespace GoGoPowerRangers.ENET.Views
 {
     public partial class InterventionDetails : System.Web.UI.Page
     {
-        public SiteEngineer _user;
+        //public SiteEngineer _user;
+        public EngineerOrManager _user;
         public Intervention _intervention;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             _user = (SiteEngineer)Session["currentUser"];
+            _user = (EngineerOrManager)Session["currentUser"];
             _intervention = (Intervention)Session["selectedIntervention"];
             
             if (!IsPostBack)
@@ -23,12 +25,12 @@ namespace GoGoPowerRangers.ENET.Views
                 labelClient.Text = _intervention.Client.Name + ", " + _intervention.Client.Location;
                 labelManHours.Text = _intervention.ManHours.ToString() + " hours";
                 labelMatCost.Text = "$" + _intervention.MaterialCost.ToString();
-                labelRequester.Text = _intervention.Requester.Name;
+                labelRequester.Text = _intervention.Requester.FirstName;
                 labelDate.Text = _intervention.RequestDate.Date.ToString();
                 labelStatus.Text = _intervention.Status.ToString();
 
                 if (_intervention.Status == Status.Approved)
-                    labelApprover.Text = _intervention.Approver.Name;
+                    labelApprover.Text = _intervention.Approver.FirstName;
                 else
                     labelApprover.Text = "N/A";
 
@@ -49,7 +51,7 @@ namespace GoGoPowerRangers.ENET.Views
             _intervention.Notes = noteBox.Text;
             _intervention.LastVisited = calendarLastVisited.SelectedDate;
             _intervention.RemainingLife = int.Parse(remainingLifeBox.Text);
-
+            _intervention.SaveChanges();
             labelChangesSaved.Text = "Changes saved!";
         }
 

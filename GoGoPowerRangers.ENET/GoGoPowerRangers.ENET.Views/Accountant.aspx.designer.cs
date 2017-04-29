@@ -86,6 +86,16 @@ namespace GoGoPowerRangers.ENET.UI {
         
         /// <summary>
         /// ManagerGrid control.
+        /// ADOEngineerGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ADOEngineerGrid;
+        
+        /// <summary>
+        /// btnViewReports control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

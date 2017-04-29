@@ -152,7 +152,7 @@ namespace GoGoPowerRangers.ENET.Data
             var matCost =
                 from i in _interventions
                 where i.Status == Status.Complete
-                group i.MaterialCost by i.Requester.Name into requesterGroup
+                group i.MaterialCost by i.Requester.FirstName into requesterGroup
                 select requesterGroup;
 
             foreach (var engineer in matCost)
@@ -169,7 +169,7 @@ namespace GoGoPowerRangers.ENET.Data
             var hours =
                 from i in _interventions
                 where i.Status == Status.Complete
-                group i.ManHours by i.Requester.Name into requesterGroup
+                group i.ManHours by i.Requester.FirstName into requesterGroup
                 select requesterGroup;
 
             foreach (var engineer in hours)

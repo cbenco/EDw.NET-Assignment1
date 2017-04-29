@@ -20,7 +20,7 @@ namespace GoGoPowerRangers.ENET.Views
             
             if (!IsPostBack)
             {
-                labelHeader.Text = "<h1>Change district for " + _selectedUser.Name + "</h1>";
+                labelHeader.Text = "<h1>Change district for " + _selectedUser.FirstName + "</h1>";
 
                 districtButtons.DataSource = FakeDatabase._districts;
                 districtButtons.DataTextField = "Name";

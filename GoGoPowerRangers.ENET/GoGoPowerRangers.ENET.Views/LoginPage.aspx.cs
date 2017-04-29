@@ -6,24 +6,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+
 namespace GoGoPowerRangers.ENET.UI
 {
 	public partial class LoginPage : System.Web.UI.Page
 	{
-        private static User _user;
-		protected void Page_Load(object sender, EventArgs e)
+        private static User _currentUser;
+        private static UserTableAdapter usersTable = new UserTableAdapter();
+        private static UserTypeTableAdapter userTypeTable = new UserTypeTableAdapter();
+        private static DistrictTableAdapter districtTable = new DistrictTableAdapter();
+        protected void Page_Load(object sender, EventArgs e)
 		{
 		}
 
 		protected void Login_Authenticate(object sender, AuthenticateEventArgs e)
 		{
             string name = Login.UserName;
-            string password = Login.Password;
-            User currentUser = UserLogin(name, password);
-            if (currentUser != null)
+            string password = Login.Password; //change to gethashcode
+            User _currentUser = UserLogin(name, password);
+
+            if (_currentUser != null)
             {
                 e.Authenticated = true;
-                Session["currentUser"] = currentUser;
             }
             else
                 e.Authenticated = false;
@@ -31,48 +36,81 @@ namespace GoGoPowerRangers.ENET.UI
         
         protected void Logged_In(object sender, EventArgs e)
         {
-            switch (_user.UserType)
+            switch (_currentUser.UserType)
             {
                 case (Model.Type.Accountant):
+                    Session["currentUser"] = new Accountant(_currentUser);
                     Response.Redirect("Accountant.aspx", true);
                     break;
                 case (Model.Type.SiteEngineer):
+                    Session["currentUser"] = CreateEngineer(_currentUser);
                     Response.Redirect("Engineer.aspx", true);
                     break;
                 case (Model.Type.Manager):
+                    Session["currentUser"] = CreateManager(_currentUser);
                     Response.Redirect("Manager.aspx", true);
-                    break;
-                default: //need to figure out how to handle no assigned type. Do we need to?
-                    Response.Redirect("test.aspx", true);
                     break;
             }
         }
 
+        private Manager CreateManager(User currentUser)
+        {
+            Manager manager = new Manager(currentUser);
+            manager.District = GetDistrictFromDB(currentUser);
+            manager.MaxMaterialCost = GetCostLimitFromDB(currentUser);
+            manager.ApprovalLimit = GetApprovalLimitFromDB(currentUser);
+            return manager;
+        }
+
+        private SiteEngineer CreateEngineer(User currentUser)
+        {
+            SiteEngineer engineer = new SiteEngineer(currentUser);
+            engineer.District = GetDistrictFromDB(currentUser);
+            engineer.MaxMaterialCost = GetCostLimitFromDB(currentUser);
+            engineer.ApprovalLimit = GetApprovalLimitFromDB(currentUser);
+            return engineer;
+        }
+
+
+        private District GetDistrictFromDB(User currentUser)
+        {
+            var dbUserType = userTypeTable.GetUserTypeByUserID(currentUser.Id).FirstOrDefault();
+            var dbDistrict = districtTable.GetDistrictById(dbUserType.DistrictID).FirstOrDefault();
+            return new District(dbDistrict);
+        }
+
+        private double GetApprovalLimitFromDB(User currentUser)
+        {
+            var dbUserType = userTypeTable.GetUserTypeByUserID(currentUser.Id).FirstOrDefault();
+            return (double)dbUserType.ApprovalLimit;
+        }
+
+        private double GetCostLimitFromDB(User currentUser)
+        {
+            var dbUserType = userTypeTable.GetUserTypeByUserID(currentUser.Id).FirstOrDefault();
+            return (double)dbUserType.CostLimit;
+        }
+
         public static User UserLogin(string name, string password)
         {
-            _user = FakeDatabase._users.FirstOrDefault(u => u.Name == name && u.Password == password);
-            return _user;
+            //_user = FakeDatabase._users.FirstOrDefault(u => u.Name == name && u.Password == password);
+            var dbUser = usersTable.GetUserByUsername(name).FirstOrDefault();
+            if (dbUser == null)
+                return null;
+            _currentUser = new User(dbUser);
+            if (_currentUser.Password != password)
+                return null;
+            else
+                return _currentUser;
         }
 
         //delete these buttons eventually
-        protected void AccountantButton_OnClick (object sender, EventArgs e)
-        {
-            Response.Redirect("Accountant.aspx", true);
-        }
+
         protected void InterventionApprovalButton_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("Approval.aspx", true);
 
         }
-        protected void ManagerButton_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("Manager.aspx", true);
-
-        }
-        protected void SiteEngineerButton_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("Engineer.aspx", true);
-
-        }
+        
     }
 }

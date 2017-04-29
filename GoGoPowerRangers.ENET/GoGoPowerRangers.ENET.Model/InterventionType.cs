@@ -8,15 +8,14 @@ namespace GoGoPowerRangers.ENET.Model
     public class InterventionType
     {
         private int _id;
-        static int current = 0;
         public InterventionType() { }
         public string Name { get; set; }
         public double ManHours { get; set; }
         public double MaterialCost { get; set; }
         public int Id
         {
-            get { return _id; }
-            set { _id = current++; }
+            get;
+            set;
         }
 
         public InterventionType(string name, double manHours, double materialCost)

@@ -18,6 +18,7 @@ namespace GoGoPowerRangers.ENET.Model
         public District District { get; set; }
         public double MaxManHours { get; set; }
         public double MaxMaterialCost { get; set; }
+        public double ApprovalLimit { get; set; }
 
         /// <summary>
         /// Changes the status of an intervention.

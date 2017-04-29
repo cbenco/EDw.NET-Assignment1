@@ -1,0 +1,15 @@
+diff a/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Views/LoginPage.aspx.cs b/GoGoPowerRangers.ENET/GoGoPowerRangers.ENET.Views/LoginPage.aspx.cs	(rejected hunks)
+@@ -63,10 +63,13 @@
+          }
+  
+          //delete these buttons eventually
+++<<<<<<< Updated upstream
+ +        protected void AccountantButton_OnClick (object sender, EventArgs e)
+ +        {
+ +            Response.Redirect("Accountant.aspx", true);
+ +        }
+++=======
+++>>>>>>> Stashed changes
+          protected void InterventionApprovalButton_OnClick(object sender, EventArgs e)
+          {
+              Response.Redirect("Approval.aspx", true);

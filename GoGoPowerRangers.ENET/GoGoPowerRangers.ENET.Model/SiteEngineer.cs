@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+using static GoGoPowerRangers.ENET.Data.ENET;
+using System.Data;
 
 namespace GoGoPowerRangers.ENET.Model
 {
@@ -17,6 +20,11 @@ namespace GoGoPowerRangers.ENET.Model
             MaxMaterialCost = STANDARD_MAXMATCOST;
         }
 
+        public SiteEngineer(User user) : base(user) 
+        {
+
+        }
+
         /// <summary>
         /// Creates a new client in this engineer's current district.
         /// </summary>
@@ -24,8 +32,20 @@ namespace GoGoPowerRangers.ENET.Model
         /// <param name="location">Client's location</param>
         public void CreateClient(string name, string location)
         {
-            Client c = new Client(name, location, this.District);
-            FakeDatabase._clients.Add(c);
+            ClientTableAdapter clientTable = new ClientTableAdapter();
+            clientTable.AddClient(name, location, District.Id);
+            //Client c = new Client(name, location, this.District);
+            //FakeDatabase._clients.Add(c);
+
+        }
+
+        //need to differentiate this method from new client functionality.
+        //possibly change name to ConvertDbClientToClient
+        public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
+        {
+            Client client = new Client(dbClient.Name, dbClient.Location, this.District);
+            client.Id = dbClient.ClientID;
+            return client;
         }
 
         /// <summary>
@@ -57,31 +77,88 @@ namespace GoGoPowerRangers.ENET.Model
             return null;
         }
 
+        //possibly change this to a constructor
+        public Intervention CreateIntervention(Data.ENET.InterventionRow dbIntervention)
+        {
+            
+            InterventionType iType = new InterventionType();
+
+            InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
+            var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
+            iType.ManHours = (double)dbInterventionType.DefaultHours;
+            iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
+            iType.Name = dbInterventionType.Name;
+            iType.Id = dbInterventionType.TypeID;
+
+            Intervention i = new Intervention();
+            i.InterventionType = iType;
+            i.Id = dbIntervention.InterventionID;
+            i.LastVisited = dbIntervention.LastVisited;
+            i.ManHours = (double)dbIntervention.Hours;
+            i.MaterialCost = (double)dbIntervention.MaterialCost;
+            i.Notes = dbIntervention.Notes;
+            i.RemainingLife = dbIntervention.RemainingLife;
+            i.RequestDate = dbIntervention.Date;
+            i.Requester = this;
+            var status = dbIntervention.State;
+            switch (status)
+            {
+                case "Pending":
+                    i.Status = Status.Pending;
+                    break;
+                case "Approved":
+                    i.Status = Status.Approved;
+                    break;
+                case "Cancelled":
+                    i.Status = Status.Cancelled;
+                    break;
+                case "Complete":
+                    i.Status = Status.Complete;
+                    break;
+                default:
+                    i.Status = Status.Cancelled;
+                    break;
+            }
+            ClientTableAdapter clientTable = new ClientTableAdapter();
+            i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
+            return i;
+        }
         /// <summary>
         /// Lists the clients in the engineer's current district.
         /// </summary>
         /// <returns></returns>
-        public List<Client> ListClientsInDistrict()
+        public List<Data.ENET.ClientRow> ListClientsInDistrict()
         {
-            List<Client> clientList = new List<Client>();
-            var clients = FakeDatabase._clients.Where(c => c.District.Name == this.District.Name);
-            foreach (Client c in clients)
-                clientList.Add(c);
-            
-            return clientList;
+            //List<Client> clientList = new List<Client>();
+            //var clients = FakeDatabase._clients.Where(c => c.District.Name == this.District.Name);
+            //foreach (Client c in clients)
+            //    clientList.Add(c);
+
+            ClientTableAdapter clientTable = new ClientTableAdapter();
+
+            return clientTable.GetClientByDistrict(this.District.Name).ToList();
         }
         /// <summary>
         /// List all interventions requested by this engineer. Excludes Cancelled interventions.
         /// </summary>
         /// <returns></returns>
-        public List<Intervention> GetInterventions()
+        public Data.ENET.InterventionDataTable GetInterventions()
         {
-            List<Intervention> interventionList = new List<Intervention>();
-            var interventions = FakeDatabase._interventions.Where(i => i.Requester == this);
-            foreach (Intervention i in interventions)
-                interventionList.Add(i);
-
-            return interventionList;
+            //List<Intervention> interventionList = new List<Intervention>();
+            //var interventions = FakeDatabase._interventions.Where(i => i.Requester == this);
+            //foreach (Intervention i in interventions)
+            //    interventionList.Add(i);
+            
+            try
+            {
+                InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+                var list = interventionTable.GetInterventionsByUserId(Id);
+                return list;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public Intervention GetInterventionById(int id)

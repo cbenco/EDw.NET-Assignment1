@@ -1,4 +1,5 @@
 ﻿using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 using GoGoPowerRangers.ENET.Model;
 using System;
 using System.Collections.Generic;
@@ -45,9 +46,10 @@ namespace GoGoPowerRangers.ENET.Views
             _user = (SiteEngineer)Session["currentUser"];
             if (!IsPostBack)
             {
-                labelFirstName.Text = _user.Name;
+                
+                labelFirstName.Text = _user.FirstName;
                 labelDistrictName.Text = "<h2>Clients in " + _user.District.Name + "</h2>";
-                labelInterventionsHeader.Text = "<h2>Interventions created by " + _user.Name + "</h2";
+                labelInterventionsHeader.Text = "<h2>Interventions proposed by " + _user.FirstName + " " + _user.LastName + "</h2";
 
                 BindClients();
 
@@ -79,15 +81,29 @@ namespace GoGoPowerRangers.ENET.Views
 
             if (e.CommandName == "clientNameClick")
             {
-                var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == id);
-                Session.Add("selectedClient", client);
-                Response.Redirect("ClientDetails.aspx");
+                //var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == id);
+                ClientTableAdapter clientTable = new ClientTableAdapter();
+                var dbClient = clientTable.GetClientById(id).FirstOrDefault();
+                if (dbClient != null)
+                {
+                    Session.Add("selectedClient", _user.ConvertDbClientToClient(dbClient));
+                    Response.Redirect("ClientDetails.aspx");
+                }
+                //else
+                //    ErrorMessage.Text = "Invalid Client!";
             }
             else if (e.CommandName == "viewInterventionClick")
             {
-                var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
-                Session.Add("selectedIntervention", intervention);
-                Response.Redirect("InterventionDetails.aspx");
+                //var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
+                InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+                var dbIntervention = interventionTable.GetInterventionById(id).FirstOrDefault();
+                if (dbIntervention != null)
+                {
+                    Session.Add("selectedIntervention", _user.CreateIntervention(dbIntervention));
+                    Response.Redirect("InterventionDetails.aspx");
+                }
+                //else
+                //    ErrorMessage.Text = "Invalid Intervention!";
             }
         }
     }

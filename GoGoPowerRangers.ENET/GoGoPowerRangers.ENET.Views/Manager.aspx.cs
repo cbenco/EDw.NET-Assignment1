@@ -27,8 +27,8 @@ namespace GoGoPowerRangers.ENET.Views
 			_user = (Manager)Session["currentUser"];
 			if (!IsPostBack)
             {
-                labelFirstName.Text = _user.Name;
-                labelInterventionsHeader.Text = "<h2>Interventions for " + _user.Name + "</h2";
+                labelFirstName.Text = _user.FirstName;
+                labelInterventionsHeader.Text = "<h2>Interventions for " + _user.FirstName + "</h2";
 
                 BindInterventions();
             }

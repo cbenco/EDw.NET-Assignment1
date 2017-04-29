@@ -16,7 +16,6 @@ namespace GoGoPowerRangers.ENET.Model
             Name = name;
             Location = location;
             District = district;
-            Id = new int();
         }
         
         public string Name { get; set; }
@@ -24,8 +23,8 @@ namespace GoGoPowerRangers.ENET.Model
         public District District { get; set; }
         public int Id
         {
-            get { return _id; }
-            set { _id = current++; }
+            get;
+            set;
         }
 
         /// <summary>
