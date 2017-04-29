@@ -88,7 +88,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Proposed By">
                                     <ItemTemplate>
-                                        <asp:Label ID="proposedBy" runat="server" Text='<%# Eval("Requester.Name") %>'></asp:Label>
+                                        <asp:Label ID="proposedBy" runat="server" Text='<%# String.Format("{0} {1}", Eval("Requester.FirstName"), Eval("Requester.LastName")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Man Hours">

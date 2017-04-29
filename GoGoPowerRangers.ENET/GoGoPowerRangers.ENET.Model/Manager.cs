@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 
 namespace GoGoPowerRangers.ENET.Model
 {
@@ -24,10 +25,21 @@ namespace GoGoPowerRangers.ENET.Model
         /// <returns></returns>
         public List<Intervention> GetPendingInterventions()
         {
+            InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+            var dbInterventions = interventionTable.GetInterventionsByStatus("Pending");
+
             List<Intervention> interventions = new List<Intervention>();
-            var interventionQuery = FakeDatabase._interventions.Where(i => i.Approvable(this));
-            foreach (Intervention i in interventionQuery)
-                interventions.Add(i);
+            foreach (var dbInt in dbInterventions)
+            {
+                var intervention = base.ConvertDbInterventionToIntervention(dbInt);
+                if (intervention.Approvable(this))
+                    interventions.Add(intervention);
+            }
+            //var interventionQuery = interventions.Where(i => i.Approvable(this));
+
+            //foreach (Intervention i in interventionQuery)
+            //    interventions.Add(i);
+
 
             return interventions;
         }
@@ -38,7 +50,32 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public void ChangeInterventionState(Intervention intervention, Status status)
         {
+            InterventionTableAdapter interventionTable = new InterventionTableAdapter();
             intervention.Status = status;
+            string dbStatus;
+            int? approver = null;
+            switch (status)
+            {
+                case Status.Pending:
+                    dbStatus = "Pending";
+                    break;
+                case Status.Approved:
+                    dbStatus = "Approved";
+                    approver = this.Id;
+                    break;
+                case Status.Cancelled:
+                    dbStatus = "Cancelled";
+                    break;
+                case Status.Complete:
+                    dbStatus = "Complete";
+                    break;
+                default:
+                    dbStatus = "Cancelled";
+                    break;
+            }
+
+            interventionTable.UpdateDbInterventionStatus(approver, dbStatus, intervention.Id, intervention.Id);
+
         }
 
         public override string ToString()

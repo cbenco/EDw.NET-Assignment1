@@ -43,7 +43,7 @@ namespace GoGoPowerRangers.ENET.Model
         {
 
             InterventionType iType = new InterventionType();
-
+            UserTableAdapter userTable = new UserTableAdapter();
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
             iType.ManHours = (double)dbInterventionType.DefaultHours;
@@ -60,7 +60,7 @@ namespace GoGoPowerRangers.ENET.Model
             i.Notes = dbIntervention.Notes;
             i.RemainingLife = dbIntervention.RemainingLife;
             i.RequestDate = dbIntervention.Date;
-            i.Requester = this;
+            i.Requester = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
             var status = dbIntervention.State;
             switch (status)
             {
@@ -89,6 +89,30 @@ namespace GoGoPowerRangers.ENET.Model
             Client client = new Client(dbClient.Name, dbClient.Location, this.District);
             client.Id = dbClient.ClientID;
             return client;
+        }
+
+        public User ConvertDbUserToUser(Data.ENET.UserRow dbUser)
+        {
+            User user = new User();
+            user.Id = dbUser.UserID;
+            user.UserName = dbUser.Username;
+            user.Password = dbUser.Password;
+            user.FirstName = dbUser.FirstName;
+            user.LastName = dbUser.LastName;
+            switch (dbUser.Role)
+            {
+                case ("a"):
+                    user.UserType = Type.Accountant;
+                    break;
+                case ("e"):
+                    user.UserType = Type.SiteEngineer;
+                    break;
+                case ("m"):
+                    user.UserType = Type.Manager;
+                    break;
+            }
+
+            return user;
         }
     }
 }

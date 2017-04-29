@@ -59,6 +59,7 @@ namespace GoGoPowerRangers.ENET.UI
             manager.District = GetDistrictFromDB(currentUser);
             manager.MaxMaterialCost = GetCostLimitFromDB(currentUser);
             manager.ApprovalLimit = GetApprovalLimitFromDB(currentUser);
+            manager.MaxManHours = 500;
             return manager;
         }
 
@@ -68,6 +69,7 @@ namespace GoGoPowerRangers.ENET.UI
             engineer.District = GetDistrictFromDB(currentUser);
             engineer.MaxMaterialCost = GetCostLimitFromDB(currentUser);
             engineer.ApprovalLimit = GetApprovalLimitFromDB(currentUser);
+            engineer.MaxManHours = 500;
             return engineer;
         }
 

@@ -1,4 +1,5 @@
 ﻿using GoGoPowerRangers.ENET.Data;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 using GoGoPowerRangers.ENET.Model;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace GoGoPowerRangers.ENET.Views
         private List<Intervention> _interventions;
         private Manager _user;
         public GridView clientGrid, interventionGrid;
-        
+        private InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
@@ -40,10 +41,11 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             if (e.CommandName == "ApproveClick")
             {
                 int Id = int.Parse(e.CommandArgument.ToString());
-                var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(c => c.Id == Id);
+                var intervention = _interventions.FirstOrDefault(c => c.Id == Id);
 
                 _user.ChangeInterventionState(intervention, Status.Approved);
 
