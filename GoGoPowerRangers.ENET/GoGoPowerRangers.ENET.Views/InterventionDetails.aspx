@@ -27,7 +27,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="row">
-            <div class="col-md-offset-1">
+            <div class="col-md-11 col-md-offset-1">
                 <h1>Intervention Details</h1>
                 <h2><i>Core Information</i></h2>
                 <div class="row">
