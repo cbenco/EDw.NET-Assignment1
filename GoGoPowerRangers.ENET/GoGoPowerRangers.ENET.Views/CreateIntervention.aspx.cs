@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GoGoPowerRangers.ENET.Data;
 using GoGoPowerRangers.ENET.Model;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 
 namespace GoGoPowerRangers.ENET.Views
 {
@@ -19,7 +20,9 @@ namespace GoGoPowerRangers.ENET.Views
         double mHours, mCost;
         string notes;
         DateTime time;
-
+        InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
+        InterventionTableAdapter interventionTable = new InterventionTableAdapter();
+        ClientTableAdapter clientTable = new ClientTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
             _user = (SiteEngineer)Session["currentUser"];
@@ -27,8 +30,10 @@ namespace GoGoPowerRangers.ENET.Views
             if (!IsPostBack)
             {
                 showApproveComplete = false;
-                SetDropDowns(types, FakeDatabase._interventionTypes);
-                SetDropDowns(clients, _user.ListClientsInDistrict());
+                SetDropDowns(types, iTypeTable.GetInterventionTypes());
+                SetDropDowns(clients, clientTable.GetClientsByDistrictId(_user.District.Id));
+                //SetDropDowns(types, FakeDatabase._interventionTypes);
+                //SetDropDowns(clients, _user.ListClientsInDistrict());
                 SetTimeAndCost();
             }
         }
@@ -42,23 +47,46 @@ namespace GoGoPowerRangers.ENET.Views
 
         private void SetTimeAndCost()
         {
-            InterventionType selectedType = FakeDatabase._interventionTypes[types.SelectedIndex];
+            //InterventionType selectedType = FakeDatabase._interventionTypes[types.SelectedIndex];
+            int selectedId;
+            
+            var selected = types.SelectedValue;
+            int.TryParse(selected, out selectedId);
+            var dbSelectedType = iTypeTable.GetInterventionTypeById(selectedId).FirstOrDefault();
+            InterventionType selectedType;
+            if (dbSelectedType == null)
+                dbSelectedType = iTypeTable.GetInterventionTypes().FirstOrDefault();
+
+            selectedType = _user.ConvertDbInterventionTypeToInterventionType(dbSelectedType);
             manHours.Text = selectedType.ManHours.ToString();
             materialCost.Text = selectedType.MaterialCost.ToString();
         }
         private void SetDropDowns(DropDownList ddl, Object dataSource)
         {
+            System.Type t = dataSource.GetType();
             ddl.DataSource = dataSource;
             ddl.DataTextField = "Name";
-            ddl.DataValueField = "Id";
+            if (t.Equals(typeof(Data.ENET.ClientDataTable)))
+                ddl.DataValueField = "ClientID";
+            
+            else if (t.Equals(typeof(Data.ENET.InterventionTypeDataTable)))
+                ddl.DataValueField = "TypeID";
+
             ddl.DataBind();
         }
 
-        private void Create(Status status)
+        private void Create(String status)
         {
-            Intervention i = _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
-            if (status == Status.Approved || status == Status.Complete)
-                i.Approver = _user;
+            string currentDate = DateTime.Now.ToShortDateString();
+            int? approver;
+            //Intervention i = _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
+            if (status == "Approved" || status == "Complete")
+                approver = _user.Id;
+            else
+                approver = null;
+
+            interventionTable.AddIntervention(type, client, (decimal)mHours, (decimal)mCost, _user.Id, currentDate, status, approver, 100, currentDate, notes);
+            
             Response.Redirect("Engineer.aspx", true);
         }
 
@@ -70,24 +98,24 @@ namespace GoGoPowerRangers.ENET.Views
             if ((_user.MaxManHours >= mHours && _user.MaxMaterialCost >= mCost)) //If both the user's max material cost and manhours are high enough to approve
                 showApproveComplete = true;
             else
-                Create(Status.Pending);
+                Create("Pending");
         }
         protected void buttonApprove_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create(Status.Approved);
+            Create("Approved");
         }
 
         protected void buttonConfirmPending_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create(Status.Pending);
+            Create("Pending");
         }
 
         protected void buttonComplete_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create(Status.Complete);
+            Create("Complete");
         }
         private void GetValues()
         {

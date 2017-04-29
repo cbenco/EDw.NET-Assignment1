@@ -3518,9 +3518,9 @@ SELECT ClientID, Name, Location, DistrictID FROM Client WHERE (ClientID = @Clien
             this._commandCollection[3].CommandText = @"SELECT        Client.Name, Client.Location, Client.DistrictID, District.DistrictName, Client.ClientID
 FROM            Client INNER JOIN
                          District ON Client.DistrictID = District.DistrictID
-WHERE        (District.DistrictName = @DistrictName)";
+WHERE        (District.DistrictID = @DistrictID)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistrictName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "DistrictName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistrictID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "DistrictID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"SELECT        Client.Name, Client.Location, Client.DistrictID, District.DistrictName, Client.ClientID
@@ -3595,14 +3595,9 @@ WHERE        (Client.ClientID = @ClientID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy1(ENET.ClientDataTable dataTable, string DistrictName) {
+        public virtual int FillBy1(ENET.ClientDataTable dataTable, int DistrictID) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
-            if ((DistrictName == null)) {
-                throw new global::System.ArgumentNullException("DistrictName");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(DistrictName));
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(DistrictID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -3614,14 +3609,9 @@ WHERE        (Client.ClientID = @ClientID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ENET.ClientDataTable GetClientByDistrict(string DistrictName) {
+        public virtual ENET.ClientDataTable GetClientsByDistrictId(int DistrictID) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
-            if ((DistrictName == null)) {
-                throw new global::System.ArgumentNullException("DistrictName");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(DistrictName));
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(DistrictID));
             ENET.ClientDataTable dataTable = new ENET.ClientDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

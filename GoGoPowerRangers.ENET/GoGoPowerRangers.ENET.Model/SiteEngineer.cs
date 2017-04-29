@@ -77,6 +77,17 @@ namespace GoGoPowerRangers.ENET.Model
             return null;
         }
 
+        public InterventionType ConvertDbInterventionTypeToInterventionType(Data.ENET.InterventionTypeRow dbInterventionType)
+        {
+            InterventionType iType = new InterventionType();
+
+            InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
+            iType.ManHours = (double)dbInterventionType.DefaultHours;
+            iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
+            iType.Name = dbInterventionType.Name;
+            iType.Id = dbInterventionType.TypeID;
+            return iType;
+        }
         //possibly change this to a constructor
         public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
         {
@@ -85,13 +96,13 @@ namespace GoGoPowerRangers.ENET.Model
 
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
-            iType.ManHours = (double)dbInterventionType.DefaultHours;
-            iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
-            iType.Name = dbInterventionType.Name;
-            iType.Id = dbInterventionType.TypeID;
+            //iType.ManHours = (double)dbInterventionType.DefaultHours;
+            //iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
+            //iType.Name = dbInterventionType.Name;
+            //iType.Id = dbInterventionType.TypeID;
 
             Intervention i = new Intervention();
-            i.InterventionType = iType;
+            i.InterventionType = ConvertDbInterventionTypeToInterventionType(dbInterventionType);
             i.Id = dbIntervention.InterventionID;
             i.LastVisited = dbIntervention.LastVisited;
             i.ManHours = (double)dbIntervention.Hours;
@@ -123,6 +134,10 @@ namespace GoGoPowerRangers.ENET.Model
             i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
             return i;
         }
+        public void CreateIntervention(Intervention intervention)
+        {
+
+        }
         /// <summary>
         /// Lists the clients in the engineer's current district.
         /// </summary>
@@ -136,7 +151,7 @@ namespace GoGoPowerRangers.ENET.Model
 
             ClientTableAdapter clientTable = new ClientTableAdapter();
 
-            return clientTable.GetClientByDistrict(this.District.Name).ToList();
+            return clientTable.GetClientsByDistrictId(this.District.Id).ToList();
         }
         /// <summary>
         /// List all interventions requested by this engineer. Excludes Cancelled interventions.

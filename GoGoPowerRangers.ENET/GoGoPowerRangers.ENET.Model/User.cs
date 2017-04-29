@@ -41,6 +41,7 @@ namespace GoGoPowerRangers.ENET.Model
             LastName = dbUser.LastName;
             Id = dbUser.UserID;
             var type = dbUser.Role;
+            type = type.Trim();
             switch (type)
             {
                 case ("e"):
