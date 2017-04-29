@@ -20,6 +20,7 @@
                     <br />
                     <asp:Label ID="labelClientLocation" runat="server" Text="Client Location" />
                     <br />
+                    <asp:Button ID="buttonBack" runat="server" Text ="Go Back" OnClick="buttonBack_Click" />
                 </div>
                 <div>
                     <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="interventionGrid_RowCommand" CssClass="table table-bordered">

@@ -48,5 +48,10 @@ namespace GoGoPowerRangers.ENET.Views
                 }
             }
         }
+
+        protected void buttonBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Engineer.aspx");
+        }
     }
 }
