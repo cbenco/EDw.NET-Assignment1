@@ -13,7 +13,7 @@ namespace GoGoPowerRangers.ENET.Views
 {
     public partial class manager : System.Web.UI.Page
     {
-        private List<Intervention> _interventions;
+        private static List<Intervention> _interventions;
         private Manager _user;
         public GridView clientGrid, interventionGrid;
         private InterventionTableAdapter interventionTable;
@@ -25,8 +25,8 @@ namespace GoGoPowerRangers.ENET.Views
 		
         protected void Page_Load(object sender, EventArgs e)
         {
-			_user = (Manager)Session["currentUser"];
-			if (!IsPostBack)
+            _user = (Manager)Session["currentUser"];
+            if (!IsPostBack)
             {
                 interventionTable = new InterventionTableAdapter();
                 labelFirstName.Text = _user.FirstName;
@@ -52,14 +52,15 @@ namespace GoGoPowerRangers.ENET.Views
 
                 _user.ChangeInterventionState(intervention, Status.Approved);
 
-                //BindInterventions();
-                //updateApprovedText.Update();
+                BindInterventions();
+                updateApprovedText.Update();
             }
         }
 
         protected void BindInterventions()
         {
-            interventionGrid.DataSource = _user.GetPendingInterventions();
+            _interventions = _user.GetPendingInterventions();
+            interventionGrid.DataSource = _interventions;
             interventionGrid.DataBind();
 			interventionGrid.UseAccessibleHeader = true;
 			interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
