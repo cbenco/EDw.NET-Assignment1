@@ -38,12 +38,15 @@ namespace GoGoPowerRangers.ENET.Model
 
             InterventionType iType = new InterventionType();
             UserTableAdapter userTable = new UserTableAdapter();
+            UserTypeTableAdapter userTypeTable = new UserTypeTableAdapter();
+            DistrictTableAdapter districtTable = new DistrictTableAdapter();
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
             //iType.ManHours = (double)dbInterventionType.DefaultHours;
             //iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
             //iType.Name = dbInterventionType.Name;
             //iType.Id = dbInterventionType.TypeID;
+
 
             Intervention i = new Intervention();
             i.InterventionType = ConvertDbInterventionTypeToInterventionType(dbInterventionType);
@@ -54,7 +57,11 @@ namespace GoGoPowerRangers.ENET.Model
             i.Notes = dbIntervention.Notes;
             i.RemainingLife = dbIntervention.RemainingLife;
             i.RequestDate = dbIntervention.Date;
-            i.Requester = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
+            i.Requester = new SiteEngineer(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
+
+            var dbDistrict = districtTable.GetDistrictById(userTypeTable.GetUserTypeByUserID(dbIntervention.ProposedBy).FirstOrDefault().DistrictID).FirstOrDefault();
+            i.Requester.District = ConvertDbDistricttoDistrict(dbDistrict);
+
             var status = dbIntervention.State;
             switch (status)
             {
@@ -80,7 +87,9 @@ namespace GoGoPowerRangers.ENET.Model
         }
         public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
         {
-            Client client = new Client(dbClient.Name, dbClient.Location, null);
+            DistrictTableAdapter districtTable = new DistrictTableAdapter();
+            var dbDistrict = districtTable.GetDistrictById(dbClient.DistrictID).FirstOrDefault();
+            Client client = new Client(dbClient.Name, dbClient.Location, ConvertDbDistricttoDistrict(dbDistrict));
             client.Id = dbClient.ClientID;
             return client;
         }
@@ -107,6 +116,13 @@ namespace GoGoPowerRangers.ENET.Model
             }
 
             return user;
+        }
+        public District ConvertDbDistricttoDistrict(Data.ENET.DistrictRow dbDistrict)
+        {
+            District district = new District();
+            district.Id = dbDistrict.DistrictID;
+            district.Name = dbDistrict.DistrictName;
+            return district;
         }
 
     }

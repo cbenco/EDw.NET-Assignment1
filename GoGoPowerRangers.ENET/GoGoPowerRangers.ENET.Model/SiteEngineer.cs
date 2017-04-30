@@ -47,6 +47,7 @@ namespace GoGoPowerRangers.ENET.Model
             client.Id = dbClient.ClientID;
             return client;
         }
+        public District District { get; set; }
 
         /// <summary>
         /// Creates an intervention using IDs and values passed from user input.

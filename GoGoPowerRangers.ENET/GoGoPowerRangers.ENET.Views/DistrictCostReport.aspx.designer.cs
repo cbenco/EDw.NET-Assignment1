@@ -40,15 +40,6 @@ namespace GoGoPowerRangers.ENET.Views {
         protected global::System.Web.UI.WebControls.Button back;
         
         /// <summary>
-        /// changePasswordButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changePasswordButton;
-        
-        /// <summary>
         /// Logout control.
         /// </summary>
         /// <remarks>

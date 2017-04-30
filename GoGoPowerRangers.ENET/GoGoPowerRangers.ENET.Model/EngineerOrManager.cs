@@ -60,7 +60,7 @@ namespace GoGoPowerRangers.ENET.Model
             i.Notes = dbIntervention.Notes;
             i.RemainingLife = dbIntervention.RemainingLife;
             i.RequestDate = dbIntervention.Date;
-            i.Requester = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
+            i.Requester = new SiteEngineer(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
             var status = dbIntervention.State;
             switch (status)
             {

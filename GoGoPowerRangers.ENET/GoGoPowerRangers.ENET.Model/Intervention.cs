@@ -18,7 +18,7 @@ namespace GoGoPowerRangers.ENET.Model
             RemainingLife = 100;
             LastVisited = DateTime.Now;
         }
-        public Intervention(InterventionType type, Client client, User requester, int remainingLife)
+        public Intervention(InterventionType type, Client client, SiteEngineer requester, int remainingLife)
         {
             InterventionType = type;
             ManHours = type.ManHours;
@@ -35,7 +35,7 @@ namespace GoGoPowerRangers.ENET.Model
             Id = new int();
         }
         
-        public Intervention(InterventionType type, double manHours, double materialCost, Client client, User requester, int remainingLife)
+        public Intervention(InterventionType type, double manHours, double materialCost, Client client, SiteEngineer requester, int remainingLife)
             : this(type, client, requester, remainingLife)
         {
             ManHours = manHours;
@@ -75,7 +75,7 @@ namespace GoGoPowerRangers.ENET.Model
         public double ManHours { get; set; }
         public double MaterialCost { get; set; }
         public Client Client { get; set; }
-        public User Requester { get; set; }
+        public SiteEngineer Requester { get; set; }
         public DateTime RequestDate { get; set; }
         public Status Status { get; set; }
         public User Approver { get; set; }

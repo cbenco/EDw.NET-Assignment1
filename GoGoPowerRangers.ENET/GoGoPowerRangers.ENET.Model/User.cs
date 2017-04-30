@@ -75,7 +75,6 @@ namespace GoGoPowerRangers.ENET.Model
         {
             Password = password;
         }
-
         public override string ToString()
         {
             return Id + " " + FirstName + " " + LastName + ", " + UserType;
