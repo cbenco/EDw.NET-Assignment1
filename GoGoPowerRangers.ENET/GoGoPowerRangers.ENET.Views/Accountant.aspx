@@ -58,7 +58,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelEngName" runat="server" Text='<%# Eval("Name") %>' />
+                                        <asp:Label ID="labelEngName" runat="server" Text='<%# String.Format("{0} {1}", Eval("FirstName"), Eval("LastName")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ID">
@@ -68,7 +68,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="District">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelEngDistrict" runat="server" Text='<%# Eval("District.Name") %>' />
+                                        <asp:Label ID="labelEngDistrict" runat="server" Text='<%# Eval("DistrictName") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
@@ -89,7 +89,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelManName" runat="server" Text='<%# Eval("Name") %>' />
+                                        <asp:Label ID="labelManName" runat="server" Text='<%# String.Format("{0} {1}", Eval("FirstName"), Eval("LastName")) %>>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ID">
@@ -99,7 +99,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="District">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelManDistrict" runat="server" Text='<%# Eval("District.Name") %>' />
+                                        <asp:Label ID="labelManDistrict" runat="server" Text='<%# Eval("DistrictName") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">

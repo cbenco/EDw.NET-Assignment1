@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,13 +15,11 @@ namespace GoGoPowerRangers.ENET.Model
         {
             return new List<SiteEngineer>();
         }
-        public void ChangeSiteEngineerDistrict(SiteEngineer engineer, District district)
+        //only changing this in database, so only need userID
+        public void ChangeUserDistrict(User user, int districtId)
         {
-            engineer.District = district;
-        }
-        public void ChangeManagerDistrict(Manager manager, District district)
-        {
-            manager.District = district;
+            UserTypeTableAdapter userTypeTable = new UserTypeTableAdapter();
+            userTypeTable.UpdateUserDistrictId(districtId, user.Id, user.Id);
         }
     }
 }

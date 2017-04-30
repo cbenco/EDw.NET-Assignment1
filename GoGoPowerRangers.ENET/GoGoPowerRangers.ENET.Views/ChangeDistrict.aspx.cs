@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GoGoPowerRangers.ENET.Data;
 using GoGoPowerRangers.ENET.Model;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
 
 namespace GoGoPowerRangers.ENET.Views
 {
@@ -13,6 +14,7 @@ namespace GoGoPowerRangers.ENET.Views
     {
         public Accountant _user;
         public User _selectedUser;
+        DistrictTableAdapter _districtTable = new DistrictTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
             _user = (Accountant)Session["currentUser"];
@@ -20,23 +22,22 @@ namespace GoGoPowerRangers.ENET.Views
             
             if (!IsPostBack)
             {
-                labelHeader.Text = "<h1>Change district for " + _selectedUser.FirstName + "</h1>";
+                labelHeader.Text = "<h1>Change district for " + _selectedUser.FirstName + " " + _selectedUser.LastName + "</h1>";
 
-                districtButtons.DataSource = FakeDatabase._districts;
-                districtButtons.DataTextField = "Name";
-                districtButtons.DataValueField = "Name";
+                districtButtons.DataSource = _districtTable.GetDistricts();
+                districtButtons.DataTextField = "DistrictName";
+                districtButtons.DataValueField = "DistrictID";
                 districtButtons.DataBind();
             }
         }
 
         protected void confirmButton_Click(object sender, EventArgs e)
         {
-            var district = FakeDatabase._districts.FirstOrDefault(d => d.Name == districtButtons.SelectedValue.ToString());
-            if (_selectedUser.GetType() == typeof(SiteEngineer))
-                _user.ChangeSiteEngineerDistrict((SiteEngineer)_selectedUser, district);
-            else
-                _user.ChangeManagerDistrict((Manager)_selectedUser, district);
-
+            //var district = FakeDatabase._districts.FirstOrDefault(d => d.Name == districtButtons.SelectedValue.ToString());
+            int selectedId;
+            var selected = districtButtons.SelectedValue;
+            int.TryParse(selected, out selectedId);
+            _user.ChangeUserDistrict(_selectedUser, selectedId);
             Response.Redirect("Accountant.aspx");
         }
     }
