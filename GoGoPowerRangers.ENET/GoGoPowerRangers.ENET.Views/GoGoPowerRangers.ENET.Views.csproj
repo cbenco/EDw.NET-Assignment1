@@ -151,7 +151,11 @@
     <Content Include="CreateIntervention.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Details.aspx" />
+    <Content Include="DistrictCostReport.aspx" />
+    <Content Include="DistrictMonthlyCostReport.aspx" />
     <Content Include="Engineer.aspx" />
+    <Content Include="EngineerCostReport.aspx" />
+    <Content Include="EngineerAverageCostReport.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -275,12 +279,40 @@
     <Compile Include="Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DistrictCostReport.aspx.cs">
+      <DependentUpon>DistrictCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistrictCostReport.aspx.designer.cs">
+      <DependentUpon>DistrictCostReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DistrictMonthlyCostReport.aspx.cs">
+      <DependentUpon>DistrictMonthlyCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistrictMonthlyCostReport.aspx.designer.cs">
+      <DependentUpon>DistrictMonthlyCostReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Engineer.aspx.cs">
       <DependentUpon>Engineer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Engineer.aspx.designer.cs">
       <DependentUpon>Engineer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EngineerCostReport.aspx.cs">
+      <DependentUpon>EngineerCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EngineerCostReport.aspx.designer.cs">
+      <DependentUpon>EngineerCostReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EngineerAverageCostReport.aspx.cs">
+      <DependentUpon>EngineerAverageCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EngineerAverageCostReport.aspx.designer.cs">
+      <DependentUpon>EngineerAverageCostReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

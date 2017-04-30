@@ -38,11 +38,11 @@
                     </div>
 
                     <br />
-                    <asp:Button ID="report1" runat="server" Text="Engineer Cost Report" OnClick="report1_Click" CssClass="btn btn-default margin" />
+                    <asp:Button ID="EngineerTotalCostReport" runat="server" Text="Engineer Total Costs Report" OnClick="EngineerTotalCostReport_Click" CssClass="btn btn-default margin" />
                     <br />
-                    <asp:Button ID="report2" runat="server" Text="Engineer Average Hours Report" OnClick="report2_Click" CssClass="btn btn-default margin" />
+                    <asp:Button ID="EngineerAverageCostReport" runat="server" Text="Engineer Average Costs Report" OnClick="EngineerAverageCostReport_Click" CssClass="btn btn-default margin" />
                     <br />
-                    <asp:Button ID="report3" runat="server" Text="District Cost Report" OnClick="report3_Click" CssClass="btn btn-default margin" />
+                    <asp:Button ID="DistrictTotalCostReport" runat="server" Text="District Cost Report" OnClick="DistrictTotalCostReport_Click" CssClass="btn btn-default margin" />
                     <br />
                     <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" CssClass="btn btn-default margin" />
                     <br />

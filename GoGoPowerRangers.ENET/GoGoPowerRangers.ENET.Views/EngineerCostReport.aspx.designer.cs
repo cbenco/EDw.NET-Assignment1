@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GoGoPowerRangers.ENET.UI {
+namespace GoGoPowerRangers.ENET.Views {
     
     
-    public partial class AccountantScreen {
+    public partial class EngineerCostReport {
         
         /// <summary>
         /// form1 control.
@@ -31,40 +31,13 @@ namespace GoGoPowerRangers.ENET.UI {
         protected global::System.Web.UI.WebControls.Label labelFirstName;
         
         /// <summary>
-        /// EngineerTotalCostReport control.
+        /// back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EngineerTotalCostReport;
-        
-        /// <summary>
-        /// EngineerAverageCostReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EngineerAverageCostReport;
-        
-        /// <summary>
-        /// DistrictTotalCostReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DistrictTotalCostReport;
-        
-        /// <summary>
-        /// changePasswordButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changePasswordButton;
+        protected global::System.Web.UI.WebControls.Button back;
         
         /// <summary>
         /// Logout control.
@@ -76,21 +49,12 @@ namespace GoGoPowerRangers.ENET.UI {
         protected global::System.Web.UI.WebControls.Button Logout;
         
         /// <summary>
-        /// EngineerGrid control.
+        /// EngineerCostGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView EngineerGrid;
-        
-        /// <summary>
-        /// ManagerGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ManagerGrid;
+        protected global::System.Web.UI.WebControls.GridView EngineerCostGrid;
     }
 }

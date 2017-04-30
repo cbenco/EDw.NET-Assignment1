@@ -317,6 +317,19 @@ WHERE        (Intervention.InterventionID = @interventionID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="ENETConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy4" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetTotalsByEngineer" GeneratorSourceName="FillBy4" GetMethodModifier="Public" GetMethodName="GetTotalsByEngineer" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetTotalsByEngineer" UserSourceName="FillBy4">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        SUM(Intervention.MaterialCost) AS TotalCost, SUM(Intervention.Hours) AS TotalHours, [User].LastName, [User].FirstName, [User].UserID, SUM(Intervention.InterventionID) AS Expr1, 
+                         Intervention.ProposedBy
+FROM            [User] INNER JOIN
+                         Intervention ON [User].UserID = Intervention.ProposedBy AND [User].UserID = Intervention.ProposedBy
+WHERE        (Intervention.State = 'Complete')
+GROUP BY [User].LastName, [User].FirstName, [User].UserID, Intervention.ProposedBy</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="ENETConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillInterventionsByUserId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetInterventionsByUserId" GeneratorSourceName="FillInterventionsByUserId" GetMethodModifier="Public" GetMethodName="GetInterventionsByUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetInterventionsByUserId" UserSourceName="FillInterventionsByUserId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">

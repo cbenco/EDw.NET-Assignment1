@@ -68,17 +68,18 @@ namespace GoGoPowerRangers.ENET.UI
             }
         }
 
-        protected void report1_Click(object sender, EventArgs e)
+        protected void EngineerTotalCostReport_Click(object sender, EventArgs e)
         {
+            Response.Redirect("EngineerCostReport.aspx");
 
         }
 
-        protected void report2_Click(object sender, EventArgs e)
+        protected void EngineerAverageCostReport_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("EngineerAverageCostReport.aspx");
         }
 
-        protected void report3_Click(object sender, EventArgs e)
+        protected void DistrictTotalCostReport_Click(object sender, EventArgs e)
         {
 
         }

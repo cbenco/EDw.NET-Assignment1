@@ -155,6 +155,7 @@ namespace GoGoPowerRangers.ENET.Data
                 group i.MaterialCost by i.Requester.FirstName into requesterGroup
                 select requesterGroup;
 
+
             foreach (var engineer in matCost)
                 Console.WriteLine("{0} : ${1}", engineer.Key, engineer.Sum());
 
