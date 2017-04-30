@@ -36,35 +36,31 @@
                         <%User user = (User)Session["currentUser"];%>
                         <asp:Label ID="labelFirstName" runat="server" />
                     </div>
-
                     <br />
                     <asp:Button ID="back" runat="server" Text="Back" OnClick="back_Click" CssClass="btn btn-default margin" />
-                    <br />
-                    <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" CssClass="btn btn-default margin" />
                     <br />
                     <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" CssClass="btn btn-default margin" />
                     <br />
                 </div>
             </div>
+            District<br />
+            <asp:DropDownList ID="districtDropdown" runat="server" OnSelectedIndexChanged="districts_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true" CssClass="form-control" Width="40%" >
+            </asp:DropDownList>
+            
             <div class="viewPeople">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <h3 class="auto-style2">Total Costs and Hours of Completed Interventions by District</h3>
-                        <asp:GridView ID="DistrictCostGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="GridView_RowCommand" CssClass="table table-bordered">
+                        <asp:GridView ID="DistrictMonthlyCostGrid" AutoGenerateColumns="false" runat="server"  CssClass="table table-bordered">
                             <Columns>
-                                <asp:TemplateField HeaderText="Name">
+                                <asp:TemplateField HeaderText="Month">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelDistrictName" runat="server" Text='<%#Eval("DistrictName") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ID">
-                                    <ItemTemplate>
-                                        <asp:Label ID="labelDistrictID" runat="server" Text='<%# Eval("DistrictId") %>' />
+                                        <asp:Label ID="labelMonth" runat="server" Text='<%#Eval("InterventionMonth") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Costs">
                                     <ItemTemplate>
-                                        <asp:Label ID="labelDistrictCosts" runat="server" Text='<%# Eval("TotalCosts") %>' />
+                                        <asp:Label ID="labelDistrictCosts" runat="server" Text='<%# Eval("TotalCost") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Hours">
@@ -74,7 +70,6 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <asp:Label ID="labelGrandTotal" runat="server" Text='<%# Eval("GrandTotalHours") %>' />
                     </div>
                 </div>
                 <br />

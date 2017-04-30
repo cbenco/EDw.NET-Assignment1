@@ -83,5 +83,10 @@ namespace GoGoPowerRangers.ENET.UI
         {
             Response.Redirect("DistrictCostReport.aspx");
         }
+
+        protected void MonthlyDistrictCostReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DistrictMonthlyCostReport.aspx");
+        }
     }
 }

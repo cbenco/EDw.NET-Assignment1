@@ -42,10 +42,13 @@
                     <br />
                     <asp:Button ID="EngineerAverageCostReport" runat="server" Text="Engineer Average Costs Report" OnClick="EngineerAverageCostReport_Click" CssClass="btn btn-default margin" />
                     <br />
-                    <asp:Button ID="DistrictTotalCostReport" runat="server" Text="District Cost Report" OnClick="DistrictTotalCostReport_Click" CssClass="btn btn-default margin" />
+                    <asp:Button ID="DistrictTotalCostReport" runat="server" Text="Total District Cost Report" OnClick="DistrictTotalCostReport_Click" CssClass="btn btn-default margin" />
+                    <br />
+                    <asp:Button ID="MonthlyDistrictCostReport" runat="server" Text="Monthly District Cost Report" OnClick="MonthlyDistrictCostReport_Click" CssClass="btn btn-default margin" />
                     <br />
                     <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" Text="Change Password" CssClass="btn btn-default margin" />
                     <br />
+
                     <asp:Button ID="Logout" runat="server" Text="Logout" OnClick="Logout_Click" CssClass="btn btn-default margin" />
                     <br />
                 </div>
