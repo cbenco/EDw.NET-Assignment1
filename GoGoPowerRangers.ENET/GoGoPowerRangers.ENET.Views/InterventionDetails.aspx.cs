@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GoGoPowerRangers.ENET.Model;
+using GoGoPowerRangers.ENET.Data.ENETTableAdapters;
+
 namespace GoGoPowerRangers.ENET.Views
 {
     public partial class InterventionDetails : System.Web.UI.Page
@@ -12,7 +14,7 @@ namespace GoGoPowerRangers.ENET.Views
         //public SiteEngineer _user;
         public EngineerOrManager _user;
         public Intervention _intervention;
-
+        private InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
             _user = (SiteEngineer)Session["currentUser"];
@@ -64,18 +66,21 @@ namespace GoGoPowerRangers.ENET.Views
         {
             _intervention.Status = Status.Approved;
             _intervention.Approver = _user;
+            interventionTable.UpdateDbInterventionStatus(_user.Id, "Approved", _intervention.Id, _intervention.Id);
         }
 
         protected void buttonComplete_Click(object sender, EventArgs e)
         {
             _intervention.Status = Status.Complete;
             _intervention.Approver = _user;
+            interventionTable.UpdateDbInterventionStatus(_user.Id, "Complete", _intervention.Id, _intervention.Id);
         }
 
         protected void buttonCancel_Click(object sender, EventArgs e)
         {
             _intervention.Status = Status.Cancelled;
             _intervention.Approver = _user;
+            interventionTable.UpdateDbInterventionStatus(_user.Id, "Cancelled", _intervention.Id, _intervention.Id);
         }
     }
 }
