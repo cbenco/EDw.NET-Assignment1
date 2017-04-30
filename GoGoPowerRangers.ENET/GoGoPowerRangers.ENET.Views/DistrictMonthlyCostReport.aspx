@@ -43,9 +43,15 @@
                     <br />
                 </div>
             </div>
-            District<br />
+
+            <div class="row text-left">
+                <div class="col-md-3 col-md-offset-1">
+                                District<br />
             <asp:DropDownList ID="districtDropdown" runat="server" OnSelectedIndexChanged="districts_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true" CssClass="form-control" Width="40%" >
             </asp:DropDownList>
+                </div>
+            </div>
+
             
             <div class="viewPeople">
                 <div class="row">

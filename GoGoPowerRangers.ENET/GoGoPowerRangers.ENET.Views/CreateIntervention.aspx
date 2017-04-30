@@ -23,16 +23,16 @@
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                 <asp:UpdatePanel ID="UpdateTextBoxes" UpdateMode="Conditional" runat="server">
                     <ContentTemplate>
-                        <asp:TextBox ID="manHours" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="manHours" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                         man-hours<br />
-                        <asp:TextBox ID="materialCost" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="materialCost" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                         material cost
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <br />
                 <asp:Calendar ID="calendar" runat="server"></asp:Calendar>
                 <br />
-                <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="noteBox" runat="server" Height="118px" Width="242px" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
                 notes<br />
                 <br />
 

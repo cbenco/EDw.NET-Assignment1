@@ -6,6 +6,11 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <style type="text/css">
+        .margin {
+            margin-bottom:5px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,7 +25,7 @@
                     <br />
                     <asp:Label ID="labelClientLocation" runat="server" Text="Client Location" />
                     <br />
-                    <asp:Button ID="buttonBack" runat="server" Text ="Go Back" OnClick="buttonBack_Click" />
+                    <asp:Button ID="buttonBack" runat="server" Text ="Go Back" OnClick="buttonBack_Click" CssClass="btn btn-default margin"/>
                 </div>
                 <div>
                     <asp:GridView ID="interventionGrid" AutoGenerateColumns="false" runat="server" OnRowCommand="interventionGrid_RowCommand" CssClass="table table-bordered">

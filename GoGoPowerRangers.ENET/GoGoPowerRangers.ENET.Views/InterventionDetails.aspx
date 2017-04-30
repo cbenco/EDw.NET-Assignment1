@@ -22,6 +22,10 @@
         p {
             padding-top: 10px;
         }
+
+        .button-margin {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -96,12 +100,12 @@
                                     <asp:Label ID="labelStatus" runat="server" />
                                     <% if (_intervention.Approvable(_user))
                                         { %>
-                                    <asp:Button ID="buttonApprove" runat="server" OnClick="buttonApprove_Click" Text="Approve" CssClass="btn btn-default" />
+                                    <asp:Button ID="buttonApprove" runat="server" OnClick="buttonApprove_Click" Text="Approve" CssClass="btn btn-default btn-warning" />
                                     <%}
                                         else if (_intervention.Status == GoGoPowerRangers.ENET.Model.Status.Approved)
                                         {%>
-                                    <asp:Button ID="buttonComplete" runat="server" OnClick="buttonComplete_Click" Text="Complete" CssClass="btn btn-default" />
-                                    <asp:Button ID="buttonCancel" runat="server" OnClick="buttonCancel_Click" Text="Cancel" CssClass="btn btn-default" />
+                                    <asp:Button ID="buttonComplete" runat="server" OnClick="buttonComplete_Click" Text="Complete" CssClass="btn btn-default btn-success" />
+                                    <asp:Button ID="buttonCancel" runat="server" OnClick="buttonCancel_Click" Text="Cancel" CssClass="btn btn-default btn-danger" />
                                     <%} %>
                                 </td>
                             </tr>
@@ -147,9 +151,9 @@
                                 </td>
                             </tr>
                         </table>
-                        <asp:Button ID="buttonSaveChanges" runat="server" OnClick="buttonSaveChanges_Click" Text="Save Changes" Width="130px"  CssClass="btn btn-default"/>
+                        <asp:Button ID="buttonSaveChanges" runat="server" OnClick="buttonSaveChanges_Click" Text="Save Changes" Width="130px"  CssClass="btn btn-default button-margin btn-success"/>
                         <asp:Label ID="labelChangesSaved" runat="server" /><br />
-                        <asp:Button ID="buttonGoBack" runat="server" OnClick="buttonGoBack_Click" Text="Go Back" Width="130px"  CssClass="btn btn-default"/>
+                        <asp:Button ID="buttonGoBack" runat="server" OnClick="buttonGoBack_Click" Text="Go Back" Width="130px"  CssClass="btn btn-default button-margin btn-danger"/>
                     </div>
                 </div>
             </div>
