@@ -96,6 +96,7 @@ namespace GoGoPowerRangers.ENET.Model
             InterventionType iType = new InterventionType();
 
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
+            UserTableAdapter userTable = new UserTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
             //iType.ManHours = (double)dbInterventionType.DefaultHours;
             //iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
@@ -120,6 +121,7 @@ namespace GoGoPowerRangers.ENET.Model
                     break;
                 case "Approved":
                     i.Status = Status.Approved;
+                    i.Approver = ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ApprovedBy).FirstOrDefault());
                     break;
                 case "Cancelled":
                     i.Status = Status.Cancelled;
