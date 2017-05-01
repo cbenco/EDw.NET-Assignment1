@@ -227,6 +227,7 @@ namespace GoGoPowerRangers.ENET.Model
             ClientTableAdapter clientTable = new ClientTableAdapter();
 
             //return clientTable.GetClientsByDistrictId(this.District.Id).ToList();
+            return null;
         }
         /// <summary>
         /// Converts district from database to local object
