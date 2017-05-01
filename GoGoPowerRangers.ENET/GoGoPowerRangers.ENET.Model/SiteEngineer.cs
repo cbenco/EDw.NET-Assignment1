@@ -173,7 +173,7 @@ namespace GoGoPowerRangers.ENET.Model
                 var list = interventionTable.GetInterventionsByUserId(Id);
                 return list;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

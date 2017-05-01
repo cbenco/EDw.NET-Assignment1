@@ -13,7 +13,6 @@ namespace GoGoPowerRangers.ENET.Views
 {
     public partial class Engineer : System.Web.UI.Page
     {
-        private List<Intervention> _interventions;
         private SiteEngineer _user;
         //public GridView clientGrid, interventionGrid;
 

@@ -8,9 +8,7 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Intervention
     {
-        private int _id;
-        static int current = 0;
-        private DateTime date;
+        
         public Intervention()
         {
             Id = new int();

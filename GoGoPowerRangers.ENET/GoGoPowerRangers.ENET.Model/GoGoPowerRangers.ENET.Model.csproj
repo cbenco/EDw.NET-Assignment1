@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Accountant.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="DbUtilities.cs" />
     <Compile Include="District.cs" />
     <Compile Include="EngineerOrManager.cs" />
     <Compile Include="Enums.cs" />

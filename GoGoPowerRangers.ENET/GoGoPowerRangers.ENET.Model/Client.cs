@@ -9,8 +9,6 @@ namespace GoGoPowerRangers.ENET.Model
 {
     public class Client
     {
-        private int _id;
-        private static int current = 0;
         public Client() { }
         public Client(string name, string location, District district)
         {
@@ -34,19 +32,13 @@ namespace GoGoPowerRangers.ENET.Model
         /// <returns></returns>
         public Data.ENET.InterventionDataTable GetInterventions()
         {
-
-
-            //List<Intervention> interventionList = new List<Intervention>();
-            //var interventions = FakeDatabase._interventions.Where(i => i.Client == this);
-            //foreach (Intervention i in interventions)
-            //    interventionList.Add(i);
             try
             {
                 InterventionTableAdapter interventionTable = new InterventionTableAdapter();
                 var list = interventionTable.GetInterventionsByClientId(Id);
                 return list;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
