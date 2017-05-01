@@ -37,10 +37,15 @@ namespace GoGoPowerRangers.ENET.Views
                             TotalCost = (decimal?)g.Sum(p => p.Intervention.MaterialCost),
                             DistrictName = g.Key.Name
                         };
+
+            var dataSource = query;
             DistrictCostGrid.DataSource = query;
-            DistrictCostGrid.DataBind();
-            DistrictCostGrid.UseAccessibleHeader = true;
-            DistrictCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (dataSource.Count() != 0 && DistrictCostGrid.DataSource != null)
+            {
+                DistrictCostGrid.DataBind();
+                DistrictCostGrid.UseAccessibleHeader = true;
+                DistrictCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void back_Click(object sender, EventArgs e)

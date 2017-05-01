@@ -61,9 +61,12 @@ namespace GoGoPowerRangers.ENET.Views
         {
             _interventions = _user.GetPendingInterventions();
             interventionGrid.DataSource = _interventions;
-            interventionGrid.DataBind();
-			interventionGrid.UseAccessibleHeader = true;
-			interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (_interventions.Count != 0 && _interventions != null)
+            {
+                interventionGrid.DataBind();
+                interventionGrid.UseAccessibleHeader = true;
+                interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 		}
     }
 }

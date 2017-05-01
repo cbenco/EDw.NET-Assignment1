@@ -82,12 +82,14 @@ namespace GoGoPowerRangers.ENET.Views
                         };
 
 
-
-            DistrictMonthlyCostGrid.DataSource = query;
-            DistrictMonthlyCostGrid.DataBind();
-            DistrictMonthlyCostGrid.UseAccessibleHeader = true;
-            DistrictMonthlyCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-            //DistrictMonthlyCostGrid.Sort(DistrictMonthlyCostGrid., SortDirection.Ascending);
+            var dataSource = query;
+            DistrictMonthlyCostGrid.DataSource = dataSource;
+            if (dataSource.Count() != 0 && DistrictMonthlyCostGrid.DataSource != null)
+            {
+                DistrictMonthlyCostGrid.DataBind();
+                DistrictMonthlyCostGrid.UseAccessibleHeader = true;
+                DistrictMonthlyCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

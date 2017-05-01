@@ -52,12 +52,14 @@ namespace GoGoPowerRangers.ENET.Views
                 labelInterventionsHeader.Text = "<h2>Interventions proposed by " + _user.FirstName + " " + _user.LastName + "</h2";
 
                 BindClients();
-
-                interventionGrid.DataSource = _user.GetInterventions();
-                interventionGrid.DataBind();
-				interventionGrid.UseAccessibleHeader = true;
-				interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-
+                var dataSource = _user.GetInterventions();
+                interventionGrid.DataSource = dataSource;
+                if (dataSource.Count != 0 && interventionGrid.DataSource != null)
+                {
+                    interventionGrid.DataBind();
+                    interventionGrid.UseAccessibleHeader = true;
+                    interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
 			}
 		}
 
@@ -68,11 +70,14 @@ namespace GoGoPowerRangers.ENET.Views
 
         private void BindClients()
         {
-            clientGrid.DataSource = _user.ListClientsInDistrict();
-            clientGrid.DataBind();
-			clientGrid.UseAccessibleHeader = true;
-			clientGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-
+            var dataSource = _user.ListClientsInDistrict();
+            clientGrid.DataSource = dataSource;
+            if (dataSource.Count != 0 && clientGrid.DataSource != null)
+            {
+                clientGrid.DataBind();
+                clientGrid.UseAccessibleHeader = true;
+                clientGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 		}
 
 		protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)

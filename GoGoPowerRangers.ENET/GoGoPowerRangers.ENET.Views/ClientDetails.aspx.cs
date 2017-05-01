@@ -14,7 +14,7 @@ namespace GoGoPowerRangers.ENET.Views
     {
         private Client _client;
         private EngineerOrManager _user;
-        public GridView interventionGrid;
+        //public GridView interventionGrid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,14 +23,17 @@ namespace GoGoPowerRangers.ENET.Views
             labelClientName.Text = _client.Name;
             labelClientLocation.Text = _client.Location + ", " + _client.District.Name;
 
-            interventionGrid.DataSource = _client.GetInterventions();
-            interventionGrid.DataBind();
+            var dataSource = _client.GetInterventions();
+            interventionGrid.DataSource = dataSource;
 
-			interventionGrid.UseAccessibleHeader = true;
+            if (dataSource.Count != 0 && interventionGrid.DataSource != null)
+            {
+                interventionGrid.DataBind();
+                interventionGrid.UseAccessibleHeader = true;
+                interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 
-            //causing nul ref when a new client is selected
-			interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-		}
+        }
 
         protected void interventionGrid_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -53,5 +56,7 @@ namespace GoGoPowerRangers.ENET.Views
         {
             Response.Redirect("Engineer.aspx");
         }
+
+       
     }
 }

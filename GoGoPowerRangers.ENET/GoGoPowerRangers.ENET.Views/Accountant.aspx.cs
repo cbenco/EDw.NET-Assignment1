@@ -18,16 +18,24 @@ namespace GoGoPowerRangers.ENET.UI
 		{
             _user = (Accountant)Session["currentUser"];
             labelFirstName.Text = "<h3>Hello, " + _user.FirstName + "</h3>";
-            //ManagerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.Manager);
-            ManagerGrid.DataSource = _userTable.GetAllManagers();
-            ManagerGrid.DataBind();
-			ManagerGrid.UseAccessibleHeader = true;
-			ManagerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
-            //EngineerGrid.DataSource = FakeDatabase._users.Where(i => i.UserType == Model.Type.SiteEngineer);
-            EngineerGrid.DataSource = _userTable.GetAllEngineers();
-            EngineerGrid.DataBind();
-			EngineerGrid.UseAccessibleHeader = true;
-			EngineerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            var dataSource = _userTable.GetAllManagers();
+            ManagerGrid.DataSource = dataSource;
+            if (dataSource.Count != 0 && ManagerGrid.DataSource != null)
+            {
+                ManagerGrid.DataBind();
+                ManagerGrid.UseAccessibleHeader = true;
+                ManagerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
+            dataSource = _userTable.GetAllEngineers();
+            EngineerGrid.DataSource = dataSource;
+            if (dataSource.Count != 0 && EngineerGrid.DataSource != null)
+            {
+                EngineerGrid.DataBind();
+                EngineerGrid.UseAccessibleHeader = true;
+                EngineerGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
 		}
 
             //UserTableAdapter userAdapter = new UserTableAdapter();

@@ -42,10 +42,14 @@ namespace GoGoPowerRangers.ENET.Views
                             Expr1 = (int?)g.Sum(p => p.Intervention.Id)
                             
                         };
-            EngineerCostGrid.DataSource = query;
-            EngineerCostGrid.DataBind();
-            EngineerCostGrid.UseAccessibleHeader = true;
-            EngineerCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            var dataSource = query;
+            EngineerCostGrid.DataSource = dataSource;
+            if (dataSource.Count() != 0 && EngineerCostGrid.DataSource != null)
+            {
+                EngineerCostGrid.DataBind();
+                EngineerCostGrid.UseAccessibleHeader = true;
+                EngineerCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void back_Click(object sender, EventArgs e)

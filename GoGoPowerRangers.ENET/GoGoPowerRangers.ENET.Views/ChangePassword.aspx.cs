@@ -23,40 +23,7 @@ namespace GoGoPowerRangers.ENET.Views
         }
 
         protected void changePasswordButton_Click(object sender, EventArgs e)
-        {
-            //if (_user.Password.Equals(currentPassword.Text))
-            //{
-            //    if (newPassword.Text.Equals(confirmPassword.Text))
-            //    {
-            //        _user.ChangePassword(newPassword.Text);
-
-            //        switch (_user.UserType)
-            //        {
-            //            case (Model.Type.Accountant):
-            //                Response.Redirect("AccountantScreen.aspx", true);
-            //                break;
-            //            case (Model.Type.SiteEngineer):
-            //                Response.Redirect("Engineer.aspx", true);
-            //                break;
-            //            case (Model.Type.Manager):
-            //                Response.Redirect("Manager.aspx", true);
-            //                break;
-            //            default: 
-            //                Response.Redirect("test.aspx", true);
-            //                break;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ErrorMessage.Text = "Confirm password field must match new password!";
-            //    }
-            //}
-            //else
-            //{ 
-            //    ErrorMessage.Text = "Current password is incorrect!";
-            //}
-            
-            
+        {           
             var password = currentPassword.Text;
             UserTableAdapter usersTable = new UserTableAdapter();
             usersTable.UpdateUserPassword(newPassword.Text, _user.UserName, currentPassword.Text, _user.Id);

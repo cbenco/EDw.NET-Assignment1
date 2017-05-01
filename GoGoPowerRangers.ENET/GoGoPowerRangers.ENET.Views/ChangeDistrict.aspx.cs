@@ -24,10 +24,14 @@ namespace GoGoPowerRangers.ENET.Views
             {
                 labelHeader.Text = "<h1>Change district for " + _selectedUser.FirstName + " " + _selectedUser.LastName + "</h1>";
 
-                districtButtons.DataSource = _districtTable.GetDistricts();
-                districtButtons.DataTextField = "DistrictName";
-                districtButtons.DataValueField = "DistrictID";
-                districtButtons.DataBind();
+                var dataSource = _districtTable.GetDistricts();
+                districtButtons.DataSource = dataSource;
+                if (dataSource.Count != 0 && districtButtons.DataSource != null)
+                {
+                    districtButtons.DataTextField = "DistrictName";
+                    districtButtons.DataValueField = "DistrictID";
+                    districtButtons.DataBind();
+                }
             }
         }
 
