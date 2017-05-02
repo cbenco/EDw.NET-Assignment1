@@ -21,9 +21,6 @@
                         </asp:Login>
                     </div>
                 </div>
-                <p style="width: 593px">
-                    <asp:Button ID="InterventionApproval_Button" runat="server" Text="InterventionApproval" OnClick="InterventionApprovalButton_OnClick" CssClass="btn btn-default" />
-                </p>
             </div>
         </div>
     </form>
