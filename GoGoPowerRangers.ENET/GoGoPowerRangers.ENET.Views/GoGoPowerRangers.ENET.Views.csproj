@@ -140,17 +140,14 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Accountant.aspx" />
-    <Content Include="Approval.aspx" />
     <Content Include="ChangeDistrict.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ClientDetails.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CreateIntervention.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Details.aspx" />
     <Content Include="DistrictCostReport.aspx" />
     <Content Include="DistrictMonthlyCostReport.aspx" />
     <Content Include="Engineer.aspx" />
@@ -169,7 +166,6 @@
     <Content Include="LandingPage.aspx" />
     <Content Include="LoginPage.aspx" />
     <Content Include="Manager.aspx" />
-    <Content Include="ManagerIntervention.aspx" />
     <Content Include="test.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -214,13 +210,6 @@
     <Compile Include="Accountant.aspx.designer.cs">
       <DependentUpon>Accountant.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Approval.aspx.cs">
-      <DependentUpon>Approval.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Approval.aspx.designer.cs">
-      <DependentUpon>Approval.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -251,13 +240,6 @@
     <Compile Include="ClientDetails.aspx.designer.cs">
       <DependentUpon>ClientDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CreateIntervention.aspx.cs">
       <DependentUpon>CreateIntervention.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,13 +253,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Details.aspx.cs">
-      <DependentUpon>Details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Details.aspx.designer.cs">
-      <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="DistrictCostReport.aspx.cs">
       <DependentUpon>DistrictCostReport.aspx</DependentUpon>
@@ -344,13 +319,6 @@
     </Compile>
     <Compile Include="Manager.aspx.designer.cs">
       <DependentUpon>Manager.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManagerIntervention.aspx.cs">
-      <DependentUpon>ManagerIntervention.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManagerIntervention.aspx.designer.cs">
-      <DependentUpon>ManagerIntervention.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

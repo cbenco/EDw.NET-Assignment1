@@ -58,12 +58,21 @@ namespace GoGoPowerRangers.ENET.Views {
         protected global::System.Web.UI.WebControls.GridView DistrictCostGrid;
         
         /// <summary>
-        /// labelGrandTotal control.
+        /// labelGrandTotalHours control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelGrandTotal;
+        protected global::System.Web.UI.WebControls.Label labelGrandTotalHours;
+        
+        /// <summary>
+        /// labelGrandTotalCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelGrandTotalCost;
     }
 }

@@ -55,7 +55,6 @@ namespace GoGoPowerRangers.ENET.Views
 
         private void SetTimeAndCost()
         {
-            //InterventionType selectedType = FakeDatabase._interventionTypes[types.SelectedIndex];
             int selectedId;
             
             var selected = types.SelectedValue;
@@ -67,7 +66,10 @@ namespace GoGoPowerRangers.ENET.Views
 
             selectedType = _user.ConvertDbInterventionTypeToInterventionType(dbSelectedType);
             manHours.Text = selectedType.ManHours.ToString();
+            _newIntervention.ManHours = selectedType.ManHours;
             materialCost.Text = selectedType.MaterialCost.ToString();
+            _newIntervention.MaterialCost = selectedType.MaterialCost;
+            _newIntervention.InterventionType = selectedType;
         }
         private void SetDropDowns(DropDownList ddl, Object dataSource)
         {
@@ -87,14 +89,12 @@ namespace GoGoPowerRangers.ENET.Views
         {
             string currentDate = DateTime.Now.ToShortDateString();
             int? approver;
-            //Intervention i = _user.CreateIntervention(type, mHours, mCost, client, time, notes, status);
             if (status == "Approved" || status == "Complete")
                 approver = _user.Id;
             else
                 approver = null;
 
             interventionTable.AddIntervention(type, client, (decimal)mHours, (decimal)mCost, _user.Id, currentDate, status, approver, 100, currentDate, notes);
-            
             Response.Redirect("Engineer.aspx", true);
         }
 
@@ -111,7 +111,11 @@ namespace GoGoPowerRangers.ENET.Views
         protected void buttonApprove_Click(object sender, EventArgs e)
         {
             GetValues();
-            Create("Approved");
+            _newIntervention.Status = Status.Approved;
+            if (_newIntervention.Approvable(_user))
+                Create("Approved");
+            else
+                Create("Pending");
         }
 
         protected void buttonConfirmPending_Click(object sender, EventArgs e)

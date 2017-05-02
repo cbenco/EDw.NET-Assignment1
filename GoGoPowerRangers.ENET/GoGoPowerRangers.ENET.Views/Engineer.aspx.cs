@@ -14,7 +14,6 @@ namespace GoGoPowerRangers.ENET.Views
     public partial class Engineer : System.Web.UI.Page
     {
         private SiteEngineer _user;
-        //public GridView clientGrid, interventionGrid;
 
         protected void btnNewIntervention_Click(object sender, EventArgs e)
         {
@@ -95,7 +94,6 @@ namespace GoGoPowerRangers.ENET.Views
 
             if (e.CommandName == "clientNameClick")
             {
-                //var client = (Client)FakeDatabase._clients.FirstOrDefault(c => c.Id == id);
                 ClientTableAdapter clientTable = new ClientTableAdapter();
                 var dbClient = clientTable.GetClientById(id).FirstOrDefault();
                 if (dbClient != null)
@@ -108,7 +106,6 @@ namespace GoGoPowerRangers.ENET.Views
             }
             else if (e.CommandName == "viewInterventionClick")
             {
-                //var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
                 InterventionTableAdapter interventionTable = new InterventionTableAdapter();
                 var dbIntervention = interventionTable.GetInterventionById(id).FirstOrDefault();
                 if (dbIntervention != null)

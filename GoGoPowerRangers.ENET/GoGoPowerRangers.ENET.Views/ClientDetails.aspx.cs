@@ -51,7 +51,6 @@ namespace GoGoPowerRangers.ENET.Views
 
             if (e.CommandName == "viewInterventionClick")
             {
-                //var intervention = (Intervention)FakeDatabase._interventions.FirstOrDefault(i => i.Id == id);
                 InterventionTableAdapter interventionTable = new InterventionTableAdapter();
                 var dbIntervention = interventionTable.GetInterventionById(id).FirstOrDefault();
                 if (dbIntervention != null)

@@ -40,6 +40,9 @@ namespace GoGoPowerRangers.ENET.Model
             MaterialCost = materialCost;
         }
 
+        /// <summary>
+        /// update intervention in database
+        /// </summary>
         public void SaveChanges()
         {
             InterventionTableAdapter interventionTable = new InterventionTableAdapter();
@@ -69,6 +72,7 @@ namespace GoGoPowerRangers.ENET.Model
                 approverId = Approver.Id;
             interventionTable.UpdateInterventionById(InterventionType.Id, Client.Id, (decimal)ManHours, (decimal)MaterialCost, Requester.Id, RequestDate.ToShortDateString(), status, approverId, RemainingLife, LastVisited.ToShortDateString(), Notes, Id, Id);
         }
+
         public InterventionType InterventionType { get; set; }
         public double ManHours { get; set; }
         public double MaterialCost { get; set; }
@@ -85,6 +89,7 @@ namespace GoGoPowerRangers.ENET.Model
         {
             get; set;
         }
+
         public string RequestDateString {
             get { return RequestDate.ToShortDateString(); }
             set { }
@@ -104,6 +109,7 @@ namespace GoGoPowerRangers.ENET.Model
         {
             return (modifier.District == Client.District);
         }
+
         /// <summary>
         /// Tests to see if the user can approve this intervention according to the business rules.
         /// </summary>
@@ -124,6 +130,7 @@ namespace GoGoPowerRangers.ENET.Model
                 }
             return false;
         }
+
         //omg
         /// <summary>
         /// Returns the current object - required for some front-end hack.

@@ -111,6 +111,10 @@ namespace GoGoPowerRangers.ENET.Views
                 DistrictMonthlyCostGrid.UseAccessibleHeader = true;
                 DistrictMonthlyCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            else
+            {
+                DistrictMonthlyCostGrid.DataBind();
+            }
         }
     }
 }

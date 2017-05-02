@@ -17,10 +17,19 @@ namespace GoGoPowerRangers.ENET.Views
         private InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (SiteEngineer)Session["currentUser"];
-            _user = (EngineerOrManager)Session["currentUser"];
-            _intervention = (Intervention)Session["selectedIntervention"];
-            
+            try
+            {
+                _user = (EngineerOrManager)Session["currentUser"];
+                _intervention = (Intervention)Session["selectedIntervention"];
+                if (_user == null || _intervention == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+
+
             if (!IsPostBack)
             {
                 labelType.Text = _intervention.InterventionType.Name;

@@ -23,6 +23,9 @@
                 </div>
             </div>
         </div>
+        <div style="margin-left: 680px">
+            <asp:Label ID="ErrorMessage" runat="server" Align="Center"></asp:Label>
+        </div>
     </form>
 </body>
 </html>

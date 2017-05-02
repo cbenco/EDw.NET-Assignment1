@@ -48,13 +48,19 @@ namespace GoGoPowerRangers.ENET.Views
                         };
 
             var dataSource = query;
-            DistrictCostGrid.DataSource = query;
+            DistrictCostGrid.DataSource = dataSource;
             if (dataSource.Count() != 0 && DistrictCostGrid.DataSource != null)
             {
                 DistrictCostGrid.DataBind();
                 DistrictCostGrid.UseAccessibleHeader = true;
                 DistrictCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
+                labelGrandTotalHours.Text = "Grand Total Hours: " + dataSource.Sum(c => c.TotalHours);
+                labelGrandTotalCost.Text = "Grand Total Cost: $" + dataSource.Sum(c => c.TotalCost);
             }
+            else
+                DistrictCostGrid.DataBind();
+
+            
         }
 
         protected void back_Click(object sender, EventArgs e)

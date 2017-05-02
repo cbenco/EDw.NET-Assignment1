@@ -19,6 +19,7 @@ namespace GoGoPowerRangers.ENET.Model
             MaxManHours = STANDARD_MAXMANHOURS;
             MaxMaterialCost = STANDARD_MAXMATCOST;
         }
+
         /// <summary>
         /// Returns a list of interventions which the Manager can approve.
         /// </summary>
@@ -35,20 +36,17 @@ namespace GoGoPowerRangers.ENET.Model
                 if (intervention.Approvable(this))
                     interventions.Add(intervention);
             }
-            //var interventionQuery = interventions.Where(i => i.Approvable(this));
-
-            //foreach (Intervention i in interventionQuery)
-            //    interventions.Add(i);
-
-
+           
             return interventions;
         }
-        public Intervention GetInterventionById(int id)
-        {
-            //TODO
-            return new Intervention();
-        }
-        public void ChangeInterventionState(Intervention intervention, Status status)
+
+
+        /// <summary>
+        /// Change the state of an intervention in the database
+        /// </summary>
+        /// <param name="intervention"></param>
+        /// <param name="status"></param>
+        public new void ChangeInterventionState(Intervention intervention, Status status)
         {
             InterventionTableAdapter interventionTable = new InterventionTableAdapter();
             intervention.Status = status;

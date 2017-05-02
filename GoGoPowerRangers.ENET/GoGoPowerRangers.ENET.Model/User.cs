@@ -54,10 +54,7 @@ namespace GoGoPowerRangers.ENET.Model
                     break;
             }
         }
-        public Data.ENET.UserRow ToDbUser(User user)
-        {
-            return null; 
-        }
+       
         public int Id
         {
             get;
@@ -70,10 +67,7 @@ namespace GoGoPowerRangers.ENET.Model
 
         public Type UserType { get; set; }
 
-        public void ChangePassword(string password)
-        {
-            Password = password;
-        }
+        
         public override string ToString()
         {
             return Id + " " + FirstName + " " + LastName + ", " + UserType;

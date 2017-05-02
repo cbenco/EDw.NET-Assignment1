@@ -11,16 +11,22 @@ namespace GoGoPowerRangers.ENET.Model
         public Accountant(User user) : base(user) { }
         public Accountant(string userName, string password, string name) : base(userName, password, name, Type.Accountant) { }
 
-        public List<SiteEngineer> GetAllSiteEngineers()
-        {
-            return new List<SiteEngineer>();
-        }
-        //only changing this in database, so only need userID
+        /// <summary>
+        /// Changes district of given user 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="districtId"></param>
         public void ChangeUserDistrict(User user, int districtId)
         {
             UserTypeTableAdapter userTypeTable = new UserTypeTableAdapter();
             userTypeTable.UpdateUserDistrictId(districtId, user.Id, user.Id);
         }
+
+        /// <summary>
+        /// Converts InterventionType from database to local object
+        /// </summary>
+        /// <param name="dbInterventionType"></param>
+        /// <returns></returns>
         public InterventionType ConvertDbInterventionTypeToInterventionType(Data.ENET.InterventionTypeRow dbInterventionType)
         {
             InterventionType iType = new InterventionType();
@@ -32,7 +38,12 @@ namespace GoGoPowerRangers.ENET.Model
             iType.Id = dbInterventionType.TypeID;
             return iType;
         }
-        //possibly change this to a constructor
+
+        /// <summary>
+        /// Converts Intervention from database to local object
+        /// </summary>
+        /// <param name="dbIntervention"></param>
+        /// <returns></returns>
         public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
         {
 
@@ -42,12 +53,7 @@ namespace GoGoPowerRangers.ENET.Model
             DistrictTableAdapter districtTable = new DistrictTableAdapter();
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
-            //iType.ManHours = (double)dbInterventionType.DefaultHours;
-            //iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
-            //iType.Name = dbInterventionType.Name;
-            //iType.Id = dbInterventionType.TypeID;
-
-
+            
             Intervention i = new Intervention();
             i.InterventionType = ConvertDbInterventionTypeToInterventionType(dbInterventionType);
             i.Id = dbIntervention.InterventionID;
@@ -58,7 +64,10 @@ namespace GoGoPowerRangers.ENET.Model
             i.RemainingLife = dbIntervention.RemainingLife;
             i.RequestDate = dbIntervention.Date;
             i.Requester = new SiteEngineer(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
-
+            if (dbIntervention.ApprovedBy >= 1)
+                i.Approver = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ApprovedBy).FirstOrDefault()));
+            else
+                i.Approver = null;
             var dbDistrict = districtTable.GetDistrictById(userTypeTable.GetUserTypeByUserID(dbIntervention.ProposedBy).FirstOrDefault().DistrictID).FirstOrDefault();
             i.Requester.District = ConvertDbDistricttoDistrict(dbDistrict);
 
@@ -85,6 +94,12 @@ namespace GoGoPowerRangers.ENET.Model
             i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
             return i;
         }
+
+        /// <summary>
+        /// Converts client from database to local object
+        /// </summary>
+        /// <param name="dbClient"></param>
+        /// <returns></returns>
         public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
         {
             DistrictTableAdapter districtTable = new DistrictTableAdapter();
@@ -94,6 +109,11 @@ namespace GoGoPowerRangers.ENET.Model
             return client;
         }
 
+        /// <summary>
+        /// Converts User from database to local object
+        /// </summary>
+        /// <param name="dbUser"></param>
+        /// <returns></returns>
         public User ConvertDbUserToUser(Data.ENET.UserRow dbUser)
         {
             User user = new User();
@@ -117,6 +137,12 @@ namespace GoGoPowerRangers.ENET.Model
 
             return user;
         }
+
+        /// <summary>
+        /// Converts district from database to local object
+        /// </summary>
+        /// <param name="dbDistrict"></param>
+        /// <returns></returns>
         public District ConvertDbDistricttoDistrict(Data.ENET.DistrictRow dbDistrict)
         {
             District district = new District();

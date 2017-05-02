@@ -49,21 +49,7 @@ namespace GoGoPowerRangers.ENET.UI
             }
 		}
 
-            //UserTableAdapter userAdapter = new UserTableAdapter();
-            //ADOEngineerGrid.DataSource = userAdapter.GetUser();
-            //ADOEngineerGrid.DataBind();
-        
-
-        //protected void btnViewPeople_Click(object sender, ImageClickEventArgs e)
-        //{
-
-        //}
-
-        //protected void btnViewReports_Click(object sender, ImageClickEventArgs e)
-        //{
-
-        //}
-
+            
         protected void Logout_Click(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
@@ -80,7 +66,6 @@ namespace GoGoPowerRangers.ENET.UI
             int id = int.Parse(e.CommandArgument.ToString());
             if (e.CommandName == "changeDistrictClick")
             {
-                //var selectedUser = (User)FakeDatabase._users.FirstOrDefault(u => u.Id == id);
                 var selectedUser = new User(_userTable.GetUserById(id).FirstOrDefault());
                 Session.Add("selectedUser", selectedUser);
                 Response.Redirect("ChangeDistrict.aspx");

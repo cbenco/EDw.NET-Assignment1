@@ -67,7 +67,8 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <asp:Label ID="labelGrandTotal" runat="server" Text='<%# Eval("GrandTotalHours") %>' />
+                        <asp:Label ID="labelGrandTotalCost" runat="server"  />
+                        <asp:Label ID="labelGrandTotalHours" runat="server"  />
                     </div>
                 </div>
                 <br />

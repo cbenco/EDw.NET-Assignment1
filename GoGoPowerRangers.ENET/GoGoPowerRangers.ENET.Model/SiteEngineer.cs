@@ -39,15 +39,18 @@ namespace GoGoPowerRangers.ENET.Model
 
         }
 
-        //need to differentiate this method from new client functionality.
-        //possibly change name to ConvertDbClientToClient
-        public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
+        /// <summary>
+        /// Converts client from database to local object
+        /// </summary>
+        /// <param name="dbClient"></param>
+        /// <returns></returns>
+        public new Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
         {
             Client client = new Client(dbClient.Name, dbClient.Location, this.District);
             client.Id = dbClient.ClientID;
             return client;
         }
-        public District District { get; set; }
+        public new District District { get; set; }
 
         /// <summary>
         /// Creates an intervention using IDs and values passed from user input.
@@ -78,6 +81,11 @@ namespace GoGoPowerRangers.ENET.Model
             return null;
         }
 
+        /// <summary>
+        /// Converts InterventionType from database to local object
+        /// </summary>
+        /// <param name="dbInterventionType"></param>
+        /// <returns></returns>
         public InterventionType ConvertDbInterventionTypeToInterventionType(Data.ENET.InterventionTypeRow dbInterventionType)
         {
             InterventionType iType = new InterventionType();
@@ -89,19 +97,20 @@ namespace GoGoPowerRangers.ENET.Model
             iType.Id = dbInterventionType.TypeID;
             return iType;
         }
-        //possibly change this to a constructor
-        public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
+
+        /// <summary>
+        /// Converts Intervention from database to local object
+        /// </summary>
+        /// <param name="dbIntervention"></param>
+        /// <returns></returns>
+        public new Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
         {
-            
+
             InterventionType iType = new InterventionType();
 
             InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
             UserTableAdapter userTable = new UserTableAdapter();
             var dbInterventionType = iTypeTable.GetInterventionTypeById(dbIntervention.TypeID).FirstOrDefault();
-            //iType.ManHours = (double)dbInterventionType.DefaultHours;
-            //iType.MaterialCost = (double)dbInterventionType.DefaultMaterialCost;
-            //iType.Name = dbInterventionType.Name;
-            //iType.Id = dbInterventionType.TypeID;
 
             Intervention i = new Intervention();
             i.InterventionType = ConvertDbInterventionTypeToInterventionType(dbInterventionType);
@@ -113,6 +122,10 @@ namespace GoGoPowerRangers.ENET.Model
             i.RemainingLife = dbIntervention.RemainingLife;
             i.RequestDate = dbIntervention.Date;
             i.Requester = this;
+            if (dbIntervention.ApprovedBy >= 1)
+                i.Approver = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ApprovedBy).FirstOrDefault()));
+            else
+                i.Approver = null;
             var status = dbIntervention.State;
             switch (status)
             {
@@ -137,23 +150,14 @@ namespace GoGoPowerRangers.ENET.Model
             i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
             return i;
         }
-        public void CreateIntervention(Intervention intervention)
-        {
 
-        }
         /// <summary>
         /// Lists the clients in the engineer's current district.
         /// </summary>
         /// <returns></returns>
         public List<Data.ENET.ClientRow> ListClientsInDistrict()
         {
-            //List<Client> clientList = new List<Client>();
-            //var clients = FakeDatabase._clients.Where(c => c.District.Name == this.District.Name);
-            //foreach (Client c in clients)
-            //    clientList.Add(c);
-
             ClientTableAdapter clientTable = new ClientTableAdapter();
-
             return clientTable.GetClientsByDistrictId(this.District.Id).ToList();
         }
         /// <summary>
@@ -162,11 +166,6 @@ namespace GoGoPowerRangers.ENET.Model
         /// <returns></returns>
         public Data.ENET.InterventionDataTable GetInterventions()
         {
-            //List<Intervention> interventionList = new List<Intervention>();
-            //var interventions = FakeDatabase._interventions.Where(i => i.Requester == this);
-            //foreach (Intervention i in interventions)
-            //    interventionList.Add(i);
-            
             try
             {
                 InterventionTableAdapter interventionTable = new InterventionTableAdapter();
@@ -179,12 +178,7 @@ namespace GoGoPowerRangers.ENET.Model
             }
         }
 
-        public Intervention GetInterventionById(int id)
-        {
-            //TODO
-            return new Intervention();
-        }
-        
+      
         public override string ToString()
         {
             return base.ToString() + ", " + District.ToString();

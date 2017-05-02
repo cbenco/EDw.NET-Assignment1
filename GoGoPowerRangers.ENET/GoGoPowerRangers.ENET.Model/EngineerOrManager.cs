@@ -32,6 +32,12 @@ namespace GoGoPowerRangers.ENET.Model
                 intervention.Status = status;
         }
 
+        /// <summary>
+        /// Check if status can be changed
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private bool CanChangeStatus(Intervention i, Status s)
         {
             return !((i.Status == Status.Pending && s == Status.Complete) || 
@@ -39,6 +45,11 @@ namespace GoGoPowerRangers.ENET.Model
                      (i.Status == Status.Cancelled || i.Status == Status.Complete));
         }
 
+        /// <summary>
+        /// Converts Intervention from database to local object
+        /// </summary>
+        /// <param name="dbIntervention"></param>
+        /// <returns></returns>
         public Intervention ConvertDbInterventionToIntervention(Data.ENET.InterventionRow dbIntervention)
         {
 
@@ -62,6 +73,11 @@ namespace GoGoPowerRangers.ENET.Model
             i.RequestDate = dbIntervention.Date;
             i.Requester = new SiteEngineer(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ProposedBy).FirstOrDefault()));
             var status = dbIntervention.State;
+
+            if (dbIntervention.ApprovedBy >= 1)
+                i.Approver = new User(ConvertDbUserToUser(userTable.GetUserById(dbIntervention.ApprovedBy).FirstOrDefault()));
+            else
+                i.Approver = null;
             switch (status)
             {
                 case "Pending":
@@ -84,6 +100,12 @@ namespace GoGoPowerRangers.ENET.Model
             i.Client = ConvertDbClientToClient(clientTable.GetClientById(dbIntervention.ClientID).FirstOrDefault());
             return i;
         }
+
+        /// <summary>
+        /// Converts client from database to local object
+        /// </summary>
+        /// <param name="dbClient"></param>
+        /// <returns></returns>
         public Client ConvertDbClientToClient(Data.ENET.ClientRow dbClient)
         {
             Client client = new Client(dbClient.Name, dbClient.Location, this.District);
@@ -91,6 +113,11 @@ namespace GoGoPowerRangers.ENET.Model
             return client;
         }
 
+        /// <summary>
+        /// Converts User from database to local object
+        /// </summary>
+        /// <param name="dbUser"></param>
+        /// <returns></returns>
         public User ConvertDbUserToUser(Data.ENET.UserRow dbUser)
         {
             User user = new User();

@@ -102,7 +102,6 @@ namespace GoGoPowerRangers.ENET.UI
 
         public static User UserLogin(string name, string password)
         {
-            //_user = FakeDatabase._users.FirstOrDefault(u => u.Name == name && u.Password == password);
             var dbUser = usersTable.GetUserByUsername(name).FirstOrDefault();
             if (dbUser == null)
                 return null;
