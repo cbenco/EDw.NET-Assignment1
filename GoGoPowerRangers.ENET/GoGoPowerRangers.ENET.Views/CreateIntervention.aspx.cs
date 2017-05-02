@@ -20,7 +20,7 @@ namespace GoGoPowerRangers.ENET.Views
         double mHours, mCost;
         string notes;
         DateTime time;
-        Intervention _newIntervention;
+        Intervention _newIntervention = new Intervention();
         InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
         InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         ClientTableAdapter clientTable = new ClientTableAdapter();
