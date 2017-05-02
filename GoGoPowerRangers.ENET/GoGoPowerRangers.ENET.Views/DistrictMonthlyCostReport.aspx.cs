@@ -19,30 +19,51 @@ namespace GoGoPowerRangers.ENET.Views
         private int _selectedId = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (Accountant)Session["currentUser"];
+            try
+            {
+                _user = (Accountant)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
 
 
-            var dbDistricts = districtTable.GetDistricts();
-            var dbInterventions = interventionTable.GetInterventions();
+            try
+            {
+                var dbDistricts = districtTable.GetDistricts();
+                var dbInterventions = interventionTable.GetInterventions();
+
+                foreach (var dbInt in dbInterventions)
+                {
+                    var intervention = _user.ConvertDbInterventionToIntervention(dbInt);
+                    _interventions.Add(intervention);
+                }
+
+                foreach (var dbDist in dbDistricts)
+                {
+                    var district = _user.ConvertDbDistricttoDistrict(dbDist);
+                    _districts.Add(district);
+                }
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+
+
+
+            if (!IsPostBack)
+            {
+                districtDropdown.DataSource = _districts;
+                districtDropdown.DataTextField = "Name";
+                districtDropdown.DataValueField = "Id";
+                districtDropdown.DataBind();
+                SetDataGrid();
+            }
             
-            foreach (var dbInt in dbInterventions)
-            {
-                var intervention = _user.ConvertDbInterventionToIntervention(dbInt);
-                _interventions.Add(intervention);
-            }
-
-            foreach (var dbDist in dbDistricts)
-            {
-                var district = _user.ConvertDbDistricttoDistrict(dbDist);
-                _districts.Add(district);
-            }
-
-            districtDropdown.DataSource = _districts;
-            districtDropdown.DataTextField = "Name";
-            districtDropdown.DataValueField = "Id";
-            districtDropdown.DataBind();
-
-            SetDataGrid();
         }
 
         protected void back_Click(object sender, EventArgs e)

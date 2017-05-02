@@ -20,20 +20,28 @@ namespace GoGoPowerRangers.ENET.Views
         double mHours, mCost;
         string notes;
         DateTime time;
+        Intervention _newIntervention;
         InterventionTypeTableAdapter iTypeTable = new InterventionTypeTableAdapter();
         InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         ClientTableAdapter clientTable = new ClientTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (SiteEngineer)Session["currentUser"];
+            try
+            {
+                _user = (SiteEngineer)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
 
             if (!IsPostBack)
             {
                 showApproveComplete = false;
                 SetDropDowns(types, iTypeTable.GetInterventionTypes());
                 SetDropDowns(clients, clientTable.GetClientsByDistrictId(_user.District.Id));
-                //SetDropDowns(types, FakeDatabase._interventionTypes);
-                //SetDropDowns(clients, _user.ListClientsInDistrict());
                 SetTimeAndCost();
             }
         }

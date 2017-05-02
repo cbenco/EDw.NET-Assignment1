@@ -16,7 +16,18 @@ namespace GoGoPowerRangers.ENET.UI
         private UserTableAdapter _userTable = new UserTableAdapter();
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            _user = (Accountant)Session["currentUser"];
+            try
+            {
+                _user = (Accountant)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+
+            }
+
             labelFirstName.Text = "<h3>Hello, " + _user.FirstName + "</h3>";
 
             var dataSource = _userTable.GetAllManagers();

@@ -17,9 +17,18 @@ namespace GoGoPowerRangers.ENET.Views
         DistrictTableAdapter _districtTable = new DistrictTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (Accountant)Session["currentUser"];
-            _selectedUser = (User)Session["selectedUser"];
-            
+            try
+            {
+                _user = (Accountant)Session["currentUser"];
+                _selectedUser = (User)Session["selectedUser"];
+                if (_user == null || _selectedUser == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+
             if (!IsPostBack)
             {
                 labelHeader.Text = "<h1>Change district for " + _selectedUser.FirstName + " " + _selectedUser.LastName + "</h1>";

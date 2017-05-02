@@ -18,8 +18,18 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _client = (Client)Session["selectedClient"];
-            _user = (EngineerOrManager)Session["currentUser"];
+            try
+            {
+                _client = (Client)Session["selectedClient"];
+                _user = (EngineerOrManager)Session["currentUser"];
+                if (_user == null || _client == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+
             labelClientName.Text = _client.Name;
             labelClientLocation.Text = _client.Location + ", " + _client.District.Name;
 

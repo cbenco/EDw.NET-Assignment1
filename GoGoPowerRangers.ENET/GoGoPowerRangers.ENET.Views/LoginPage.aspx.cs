@@ -18,6 +18,13 @@ namespace GoGoPowerRangers.ENET.UI
         private static DistrictTableAdapter districtTable = new DistrictTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
 		{
+            var user = Session["currentUser"];
+
+            if (user != null)
+            {
+                ErrorMessage.Text = "An error occurred";
+                Session["currentUser"] = null;
+            }
 		}
 
 		protected void Login_Authenticate(object sender, AuthenticateEventArgs e)

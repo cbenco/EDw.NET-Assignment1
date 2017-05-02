@@ -15,7 +15,17 @@ namespace GoGoPowerRangers.ENET.Views
         private InterventionTableAdapter interventionTable = new InterventionTableAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (Accountant)Session["currentUser"];
+            try
+            {
+                _user = (Accountant)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+            
 
             var dbInterventions = interventionTable.GetInterventions();
             List<Intervention> interventions = new List<Intervention>();

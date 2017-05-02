@@ -42,7 +42,17 @@ namespace GoGoPowerRangers.ENET.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (SiteEngineer)Session["currentUser"];
+            try
+            {
+                _user = (SiteEngineer)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+            
             if (!IsPostBack)
             {
                 

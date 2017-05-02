@@ -25,7 +25,16 @@ namespace GoGoPowerRangers.ENET.Views
 		
         protected void Page_Load(object sender, EventArgs e)
         {
-            _user = (Manager)Session["currentUser"];
+            try
+            {
+                _user = (Manager)Session["currentUser"];
+                if (_user == null)
+                    Response.Redirect("LoginPage.aspx");
+            }
+            catch
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
             if (!IsPostBack)
             {
                 interventionTable = new InterventionTableAdapter();
