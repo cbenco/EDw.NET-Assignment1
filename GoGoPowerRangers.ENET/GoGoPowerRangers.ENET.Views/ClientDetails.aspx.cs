@@ -42,6 +42,8 @@ namespace GoGoPowerRangers.ENET.Views
                 interventionGrid.UseAccessibleHeader = true;
                 interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            else
+                interventionGrid.DataBind();
 
         }
 

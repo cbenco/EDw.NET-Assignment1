@@ -68,7 +68,9 @@ namespace GoGoPowerRangers.ENET.Views
                     interventionGrid.UseAccessibleHeader = true;
                     interventionGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
                 }
-			}
+                else
+                    interventionGrid.DataBind();
+            }
 		}
 
         protected void changePasswordButton_Click(object sender, EventArgs e)

@@ -59,6 +59,8 @@ namespace GoGoPowerRangers.ENET.Views
                 EngineerCostGrid.UseAccessibleHeader = true;
                 EngineerCostGrid.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            else
+                EngineerCostGrid.DataBind();
         }
 
         protected void back_Click(object sender, EventArgs e)
